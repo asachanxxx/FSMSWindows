@@ -32,9 +32,42 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_Gas-pump_85372.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.1.50.4\lib\net451\Dapper.Contrib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +79,196 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Classes\Transcoder.cs" />
+    <Compile Include="Classes\commonFunctions.cs" />
+    <Compile Include="e2e\e2etest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="e2e\e2etest.Designer.cs">
+      <DependentUpon>e2etest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_grn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_grn.Designer.cs">
+      <DependentUpon>frm_grn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frm_TankStockLive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_TankStockLive.Designer.cs">
+      <DependentUpon>frm_TankStockLive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frm_totalizerReadings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_totalizerReadings.Designer.cs">
+      <DependentUpon>frm_totalizerReadings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frm_DailySales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_DailySales.Designer.cs">
+      <DependentUpon>frm_DailySales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frm_dailySalesMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_dailySalesMain.Designer.cs">
+      <DependentUpon>frm_dailySalesMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frm_rosters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_rosters.Designer.cs">
+      <DependentUpon>frm_rosters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\frm_daystart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_daystart.Designer.cs">
+      <DependentUpon>frm_daystart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frm_shifts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_shifts.Designer.cs">
+      <DependentUpon>frm_shifts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frm_rfcards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_rfcards.Designer.cs">
+      <DependentUpon>frm_rfcards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frmcustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frmcustomers.Designer.cs">
+      <DependentUpon>frmcustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frm_tanks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_tanks.Designer.cs">
+      <DependentUpon>frm_tanks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frm_fueltypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_fueltypes.Designer.cs">
+      <DependentUpon>frm_fueltypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frm_employees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_employees.Designer.cs">
+      <DependentUpon>frm_employees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_login.Designer.cs">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_main.Designer.cs">
+      <DependentUpon>frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="e2e\WorkBench.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="e2e\WorkBench.Designer.cs">
+      <DependentUpon>WorkBench.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\frm_salestypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_salestypes.Designer.cs">
+      <DependentUpon>frm_salestypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\PumpStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\PumpStatus.Designer.cs">
+      <DependentUpon>PumpStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\ReportViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\ReportViwer.Designer.cs">
+      <DependentUpon>ReportViwer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MasterData\PumpManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\PumpManager.Designer.cs">
+      <DependentUpon>PumpManager.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="e2e\e2etest.resx">
+      <DependentUpon>e2etest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_grn.resx">
+      <DependentUpon>frm_grn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_TankStockLive.resx">
+      <DependentUpon>frm_TankStockLive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_totalizerReadings.resx">
+      <DependentUpon>frm_totalizerReadings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_DailySales.resx">
+      <DependentUpon>frm_DailySales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_dailySalesMain.resx">
+      <DependentUpon>frm_dailySalesMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_rosters.resx">
+      <DependentUpon>frm_rosters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_daystart.resx">
+      <DependentUpon>frm_daystart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_shifts.resx">
+      <DependentUpon>frm_shifts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_rfcards.resx">
+      <DependentUpon>frm_rfcards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frmcustomers.resx">
+      <DependentUpon>frmcustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_tanks.resx">
+      <DependentUpon>frm_tanks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_fueltypes.resx">
+      <DependentUpon>frm_fueltypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_employees.resx">
+      <DependentUpon>frm_employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_login.resx">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_main.resx">
+      <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="e2e\WorkBench.resx">
+      <DependentUpon>WorkBench.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_salestypes.resx">
+      <DependentUpon>frm_salestypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\PumpStatus.resx">
+      <DependentUpon>PumpStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\ReportViwer.resx">
+      <DependentUpon>ReportViwer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +277,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="MasterData\PumpManager.resx">
+      <DependentUpon>PumpManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,6 +296,49 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSMS.Common\FSMS.Common.csproj">
+      <Project>{fb22d6f7-9b5c-4a10-b05a-5642c59f3682}</Project>
+      <Name>FSMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMS.Crypto\FSMS.Crypto.csproj">
+      <Project>{9079fced-2d34-422b-a9bd-5eae67c65ba9}</Project>
+      <Name>FSMS.Crypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMS.Data\FSMS.Data.csproj">
+      <Project>{37ca4d63-0914-418c-930b-b25b384f1ae0}</Project>
+      <Name>FSMS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMS.Domain\FSMS.Domain.csproj">
+      <Project>{5b857075-f341-431a-9de1-81be549a5e6f}</Project>
+      <Name>FSMS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMS.Repository\FSMS.Repository.csproj">
+      <Project>{3b8118a4-8917-493b-9100-840ca2b981d2}</Project>
+      <Name>FSMS.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="if_Gas-pump_85372.ico" />
+    <None Include="Resources\Unloading.png" />
+    <None Include="Resources\Salary.png" />
+    <None Include="Resources\pumpStatus.png" />
+    <None Include="Resources\Log ogg.png" />
+    <None Include="Resources\LiveStock.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Daystart.png" />
+    <None Include="Resources\DailySales.png" />
+    <None Include="Resources\Change Password.png" />
+    <None Include="Resources\001-tag.png" />
+    <None Include="Resources\001-check-box-empty.png" />
+    <None Include="Resources\002-badge.png" />
+    <None Include="Resources\006-group.png" />
+    <None Include="Resources\009-fuel-station-pump.png" />
+    <None Include="Resources\003-credit-cards.png" />
+    <None Include="Resources\004-cargo-truck.png" />
+    <None Include="Resources\005-multiple-users-silhouette.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

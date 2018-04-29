@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FSMS.UI
+namespace FSMS.UI.Process
 {
-    public partial class Form1 : Form
+    public partial class ReportViwer : Form
     {
-        public Form1()
+        public ReportViwer()
         {
             InitializeComponent();
         }
