@@ -68,9 +68,11 @@
     <Compile Include="IRepositoryBase.cs" />
     <Compile Include="KeyValueRepository.cs" />
     <Compile Include="LogRepository.cs" />
+    <Compile Include="PrintRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="SecurityRepository.cs" />
+    <Compile Include="XMLEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSMS.Crypto\FSMS.Crypto.csproj">

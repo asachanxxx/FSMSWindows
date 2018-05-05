@@ -180,7 +180,7 @@ namespace FSMS.Repository
 
             try
             {
-                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
                     return db.Execute("Sp_InitializeDailyPumperAssign", new { DateStamp = DateStamp , day = day }, commandType: CommandType.StoredProcedure);
@@ -194,7 +194,7 @@ namespace FSMS.Repository
 
         }
 
-        public static IEnumerable<DailyAssignWorkerDetails> GetDailyAssignWorkerDetails(int did)
+        public static IEnumerable<DailyAssignWorkerDetails> GetDailyAssignWorkerDetails(int did, int sessionid)
         {
 
             try
@@ -202,7 +202,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Query<DailyAssignWorkerDetails>("SP_GetDailyAssignWorkerDetails", new { did = did }, commandType: CommandType.StoredProcedure);
+                    return db.Query<DailyAssignWorkerDetails>("SP_GetDailyAssignWorkerDetails", new { did = did , sessionid= sessionid }, commandType: CommandType.StoredProcedure);
 
                 }
             }
@@ -212,7 +212,7 @@ namespace FSMS.Repository
             }
 
         }
-        public static string AssignPumperToNozzel(int did,int pimperID, int NozzelID, int DayAssignID)
+        public static string AssignPumperToNozzel(int did,int pimperID, int NozzelID, int DayAssignID , int SessionID)
         {
 
             try
@@ -220,7 +220,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    int x = db.Execute("SP_AssignPumperToNozzel", new { did = did, pimperID = pimperID, NozzelID= NozzelID, DayAssignID= DayAssignID }, commandType: CommandType.StoredProcedure);
+                    int x = db.Execute("SP_AssignPumperToNozzel", new { SessionID = SessionID, did = did, pimperID = pimperID, NozzelID= NozzelID, DayAssignID= DayAssignID }, commandType: CommandType.StoredProcedure);
                     if (x > 0)
                     {
                         return "Pumper Assigned Successfull";
@@ -267,7 +267,7 @@ namespace FSMS.Repository
         }
 
         public static int InsertCollectionBreakdown(decimal value, int did, int pumperid, int collectionID, int vehicleID,
-            int SalesId, string cardNo, string VoucherNO, int BankId,int Aciion,int CollectionBreakId)
+            int SalesId, string cardNo, string VoucherNO, int BankId,int Aciion,int CollectionBreakId, int SessionID)
         {
 
             try
@@ -288,7 +288,8 @@ namespace FSMS.Repository
                             BankId = BankId,
                             Action = Aciion,
                             Value = value,
-                            CollectionBreakId= CollectionBreakId
+                            CollectionBreakId= CollectionBreakId,
+                            SessionID = SessionID
                         },
                         commandType: CommandType.StoredProcedure);
                 }
@@ -417,7 +418,7 @@ namespace FSMS.Repository
 
                                      
         public static int InsetPumpClosing(int DayID, int PumperId, int NozzelID, 
-             decimal TotalHours, decimal StartTotalizer, decimal EndTotalizer, decimal Reading, decimal Price, decimal Value, int SeqNo)
+             decimal TotalHours, decimal StartTotalizer, decimal EndTotalizer, decimal Reading, decimal Price, decimal Value, int SeqNo,int SessionId)
         {
 
             try
@@ -437,7 +438,8 @@ namespace FSMS.Repository
                             Reading = Reading,
                             Price = Price,
                             Value = Value,
-                            SeqNo= SeqNo
+                            SeqNo= SeqNo,
+                            SessionId = SessionId
                         },
                         commandType: CommandType.StoredProcedure);
                 }
@@ -450,7 +452,7 @@ namespace FSMS.Repository
         }
 
 
-        public static IEnumerable<DailyPumperTotal> GetDailyPumperTotal(int DayID, int PumperId)
+        public static IEnumerable<DailyPumperTotal> GetDailyPumperTotal(int DayID, int PumperId,int SessionId)
         {
 
             try
@@ -462,7 +464,8 @@ namespace FSMS.Repository
                         new
                         {
                             DayId = DayID,
-                            PumperId = PumperId
+                            PumperId = PumperId,
+                            SessionId= SessionId
                         },
                         commandType: CommandType.StoredProcedure);
 
@@ -477,7 +480,7 @@ namespace FSMS.Repository
 
 
 
-        public static GetCollectionFOrDay_Pumper_SaleType GetGetCollectionFOrDay_Pumper_SaleType(int DayID, int PumperId, int SaleId)
+        public static GetCollectionFOrDay_Pumper_SaleType GetGetCollectionFOrDay_Pumper_SaleType(int DayID, int PumperId, int SaleId,int SessionId)
         {
 
             try
@@ -489,7 +492,8 @@ namespace FSMS.Repository
                     {
                         DayId = DayID,
                         PumperId = PumperId,
-                        SaleId = SaleId
+                        SaleId = SaleId,
+                        SessionId= SessionId
                     }, commandType: CommandType.StoredProcedure))
                     {
                         var countA = multi.Read<GetCollectionFOrDay_Pumper_SaleType>().Single();
@@ -534,7 +538,7 @@ namespace FSMS.Repository
 
         }
 
-        public static TwoKeyNumer GetSystemTotalForPumperForDay(int DayID, int PumperId)
+        public static TwoKeyNumer GetSystemTotalForPumperForDay(int DayID, int PumperId,int SessionId)
         {
 
             try
@@ -545,7 +549,8 @@ namespace FSMS.Repository
                     return db.QuerySingleOrDefault<TwoKeyNumer>("SP_GetSystemTotalForPumperForDay", new
                     {
                         DayId = DayID,
-                        PumperId = PumperId
+                        PumperId = PumperId,
+                        SessionId= SessionId
                     }, commandType: CommandType.StoredProcedure);
                 }
             }
@@ -609,10 +614,96 @@ namespace FSMS.Repository
             }
         }
 
+        public static int InsertSalesPrint(DifferentLog entity)
+        {
 
-        // 
+            try
+            {
+                XMLTool xmlcreate = new XMLTool();
+                string xmlString = xmlcreate.Serialize(entity);
+
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    var resfult = db.QuerySingle<DifferentLog>("SP_UpdateSalesEntries", new { XMLDetails = xmlString }, commandType: CommandType.StoredProcedure);
+                    return 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static IEnumerable<DaySession> GetDaySessionForDay(int DayID)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<DaySession>("select Id , SessionName as 'Name' from [dbo].[DaySessions] where DayId =@DayID",
+                        new { DayID = DayID }
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static int IsNozzelAssignedOn(int DayID, int sessionid, int pumpid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("select PumperID from DayAssignWorkers where DayID =@DayID and SessionID = @sessionid  and NozzelID = @pumpid",
+                        new
+                        {
+                            DayID = DayID,
+                            sessionid = sessionid,
+                            pumpid = pumpid
+                        }
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
+        public static int IsExistsDifferentLog(int DayID, int sessionid, int pumpid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("select count(*) from DifferentLogs where DayID = @DayID and sessionid = @sessionid and PumperId = @pumpid",
+                        new
+                        {
+                            DayID = DayID,
+                            sessionid = sessionid,
+                            pumpid = pumpid
+                        }
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //select count(*) from DifferentLogs where DayID = 1 and sessionid = 0 and PumperId = 1
 
 
 

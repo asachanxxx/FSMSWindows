@@ -31,16 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_grn));
             this.pnl_footer = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btn_save = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
             this.pnl_header = new System.Windows.Forms.Panel();
             this.lbl_headerpaneltext = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dgmain = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btn_save = new System.Windows.Forms.Button();
+            this.FuelType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.num_total = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmb_fueltypes = new System.Windows.Forms.ComboBox();
             this.txt_price = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,36 +54,30 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.num_total = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.txt_DocNo = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbl_subtotal = new System.Windows.Forms.Label();
-            this.lbl_additions = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lbl_deduct = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lbl_net = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.num_deducts = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.num_additions = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            this.FuelType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_net = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lbl_deduct = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lbl_additions = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_subtotal = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.pnl_footer.SuspendLayout();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgmain)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_total)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_price)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_qty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_total)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_deducts)).BeginInit();
@@ -96,20 +96,20 @@
             this.pnl_footer.Size = new System.Drawing.Size(615, 52);
             this.pnl_footer.TabIndex = 93;
             // 
-            // button1
+            // button2
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 5;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(421, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 41);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "       Print";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.ImageIndex = 8;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(324, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(91, 38);
+            this.button2.TabIndex = 66;
+            this.button2.Text = "       Update";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // imageList1
             // 
@@ -126,6 +126,36 @@
             this.imageList1.Images.SetKeyName(8, "009-save-button-interface-symbol-of-outlined-diskette.png");
             this.imageList1.Images.SetKeyName(9, "010-down-arrow-download-button.png");
             this.imageList1.Images.SetKeyName(10, "011-cancel-button.png");
+            // 
+            // btn_save
+            // 
+            this.btn_save.BackColor = System.Drawing.Color.White;
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_save.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_save.ImageIndex = 6;
+            this.btn_save.ImageList = this.imageList1;
+            this.btn_save.Location = new System.Drawing.Point(227, 7);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(91, 38);
+            this.btn_save.TabIndex = 65;
+            this.btn_save.Text = "     Insert";
+            this.btn_save.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.ImageIndex = 5;
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(421, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 41);
+            this.button1.TabIndex = 64;
+            this.button1.Text = "       Print";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // btn_exit
             // 
@@ -149,7 +179,7 @@
             this.pnl_header.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_header.Location = new System.Drawing.Point(0, 0);
             this.pnl_header.Name = "pnl_header";
-            this.pnl_header.Size = new System.Drawing.Size(620, 43);
+            this.pnl_header.Size = new System.Drawing.Size(1004, 43);
             this.pnl_header.TabIndex = 92;
             // 
             // lbl_headerpaneltext
@@ -180,35 +210,29 @@
             this.dgmain.Size = new System.Drawing.Size(603, 178);
             this.dgmain.TabIndex = 94;
             // 
-            // button2
+            // FuelType
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.ImageIndex = 8;
-            this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(324, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 38);
-            this.button2.TabIndex = 66;
-            this.button2.Text = "       Update";
-            this.button2.UseVisualStyleBackColor = false;
+            this.FuelType.DataPropertyName = "FuelType";
+            this.FuelType.HeaderText = "FuelType";
+            this.FuelType.Name = "FuelType";
             // 
-            // btn_save
+            // Quntity
             // 
-            this.btn_save.BackColor = System.Drawing.Color.White;
-            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_save.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_save.ImageIndex = 6;
-            this.btn_save.ImageList = this.imageList1;
-            this.btn_save.Location = new System.Drawing.Point(227, 7);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(91, 38);
-            this.btn_save.TabIndex = 65;
-            this.btn_save.Text = "     Insert";
-            this.btn_save.UseVisualStyleBackColor = false;
+            this.Quntity.DataPropertyName = "Quntity";
+            this.Quntity.HeaderText = "Quntity";
+            this.Quntity.Name = "Quntity";
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
             // 
             // panel2
             // 
@@ -229,6 +253,29 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(603, 70);
             this.panel2.TabIndex = 95;
+            // 
+            // num_total
+            // 
+            this.num_total.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.num_total.DecimalPlaces = 2;
+            this.num_total.Location = new System.Drawing.Point(453, 21);
+            this.num_total.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.num_total.Name = "num_total";
+            this.num_total.Size = new System.Drawing.Size(143, 23);
+            this.num_total.TabIndex = 16;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(450, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 15);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Total";
             // 
             // cmb_fueltypes
             // 
@@ -304,29 +351,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Fuel Code";
             // 
-            // num_total
-            // 
-            this.num_total.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.num_total.DecimalPlaces = 2;
-            this.num_total.Location = new System.Drawing.Point(453, 21);
-            this.num_total.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.num_total.Name = "num_total";
-            this.num_total.Size = new System.Drawing.Size(143, 23);
-            this.num_total.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(450, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 15);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Total";
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -376,82 +400,6 @@
             this.panel3.Size = new System.Drawing.Size(603, 106);
             this.panel3.TabIndex = 97;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(391, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 15);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Sub Total";
-            // 
-            // lbl_subtotal
-            // 
-            this.lbl_subtotal.AutoSize = true;
-            this.lbl_subtotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_subtotal.Location = new System.Drawing.Point(538, 11);
-            this.lbl_subtotal.Name = "lbl_subtotal";
-            this.lbl_subtotal.Size = new System.Drawing.Size(43, 19);
-            this.lbl_subtotal.TabIndex = 16;
-            this.lbl_subtotal.Text = "Total";
-            // 
-            // lbl_additions
-            // 
-            this.lbl_additions.AutoSize = true;
-            this.lbl_additions.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_additions.Location = new System.Drawing.Point(538, 30);
-            this.lbl_additions.Name = "lbl_additions";
-            this.lbl_additions.Size = new System.Drawing.Size(43, 19);
-            this.lbl_additions.TabIndex = 18;
-            this.lbl_additions.Text = "Total";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(391, 34);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 15);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Additions";
-            // 
-            // lbl_deduct
-            // 
-            this.lbl_deduct.AutoSize = true;
-            this.lbl_deduct.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_deduct.Location = new System.Drawing.Point(538, 49);
-            this.lbl_deduct.Name = "lbl_deduct";
-            this.lbl_deduct.Size = new System.Drawing.Size(43, 19);
-            this.lbl_deduct.TabIndex = 20;
-            this.lbl_deduct.Text = "Total";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(391, 53);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 15);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Deductions";
-            // 
-            // lbl_net
-            // 
-            this.lbl_net.AutoSize = true;
-            this.lbl_net.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_net.Location = new System.Drawing.Point(519, 68);
-            this.lbl_net.Name = "lbl_net";
-            this.lbl_net.Size = new System.Drawing.Size(62, 29);
-            this.lbl_net.TabIndex = 22;
-            this.lbl_net.Text = "Total";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(391, 76);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 15);
-            this.label13.TabIndex = 21;
-            this.label13.Text = " Net Total";
-            // 
             // num_deducts
             // 
             this.num_deducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -498,35 +446,87 @@
             this.label9.TabIndex = 23;
             this.label9.Text = "Additions";
             // 
-            // FuelType
+            // lbl_net
             // 
-            this.FuelType.DataPropertyName = "FuelType";
-            this.FuelType.HeaderText = "FuelType";
-            this.FuelType.Name = "FuelType";
+            this.lbl_net.AutoSize = true;
+            this.lbl_net.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_net.Location = new System.Drawing.Point(519, 68);
+            this.lbl_net.Name = "lbl_net";
+            this.lbl_net.Size = new System.Drawing.Size(62, 29);
+            this.lbl_net.TabIndex = 22;
+            this.lbl_net.Text = "Total";
             // 
-            // Quntity
+            // label13
             // 
-            this.Quntity.DataPropertyName = "Quntity";
-            this.Quntity.HeaderText = "Quntity";
-            this.Quntity.Name = "Quntity";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(391, 76);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 15);
+            this.label13.TabIndex = 21;
+            this.label13.Text = " Net Total";
             // 
-            // Price
+            // lbl_deduct
             // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
+            this.lbl_deduct.AutoSize = true;
+            this.lbl_deduct.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_deduct.Location = new System.Drawing.Point(538, 49);
+            this.lbl_deduct.Name = "lbl_deduct";
+            this.lbl_deduct.Size = new System.Drawing.Size(43, 19);
+            this.lbl_deduct.TabIndex = 20;
+            this.lbl_deduct.Text = "Total";
             // 
-            // Total
+            // label11
             // 
-            this.Total.DataPropertyName = "Total";
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(391, 53);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 15);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Deductions";
+            // 
+            // lbl_additions
+            // 
+            this.lbl_additions.AutoSize = true;
+            this.lbl_additions.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_additions.Location = new System.Drawing.Point(538, 30);
+            this.lbl_additions.Name = "lbl_additions";
+            this.lbl_additions.Size = new System.Drawing.Size(43, 19);
+            this.lbl_additions.TabIndex = 18;
+            this.lbl_additions.Text = "Total";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(391, 34);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 15);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Additions";
+            // 
+            // lbl_subtotal
+            // 
+            this.lbl_subtotal.AutoSize = true;
+            this.lbl_subtotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_subtotal.Location = new System.Drawing.Point(538, 11);
+            this.lbl_subtotal.Name = "lbl_subtotal";
+            this.lbl_subtotal.Size = new System.Drawing.Size(43, 19);
+            this.lbl_subtotal.TabIndex = 16;
+            this.lbl_subtotal.Text = "Total";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(391, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 15);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Sub Total";
             // 
             // frm_grn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 512);
+            this.ClientSize = new System.Drawing.Size(1004, 512);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -544,9 +544,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgmain)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_total)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_price)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_qty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_total)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);

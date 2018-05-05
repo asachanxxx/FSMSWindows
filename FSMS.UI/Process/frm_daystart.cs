@@ -139,7 +139,7 @@ namespace FSMS.UI
 
         private bool CheckForUnclosedDays()
         {
-            if (CustomeRepository.CheckForUnclosedDays() > 1)
+            if (CustomeRepository.CheckForUnclosedDays() > 0)
             {
                 return true;
             }
@@ -203,6 +203,42 @@ namespace FSMS.UI
                 MessageBox.Show("Error Has found when Saving data. Please forword following details to technical" + Environment.NewLine + "[" + ex.Message + Environment.NewLine + ex.Source + "]", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void dgmain_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgmain.Rows[e.RowIndex].IsNewRow == false)
+            {
+                lst_nozzels.Items.Clear();
+                lbl_id.Text =dgmain.Rows[e.RowIndex].Cells[0].Value.ToString().Trim();
+
+                IEnumerable<DaySession> sessions = CustomeRepository.GetDaySessionForDay(commonFunctions.ToInt(lbl_id.Text.Trim()));
+
+                foreach (var item in sessions)
+                {
+                    ListViewItem itemx = new ListViewItem(item.SessionName, 0);
+                    itemx.Tag = item;
+                    lst_nozzels.Items.Add(itemx);
+                }
+
+            }
+        }
+
+        private void dgmain_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dgmain.Rows[e.RowIndex].IsNewRow == false)
+            //{
+            //    lbl_id.Text = dgmain.Rows[e.RowIndex].Cells[0].Value.ToString().Trim();
+
+            //    IEnumerable<DaySession> sessions = CustomeRepository.GetDaySessionForDay(commonFunctions.ToInt(lbl_id.Text.Trim()));
+
+            //    foreach (var item in sessions)
+            //    {
+            //        ListViewItem itemx = new ListViewItem(item.SessionName, 0);
+            //        itemx.Tag = item;
+            //    }
+
+            //}
         }
     }
 }

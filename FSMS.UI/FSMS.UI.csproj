@@ -87,10 +87,10 @@
     <Compile Include="e2e\e2etest.Designer.cs">
       <DependentUpon>e2etest.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_grn.cs">
+    <Compile Include="Process\frm_grn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_grn.Designer.cs">
+    <Compile Include="Process\frm_grn.Designer.cs">
       <DependentUpon>frm_grn.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\frm_TankStockLive.cs">
@@ -104,12 +104,6 @@
     </Compile>
     <Compile Include="Process\frm_totalizerReadings.Designer.cs">
       <DependentUpon>frm_totalizerReadings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Process\frm_DailySales.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Process\frm_DailySales.Designer.cs">
-      <DependentUpon>frm_DailySales.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\frm_dailySalesMain.cs">
       <SubType>Form</SubType>
@@ -212,7 +206,7 @@
     <EmbeddedResource Include="e2e\e2etest.resx">
       <DependentUpon>e2etest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_grn.resx">
+    <EmbeddedResource Include="Process\frm_grn.resx">
       <DependentUpon>frm_grn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frm_TankStockLive.resx">
@@ -220,9 +214,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frm_totalizerReadings.resx">
       <DependentUpon>frm_totalizerReadings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Process\frm_DailySales.resx">
-      <DependentUpon>frm_DailySales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frm_dailySalesMain.resx">
       <DependentUpon>frm_dailySalesMain.cs</DependentUpon>

@@ -67,6 +67,10 @@ namespace FSMS.UI
                 commonFunctions.FormatDataGrid(dgmain);
                 this.WindowState = FormWindowState.Maximized;
                 this.Text = "Daily Sales";
+                if (cmb_days.SelectedValue != null)
+                {
+                    LoadSessions(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+                }
                 UpdateReleventBoxes();
 
 
@@ -78,11 +82,11 @@ namespace FSMS.UI
             }
         }
 
-        private void RefreshDailyAssignWorkerDetailList(int did)
+        private void RefreshDailyAssignWorkerDetailList(int did , int sessionid)
         {
             lst_nozzels.Clear();
             DailyAssignWorkerDetailList.Clear();
-            DailyAssignWorkerDetailList = CustomeRepository.GetDailyAssignWorkerDetails(did).ToList();
+            DailyAssignWorkerDetailList = CustomeRepository.GetDailyAssignWorkerDetails(did , sessionid).ToList();
 
             foreach (var item in DailyAssignWorkerDetailList)
             {
@@ -144,6 +148,18 @@ namespace FSMS.UI
             }
 
         }
+        private void LoadSessions(int dayid)
+        {
+            List<KeyValue> listoffuels = KeyValueRepository.GetSessions(dayid).ToList();
+            if (listoffuels.Count > 0)
+            {
+                cmb_sessions.DataSource = listoffuels;
+                cmb_sessions.DisplayMember = "Name";
+                cmb_sessions.ValueMember = "Id";
+                cmb_sessions.SelectedIndex = 0;
+            }
+
+        }
         private void LoadPumper()
         {
             List<KeyValue> listoffuels = KeyValueRepository.GetPumpers().ToList();
@@ -196,7 +212,9 @@ namespace FSMS.UI
 
         private void cmb_days_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (cmb_days.SelectedValue != null) {
+                LoadSessions(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -288,15 +306,23 @@ namespace FSMS.UI
         {
             if (lst_nozzels.SelectedItems.Count > 0)
             {
+               
                 DailyAssignWorkerDetails det = (DailyAssignWorkerDetails)lst_nozzels.SelectedItems[0].Tag;
+
+                if (CustomeRepository.IsNozzelAssignedOn(det.DayID, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()), det.NozzelID) > 0)
+                {
+                    MessageBox.Show("You cannot assign a Pumper to this nozzel on this Session. Please select differant Session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()) > 0)
                 {
-                    string message = CustomeRepository.AssignPumperToNozzel(det.DayID, commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()), det.NozzelID, det.DayWorkerID);
+                    string message = CustomeRepository.AssignPumperToNozzel(det.DayID, commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()), det.NozzelID, det.DayWorkerID, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
                     if (cmb_days.SelectedValue != null)
                     {
                         try
                         {
-                            RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+                            RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
                             MessageBox.Show(message, Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch (Exception ex)
@@ -337,7 +363,7 @@ namespace FSMS.UI
                         CustomeRepository.InsertTotalCashCollection(
                             commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()),
                             commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()),
-                            num_cashtotal.Value,
+                            commonFunctions.ToDecimal(lbl_currentCashTot.Text.Trim()),
                             num_cardtotal.Value,
                             num_VoucherTotal.Value,
                             num_expensetotal.Value
@@ -357,52 +383,30 @@ namespace FSMS.UI
             this.Close();
         }
 
-        private void btn_savecashDet_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show("Do you want to Save this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    CustomeRepository.InsertCollectionBreakdown(
-                       num_amount.Value,
-                        commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
-                        commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
-                        commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString()),
-                        commonFunctions.ToInt(lbl_salesID.Text.ToString()),
-                        txt_creditcardNo.Text,
-                         txt_voucherNo.Text.Trim(),
-                         commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
-                         1,
-                         0
-                        );
-
-                   
-                    GetTotalForPumperForGivenDay(commonFunctions.ToInt(lbl_salesID.Text.ToString()));
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Has found when Saving data. Please forword following details to technical" + Environment.NewLine + "[" + ex.Message + Environment.NewLine + ex.Source + "]", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
+     
 
         private void UpdateReleventBoxes()
         {
             //getCashValueforthis
-            int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
-            int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
+            if (cmb_days.SelectedValue != null) {
+                int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
+            }
+            if(cmb_pumperForcashcol.SelectedValue != null)
+            {
+                int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
+            }
+            
 
-            DayPumperSaleTypeSummry sumary = new DayPumperSaleTypeSummry();
-            sumary = CustomeRepository.GetTotalForEachPumperForGivenDay(dayid, pumperid);
+            //DayPumperSaleTypeSummry sumary = new DayPumperSaleTypeSummry();
+            //sumary = CustomeRepository.GetTotalForEachPumperForGivenDay(dayid, pumperid);
 
             //num_cardtotal.Enabled = true;
             //num_VoucherTotal.Enabled = true;
             //num_expensetotal.Enabled = true;
 
-            num_cardtotal.Value = sumary.Cardtotal;
-            num_VoucherTotal.Value = sumary.Vouchertotal;
-            num_expensetotal.Value = sumary.Expensetotal;
+            //num_cardtotal.Value = sumary.Cardtotal;
+            //num_VoucherTotal.Value = sumary.Vouchertotal;
+            //num_expensetotal.Value = sumary.Expensetotal;
 
             //if (sumary.Cardtotal > 0)
             //{
@@ -443,12 +447,14 @@ namespace FSMS.UI
             //
         }
 
-     
+        private int glosaletypeid = 0;
 
         private void GetTotalForPumperForGivenDay(int saletypeid)
         {
             try
             {
+                glosaletypeid = saletypeid;
+               
                 //Disable Auto Gen Columns
                 dgmain.AutoGenerateColumns = false;
                 int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
@@ -463,7 +469,8 @@ namespace FSMS.UI
                 DayPumperSaleTypeSummry sumary = new DayPumperSaleTypeSummry();
                 sumary = CustomeRepository.GetTotalForEachPumperForGivenDay(dayid, pumperid);
                 //assign total value on main window
-                num_cashtotal.Value = sumary.Cashtotal;
+                num_cashtotal.Value = 0;
+                lbl_currentCashTot.Text = sumary.Cashtotal.ToString();
                 num_cardtotal.Value = sumary.Cardtotal;
                 num_VoucherTotal.Value = sumary.Vouchertotal;
                 num_expensetotal.Value = sumary.Expensetotal;
@@ -494,6 +501,8 @@ namespace FSMS.UI
                         break;
 
                 }
+                num_amount.Select();
+                num_amount.Focus();
             }
             catch (Exception ex)
             {
@@ -514,7 +523,7 @@ namespace FSMS.UI
                 if (MessageBox.Show("Do you want to Save this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     CustomeRepository.InsertCollectionBreakdown(
-                       num_cashtotal.Value,
+                      num_cashtotal.Value,
                         commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                         commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
                         commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString()),
@@ -523,13 +532,13 @@ namespace FSMS.UI
                          txt_voucherNo.Text.Trim(),
                          commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
                          1,
-                         0
+                         0,commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
                         );
 
 
                     GetTotalForPumperForGivenDay(commonFunctions.ToInt(lbl_salesID.Text.ToString()));
 
-                    LogRepository.Log("Cash Collection Manual Change To : " + num_cashtotal.Value.ToString(), LogType.Log,commonFunctions.LoginuserID);
+                    LogRepository.Log("Cash Collection Manual Change To : " + lbl_currentCashTot.Text.ToString(), LogType.Log,commonFunctions.LoginuserID);
                 }
             }
             catch (Exception ex)
@@ -650,13 +659,22 @@ namespace FSMS.UI
         {
             try
             {
+
+
                 int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
                 int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
                 DailyAssignWorkerDetails det = (DailyAssignWorkerDetails)lst_nozzels.SelectedItems[0].Tag;
-                if (det != null) {
-                    CustomeRepository.InsetPumpClosing(
+                if (det != null)
+                {
+                    if (!det.IsOpen) {
+                        MessageBox.Show("This nozzel already closed.", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (MessageBox.Show("Do you want to close this Nozzel?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        CustomeRepository.InsetPumpClosing(
                         dayid,
-                        pumperid,
+                        det.PumperID,
                         det.NozzelID,
                         num_workedHours.Value,
                         num_starttotalizer.Value,
@@ -664,23 +682,30 @@ namespace FSMS.UI
                         num_EndTotalizer.Value - num_starttotalizer.Value,
                         num_Price.Value,
                         (num_EndTotalizer.Value - num_starttotalizer.Value) * num_Price.Value,
-                        det.SeqNo
+                        det.SeqNo,
+                        commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
                      );
 
-                    if (cmb_days.SelectedValue != null)
-                    {
+                        if (cmb_days.SelectedValue != null)
+                        {
 
-                        RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+                            RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
+                        }
+
+                        lbl_pumpername.Text = "(....)";
+                        lbl_pumpername.Text = "(....)";
+                        pnl_indicator.BackColor = Color.Red;
+                        lbl_nozzsrtatus.Text = "Closed";
                     }
 
-                    lbl_pumpername.Text = "(....)";
-                    lbl_pumpername.Text = "(....)";
-                    pnl_indicator.BackColor = Color.Red;
-                    lbl_nozzsrtatus.Text = "Closed";
-                } else {
-                    MessageBox.Show("Please select a one nozzel from the list for closing" , Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a one nozzel from the list for closing", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+
+
 
 
             }
@@ -697,7 +722,7 @@ namespace FSMS.UI
             if (cmb_days.SelectedValue != null)
             {
 
-                RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+                RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
             }
         }
 
@@ -719,6 +744,133 @@ namespace FSMS.UI
             }
             catch (Exception ex) {
             }
+        }
+
+        private void tileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lst_nozzels.View = View.Tile;
+        }
+
+        private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lst_nozzels.View = View.Details;
+        }
+
+        private void smallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lst_nozzels.View = View.SmallIcon;
+        }
+
+        private void largeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lst_nozzels.View = View.LargeIcon;
+            
+        }
+
+        private void listToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lst_nozzels.View = View.List;
+        }
+        private void btn_savecashDet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Do you want to Save this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    CustomeRepository.InsertCollectionBreakdown(
+                       num_amount.Value,
+                        commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
+                        commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
+                        commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString()),
+                        commonFunctions.ToInt(lbl_salesID.Text.ToString()),
+                        txt_creditcardNo.Text,
+                         txt_voucherNo.Text.Trim(),
+                         commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
+                         1,
+                         0, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
+                        );
+
+
+                    GetTotalForPumperForGivenDay(commonFunctions.ToInt(lbl_salesID.Text.ToString()));
+
+                    num_amount.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Has found when Saving data. Please forword following details to technical" + Environment.NewLine + "[" + ex.Message + Environment.NewLine + ex.Source + "]", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+
+
+        private void num_amount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+                switch (glosaletypeid) {
+                    case 2:
+                        txt_creditcardNo.Focus();
+                        break;
+                    case 3:
+                        cmb_Vehicles.Focus();
+                        break;
+                    default:
+                        btn_savecashDet.Focus();
+                        break;
+                        
+                }
+            }
+        }
+
+        private void txt_creditcardNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                switch (glosaletypeid)
+                {
+                    case 2:
+                        btn_savecashDet.Focus();
+                        break;
+                    case 3:
+                        cmb_Vehicles.Focus();
+                        break;
+
+                }
+            }
+        }
+
+        private void cmb_Vehicles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                switch (glosaletypeid)
+                {
+                    case 3:
+                        txt_voucherNo.Focus();
+                        break;
+
+                }
+            }
+        }
+
+        private void txt_voucherNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                switch (glosaletypeid)
+                {
+                    case 3:
+                        btn_savecashDet.Focus();
+                        break;
+
+                }
+            }
+        }
+
+        private void cmb_sessions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

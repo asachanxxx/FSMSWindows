@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSMS.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,13 @@ namespace FSMS.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_login());
+
+            LoggedDetails.Loginuser = "Admin";
+            LoggedDetails.LoggedUserId = 1;
+            LoggedDetails.GroupOfCompanyID = 1;
+
+            //Application.Run(new frm_login());
+            Application.Run(new frm_main());
         }
     }
 }

@@ -68,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseEntity.cs" />
+    <Compile Include="Process\DayCustomerDebit.cs" />
+    <Compile Include="Process\DaySessions.cs" />
+    <Compile Include="Process\DifferentLog.cs" />
     <Compile Include="KeyValue.cs" />
     <Compile Include="Master Data\Banks.cs" />
     <Compile Include="Process\CashCollection.cs" />

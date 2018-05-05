@@ -82,7 +82,11 @@ namespace FSMS.UI
         {
             if (MessageBox.Show("Do you want to Exit", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                Application.OpenForms["frm_login"].Close();
+                if (Application.OpenForms.Count > 0)
+                {
+                    if (Application.OpenForms["frm_login"] !=null)
+                    Application.OpenForms["frm_login"].Close();
+                }
                 e.Cancel = false;
             }
         }
@@ -100,8 +104,8 @@ namespace FSMS.UI
 
                 //MessageBox.Show(this.tbl_status.Text.Length.ToString());
                 MenuStripItemsVisible();
-                objSingleObject.WindowState = FormWindowState.Maximized;
-                objSingleObject.Text = commonFunctions.Softwarename.Trim();
+                this.WindowState = FormWindowState.Maximized;
+                this.Text = commonFunctions.Softwarename.Trim();
 
                 //txt_loginuser.Text = "Login User: ".ToUpper() + commonFunctions.Loginuser.Trim();
                 //txt_date.Text = "SYstem Date: ".ToUpper() + DateTime.Now.Date.ToShortDateString().ToString();

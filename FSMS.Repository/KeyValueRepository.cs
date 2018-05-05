@@ -111,6 +111,23 @@ namespace FSMS.Repository
 
         }
 
+        public static IEnumerable<KeyValue> GetSessions(int dayid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<KeyValue>("select  Id , SessionName as Name from DaySessions where DayId =@dayid", new { dayid = dayid });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         public static IEnumerable<KeyValue> GetSalesType()
         {
             try

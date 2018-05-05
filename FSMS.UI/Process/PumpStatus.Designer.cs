@@ -39,6 +39,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lst_nozzels = new System.Windows.Forms.ListView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.largeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_totalizer = new System.Windows.Forms.Label();
@@ -57,6 +63,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btn_assignPumper = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_selectedPumper = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmb_pumper = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,6 +78,8 @@
             this.cmb_pumperForcashcol = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.lbl_currentCashTot = new System.Windows.Forms.Label();
             this.btn_hasbreakTesting = new System.Windows.Forms.Button();
             this.btn_insertCash = new System.Windows.Forms.Button();
             this.num_testingtotal = new System.Windows.Forms.NumericUpDown();
@@ -138,11 +148,12 @@
             this.num_amount = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lbl_selectedPumper = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.Session = new System.Windows.Forms.Label();
+            this.cmb_sessions = new System.Windows.Forms.ComboBox();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.pnl_footer.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -251,6 +262,7 @@
             this.button3.TabIndex = 62;
             this.button3.Text = "     Save";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button1
@@ -267,9 +279,11 @@
             this.button1.TabIndex = 65;
             this.button1.Text = "       Update";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             // 
             // lst_nozzels
             // 
+            this.lst_nozzels.ContextMenuStrip = this.contextMenuStrip1;
             this.lst_nozzels.HideSelection = false;
             this.lst_nozzels.LargeImageList = this.imageList2;
             this.lst_nozzels.Location = new System.Drawing.Point(10, 85);
@@ -281,6 +295,52 @@
             this.lst_nozzels.UseCompatibleStateImageBehavior = false;
             this.lst_nozzels.SelectedIndexChanged += new System.EventHandler(this.lst_nozzels_SelectedIndexChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listToolStripMenuItem,
+            this.largeToolStripMenuItem,
+            this.smallToolStripMenuItem,
+            this.detailsToolStripMenuItem,
+            this.tileToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(138, 114);
+            // 
+            // listToolStripMenuItem
+            // 
+            this.listToolStripMenuItem.Name = "listToolStripMenuItem";
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.listToolStripMenuItem.Text = "List";
+            this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
+            // 
+            // largeToolStripMenuItem
+            // 
+            this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.largeToolStripMenuItem.Text = "Large Icons";
+            this.largeToolStripMenuItem.Click += new System.EventHandler(this.largeToolStripMenuItem_Click);
+            // 
+            // smallToolStripMenuItem
+            // 
+            this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.smallToolStripMenuItem.Text = "Small Icons";
+            this.smallToolStripMenuItem.Click += new System.EventHandler(this.smallToolStripMenuItem_Click);
+            // 
+            // detailsToolStripMenuItem
+            // 
+            this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
+            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.detailsToolStripMenuItem.Text = "Details View";
+            this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
+            // 
+            // tileToolStripMenuItem
+            // 
+            this.tileToolStripMenuItem.Name = "tileToolStripMenuItem";
+            this.tileToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.tileToolStripMenuItem.Text = "Tile";
+            this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileToolStripMenuItem_Click);
+            // 
             // imageList2
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
@@ -290,7 +350,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lbl_totalizer);
             this.panel3.Controls.Add(this.label17);
@@ -306,6 +366,7 @@
             this.panel3.Controls.Add(this.lbl_NozzelName);
             this.panel3.Controls.Add(this.lbl_nozzel);
             this.panel3.Controls.Add(this.label7);
+            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.panel3.Location = new System.Drawing.Point(10, 406);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(581, 100);
@@ -314,21 +375,22 @@
             // lbl_totalizer
             // 
             this.lbl_totalizer.AutoSize = true;
-            this.lbl_totalizer.BackColor = System.Drawing.Color.White;
-            this.lbl_totalizer.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalizer.ForeColor = System.Drawing.Color.Indigo;
-            this.lbl_totalizer.Location = new System.Drawing.Point(364, 12);
+            this.lbl_totalizer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.lbl_totalizer.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_totalizer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.lbl_totalizer.Location = new System.Drawing.Point(386, 15);
             this.lbl_totalizer.Name = "lbl_totalizer";
-            this.lbl_totalizer.Size = new System.Drawing.Size(13, 18);
+            this.lbl_totalizer.Size = new System.Drawing.Size(45, 23);
             this.lbl_totalizer.TabIndex = 102;
-            this.lbl_totalizer.Text = "-";
+            this.lbl_totalizer.Text = "0.00";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(280, 15);
+            this.label17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(280, 19);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(79, 14);
+            this.label17.Size = new System.Drawing.Size(72, 14);
             this.label17.TabIndex = 101;
             this.label17.Text = "Last Totalizer";
             // 
@@ -336,7 +398,7 @@
             // 
             this.lbl_pumpername.AutoSize = true;
             this.lbl_pumpername.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_pumpername.ForeColor = System.Drawing.Color.Indigo;
+            this.lbl_pumpername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(235)))), ((int)(((byte)(242)))));
             this.lbl_pumpername.Location = new System.Drawing.Point(125, 12);
             this.lbl_pumpername.Name = "lbl_pumpername";
             this.lbl_pumpername.Size = new System.Drawing.Size(43, 19);
@@ -347,7 +409,7 @@
             // 
             this.lbl_nozzsrtatus.AutoSize = true;
             this.lbl_nozzsrtatus.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_nozzsrtatus.ForeColor = System.Drawing.Color.Indigo;
+            this.lbl_nozzsrtatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(235)))), ((int)(((byte)(242)))));
             this.lbl_nozzsrtatus.Location = new System.Drawing.Point(58, 12);
             this.lbl_nozzsrtatus.Name = "lbl_nozzsrtatus";
             this.lbl_nozzsrtatus.Size = new System.Drawing.Size(33, 19);
@@ -365,77 +427,80 @@
             // lbl_unitprice
             // 
             this.lbl_unitprice.AutoSize = true;
-            this.lbl_unitprice.BackColor = System.Drawing.Color.White;
-            this.lbl_unitprice.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_unitprice.ForeColor = System.Drawing.Color.Indigo;
-            this.lbl_unitprice.Location = new System.Drawing.Point(344, 70);
+            this.lbl_unitprice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.lbl_unitprice.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_unitprice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.lbl_unitprice.Location = new System.Drawing.Point(386, 66);
             this.lbl_unitprice.Name = "lbl_unitprice";
-            this.lbl_unitprice.Size = new System.Drawing.Size(33, 18);
+            this.lbl_unitprice.Size = new System.Drawing.Size(45, 23);
             this.lbl_unitprice.TabIndex = 16;
             this.lbl_unitprice.Text = "0.00";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(280, 71);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 14);
+            this.label14.Size = new System.Drawing.Size(55, 14);
             this.label14.TabIndex = 15;
             this.label14.Text = "Unit Price";
             // 
             // lbl_tank
             // 
             this.lbl_tank.AutoSize = true;
-            this.lbl_tank.BackColor = System.Drawing.Color.White;
-            this.lbl_tank.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tank.ForeColor = System.Drawing.Color.Indigo;
-            this.lbl_tank.Location = new System.Drawing.Point(109, 70);
+            this.lbl_tank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.lbl_tank.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_tank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.lbl_tank.Location = new System.Drawing.Point(109, 68);
             this.lbl_tank.Name = "lbl_tank";
-            this.lbl_tank.Size = new System.Drawing.Size(13, 18);
+            this.lbl_tank.Size = new System.Drawing.Size(42, 23);
             this.lbl_tank.TabIndex = 14;
-            this.lbl_tank.Text = "-";
+            this.lbl_tank.Text = "N/A";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(25, 70);
+            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(25, 71);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(32, 14);
+            this.label16.Size = new System.Drawing.Size(30, 14);
             this.label16.TabIndex = 13;
             this.label16.Text = "Tank";
             // 
             // lbl_fueltype
             // 
             this.lbl_fueltype.AutoSize = true;
-            this.lbl_fueltype.BackColor = System.Drawing.Color.White;
-            this.lbl_fueltype.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fueltype.ForeColor = System.Drawing.Color.Indigo;
-            this.lbl_fueltype.Location = new System.Drawing.Point(344, 46);
+            this.lbl_fueltype.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.lbl_fueltype.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_fueltype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.lbl_fueltype.Location = new System.Drawing.Point(386, 40);
             this.lbl_fueltype.Name = "lbl_fueltype";
-            this.lbl_fueltype.Size = new System.Drawing.Size(13, 18);
+            this.lbl_fueltype.Size = new System.Drawing.Size(42, 23);
             this.lbl_fueltype.TabIndex = 12;
-            this.lbl_fueltype.Text = "-";
+            this.lbl_fueltype.Text = "N/A";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(280, 46);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 14);
+            this.label12.Size = new System.Drawing.Size(55, 14);
             this.label12.TabIndex = 11;
             this.label12.Text = "Fuel Type";
             // 
             // lbl_NozzelName
             // 
             this.lbl_NozzelName.AutoSize = true;
-            this.lbl_NozzelName.BackColor = System.Drawing.Color.White;
-            this.lbl_NozzelName.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_NozzelName.ForeColor = System.Drawing.Color.Indigo;
+            this.lbl_NozzelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.lbl_NozzelName.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_NozzelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.lbl_NozzelName.Location = new System.Drawing.Point(109, 45);
             this.lbl_NozzelName.Name = "lbl_NozzelName";
-            this.lbl_NozzelName.Size = new System.Drawing.Size(13, 18);
+            this.lbl_NozzelName.Size = new System.Drawing.Size(42, 23);
             this.lbl_NozzelName.TabIndex = 10;
-            this.lbl_NozzelName.Text = "-";
+            this.lbl_NozzelName.Text = "N/A";
             // 
             // lbl_nozzel
             // 
@@ -450,9 +515,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 45);
+            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(25, 46);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 14);
+            this.label7.Size = new System.Drawing.Size(73, 14);
             this.label7.TabIndex = 1;
             this.label7.Text = "Nozzel Name";
             // 
@@ -487,6 +553,27 @@
             this.panel1.Size = new System.Drawing.Size(420, 85);
             this.panel1.TabIndex = 96;
             // 
+            // lbl_selectedPumper
+            // 
+            this.lbl_selectedPumper.AutoSize = true;
+            this.lbl_selectedPumper.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_selectedPumper.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
+            this.lbl_selectedPumper.Location = new System.Drawing.Point(126, 30);
+            this.lbl_selectedPumper.Name = "lbl_selectedPumper";
+            this.lbl_selectedPumper.Size = new System.Drawing.Size(24, 18);
+            this.lbl_selectedPumper.TabIndex = 105;
+            this.lbl_selectedPumper.Text = "....";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(19, 32);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(101, 15);
+            this.label18.TabIndex = 104;
+            this.label18.Text = "Current Pumper:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -502,11 +589,6 @@
             // 
             this.cmb_pumper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_pumper.FormattingEnabled = true;
-            this.cmb_pumper.Items.AddRange(new object[] {
-            "Unoccupied ",
-            "Assigned ",
-            "Cancel ",
-            "Damage"});
             this.cmb_pumper.Location = new System.Drawing.Point(72, 53);
             this.cmb_pumper.Name = "cmb_pumper";
             this.cmb_pumper.Size = new System.Drawing.Size(196, 22);
@@ -536,6 +618,8 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.Session);
+            this.panel4.Controls.Add(this.cmb_sessions);
             this.panel4.Controls.Add(this.button2);
             this.panel4.Controls.Add(this.btn_show);
             this.panel4.Controls.Add(this.label9);
@@ -554,12 +638,13 @@
             this.button2.TabIndex = 107;
             this.button2.Text = "ReadLog";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // btn_show
             // 
             this.btn_show.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_show.Location = new System.Drawing.Point(309, 4);
+            this.btn_show.Location = new System.Drawing.Point(604, 4);
             this.btn_show.Name = "btn_show";
             this.btn_show.Size = new System.Drawing.Size(75, 25);
             this.btn_show.TabIndex = 106;
@@ -582,11 +667,6 @@
             this.cmb_days.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_days.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_days.FormattingEnabled = true;
-            this.cmb_days.Items.AddRange(new object[] {
-            "Unoccupied ",
-            "Assigned ",
-            "Cancel ",
-            "Damage"});
             this.cmb_days.Location = new System.Drawing.Point(107, 5);
             this.cmb_days.Name = "cmb_days";
             this.cmb_days.Size = new System.Drawing.Size(196, 23);
@@ -610,11 +690,6 @@
             // 
             this.cmb_pumperForcashcol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_pumperForcashcol.FormattingEnabled = true;
-            this.cmb_pumperForcashcol.Items.AddRange(new object[] {
-            "Unoccupied ",
-            "Assigned ",
-            "Cancel ",
-            "Damage"});
             this.cmb_pumperForcashcol.Location = new System.Drawing.Point(94, 24);
             this.cmb_pumperForcashcol.Name = "cmb_pumperForcashcol";
             this.cmb_pumperForcashcol.Size = new System.Drawing.Size(184, 22);
@@ -632,6 +707,8 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.label34);
+            this.panel6.Controls.Add(this.lbl_currentCashTot);
             this.panel6.Controls.Add(this.btn_hasbreakTesting);
             this.panel6.Controls.Add(this.btn_insertCash);
             this.panel6.Controls.Add(this.num_testingtotal);
@@ -652,6 +729,27 @@
             this.panel6.Size = new System.Drawing.Size(392, 225);
             this.panel6.TabIndex = 118;
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(156, 5);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(57, 15);
+            this.label34.TabIndex = 123;
+            this.label34.Text = "Add Cash";
+            // 
+            // lbl_currentCashTot
+            // 
+            this.lbl_currentCashTot.AutoSize = true;
+            this.lbl_currentCashTot.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_currentCashTot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbl_currentCashTot.Location = new System.Drawing.Point(13, 27);
+            this.lbl_currentCashTot.Name = "lbl_currentCashTot";
+            this.lbl_currentCashTot.Size = new System.Drawing.Size(33, 18);
+            this.lbl_currentCashTot.TabIndex = 122;
+            this.lbl_currentCashTot.Text = "0.00";
+            // 
             // btn_hasbreakTesting
             // 
             this.btn_hasbreakTesting.Location = new System.Drawing.Point(203, 195);
@@ -664,9 +762,9 @@
             // 
             // btn_insertCash
             // 
-            this.btn_insertCash.Location = new System.Drawing.Point(203, 23);
+            this.btn_insertCash.Location = new System.Drawing.Point(285, 26);
             this.btn_insertCash.Name = "btn_insertCash";
-            this.btn_insertCash.Size = new System.Drawing.Size(103, 23);
+            this.btn_insertCash.Size = new System.Drawing.Size(89, 23);
             this.btn_insertCash.TabIndex = 120;
             this.btn_insertCash.Text = "Insert";
             this.btn_insertCash.UseVisualStyleBackColor = true;
@@ -674,8 +772,10 @@
             // 
             // num_testingtotal
             // 
+            this.num_testingtotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.num_testingtotal.DecimalPlaces = 2;
             this.num_testingtotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_testingtotal.ForeColor = System.Drawing.Color.Indigo;
+            this.num_testingtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.num_testingtotal.InterceptArrowKeys = false;
             this.num_testingtotal.Location = new System.Drawing.Point(13, 193);
             this.num_testingtotal.Maximum = new decimal(new int[] {
@@ -689,7 +789,6 @@
             0,
             -2147483648});
             this.num_testingtotal.Name = "num_testingtotal";
-            this.num_testingtotal.ReadOnly = true;
             this.num_testingtotal.Size = new System.Drawing.Size(184, 27);
             this.num_testingtotal.TabIndex = 119;
             this.num_testingtotal.ThousandsSeparator = true;
@@ -706,9 +805,10 @@
             // 
             // num_cashtotal
             // 
+            this.num_cashtotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.num_cashtotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_cashtotal.ForeColor = System.Drawing.Color.Indigo;
-            this.num_cashtotal.Location = new System.Drawing.Point(13, 21);
+            this.num_cashtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_cashtotal.Location = new System.Drawing.Point(159, 24);
             this.num_cashtotal.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -720,7 +820,7 @@
             0,
             -2147483648});
             this.num_cashtotal.Name = "num_cashtotal";
-            this.num_cashtotal.Size = new System.Drawing.Size(184, 27);
+            this.num_cashtotal.Size = new System.Drawing.Size(120, 27);
             this.num_cashtotal.TabIndex = 104;
             this.num_cashtotal.ThousandsSeparator = true;
             // 
@@ -760,9 +860,9 @@
             this.label20.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(13, 5);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(61, 15);
+            this.label20.Size = new System.Drawing.Size(107, 15);
             this.label20.TabIndex = 66;
-            this.label20.Text = "Cash Total";
+            this.label20.Text = "Current Cash Total";
             // 
             // label22
             // 
@@ -776,8 +876,9 @@
             // 
             // num_expensetotal
             // 
+            this.num_expensetotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.num_expensetotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_expensetotal.ForeColor = System.Drawing.Color.Indigo;
+            this.num_expensetotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.num_expensetotal.InterceptArrowKeys = false;
             this.num_expensetotal.Location = new System.Drawing.Point(13, 150);
             this.num_expensetotal.Maximum = new decimal(new int[] {
@@ -798,8 +899,9 @@
             // 
             // num_cardtotal
             // 
+            this.num_cardtotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.num_cardtotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_cardtotal.ForeColor = System.Drawing.Color.Indigo;
+            this.num_cardtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.num_cardtotal.InterceptArrowKeys = false;
             this.num_cardtotal.Location = new System.Drawing.Point(13, 64);
             this.num_cardtotal.Maximum = new decimal(new int[] {
@@ -840,8 +942,9 @@
             // 
             // num_VoucherTotal
             // 
+            this.num_VoucherTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.num_VoucherTotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_VoucherTotal.ForeColor = System.Drawing.Color.Indigo;
+            this.num_VoucherTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.num_VoucherTotal.InterceptArrowKeys = false;
             this.num_VoucherTotal.Location = new System.Drawing.Point(13, 107);
             this.num_VoucherTotal.Maximum = new decimal(new int[] {
@@ -924,16 +1027,16 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(412, 303);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Pump Close";
+            this.tabPage3.Text = "Nozzel Close";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // cmb_Nozzels
             // 
-            this.cmb_Nozzels.BackColor = System.Drawing.Color.Thistle;
+            this.cmb_Nozzels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.cmb_Nozzels.Enabled = false;
             this.cmb_Nozzels.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_Nozzels.ForeColor = System.Drawing.Color.Black;
-            this.cmb_Nozzels.Location = new System.Drawing.Point(167, 16);
+            this.cmb_Nozzels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.cmb_Nozzels.Location = new System.Drawing.Point(143, 16);
             this.cmb_Nozzels.Name = "cmb_Nozzels";
             this.cmb_Nozzels.ReadOnly = true;
             this.cmb_Nozzels.Size = new System.Drawing.Size(184, 27);
@@ -947,7 +1050,7 @@
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.ImageIndex = 6;
             this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(229, 218);
+            this.button4.Location = new System.Drawing.Point(205, 218);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(122, 38);
             this.button4.TabIndex = 121;
@@ -957,10 +1060,11 @@
             // 
             // num_workedHours
             // 
-            this.num_workedHours.BackColor = System.Drawing.Color.DarkGreen;
+            this.num_workedHours.BackColor = System.Drawing.Color.White;
+            this.num_workedHours.DecimalPlaces = 2;
             this.num_workedHours.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_workedHours.ForeColor = System.Drawing.Color.White;
-            this.num_workedHours.Location = new System.Drawing.Point(167, 186);
+            this.num_workedHours.ForeColor = System.Drawing.Color.Black;
+            this.num_workedHours.Location = new System.Drawing.Point(143, 186);
             this.num_workedHours.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -972,14 +1076,13 @@
             0,
             -2147483648});
             this.num_workedHours.Name = "num_workedHours";
-            this.num_workedHours.ReadOnly = true;
             this.num_workedHours.Size = new System.Drawing.Size(184, 26);
             this.num_workedHours.TabIndex = 120;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(40, 193);
+            this.label30.Location = new System.Drawing.Point(16, 193);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(113, 14);
             this.label30.TabIndex = 119;
@@ -987,11 +1090,12 @@
             // 
             // num_totalFUelval
             // 
-            this.num_totalFUelval.BackColor = System.Drawing.Color.Thistle;
+            this.num_totalFUelval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.num_totalFUelval.DecimalPlaces = 2;
             this.num_totalFUelval.Enabled = false;
             this.num_totalFUelval.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_totalFUelval.ForeColor = System.Drawing.Color.Black;
-            this.num_totalFUelval.Location = new System.Drawing.Point(167, 157);
+            this.num_totalFUelval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_totalFUelval.Location = new System.Drawing.Point(143, 157);
             this.num_totalFUelval.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1010,7 +1114,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(40, 164);
+            this.label31.Location = new System.Drawing.Point(16, 164);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(95, 14);
             this.label31.TabIndex = 117;
@@ -1019,7 +1123,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(40, 19);
+            this.label29.Location = new System.Drawing.Point(16, 19);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(43, 14);
             this.label29.TabIndex = 115;
@@ -1027,11 +1131,12 @@
             // 
             // num_Price
             // 
-            this.num_Price.BackColor = System.Drawing.Color.Thistle;
+            this.num_Price.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.num_Price.DecimalPlaces = 2;
             this.num_Price.Enabled = false;
             this.num_Price.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_Price.ForeColor = System.Drawing.Color.Black;
-            this.num_Price.Location = new System.Drawing.Point(167, 128);
+            this.num_Price.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_Price.Location = new System.Drawing.Point(143, 128);
             this.num_Price.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1050,7 +1155,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(40, 135);
+            this.label27.Location = new System.Drawing.Point(16, 135);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(36, 14);
             this.label27.TabIndex = 113;
@@ -1058,11 +1163,12 @@
             // 
             // num_Vriance
             // 
-            this.num_Vriance.BackColor = System.Drawing.Color.Thistle;
+            this.num_Vriance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.num_Vriance.DecimalPlaces = 2;
             this.num_Vriance.Enabled = false;
             this.num_Vriance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_Vriance.ForeColor = System.Drawing.Color.Black;
-            this.num_Vriance.Location = new System.Drawing.Point(167, 99);
+            this.num_Vriance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_Vriance.Location = new System.Drawing.Point(143, 99);
             this.num_Vriance.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1081,7 +1187,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(40, 106);
+            this.label28.Location = new System.Drawing.Point(16, 106);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(54, 14);
             this.label28.TabIndex = 111;
@@ -1090,23 +1196,24 @@
             // num_EndTotalizer
             // 
             this.num_EndTotalizer.BackColor = System.Drawing.Color.White;
-            this.num_EndTotalizer.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.num_EndTotalizer.DecimalPlaces = 2;
+            this.num_EndTotalizer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.num_EndTotalizer.ForeColor = System.Drawing.Color.Black;
-            this.num_EndTotalizer.Location = new System.Drawing.Point(167, 74);
+            this.num_EndTotalizer.Location = new System.Drawing.Point(143, 74);
             this.num_EndTotalizer.Maximum = new decimal(new int[] {
             -727379968,
             232,
             0,
             0});
             this.num_EndTotalizer.Name = "num_EndTotalizer";
-            this.num_EndTotalizer.Size = new System.Drawing.Size(184, 23);
+            this.num_EndTotalizer.Size = new System.Drawing.Size(184, 27);
             this.num_EndTotalizer.TabIndex = 110;
             this.num_EndTotalizer.ValueChanged += new System.EventHandler(this.num_EndTotalizer_ValueChanged);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(40, 77);
+            this.label25.Location = new System.Drawing.Point(16, 77);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(77, 14);
             this.label25.TabIndex = 109;
@@ -1114,11 +1221,12 @@
             // 
             // num_starttotalizer
             // 
-            this.num_starttotalizer.BackColor = System.Drawing.Color.Thistle;
+            this.num_starttotalizer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.num_starttotalizer.DecimalPlaces = 2;
             this.num_starttotalizer.Enabled = false;
             this.num_starttotalizer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.num_starttotalizer.ForeColor = System.Drawing.Color.Black;
-            this.num_starttotalizer.Location = new System.Drawing.Point(167, 45);
+            this.num_starttotalizer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_starttotalizer.Location = new System.Drawing.Point(143, 45);
             this.num_starttotalizer.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1137,7 +1245,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(40, 48);
+            this.label26.Location = new System.Drawing.Point(16, 48);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(82, 14);
             this.label26.TabIndex = 107;
@@ -1204,7 +1312,7 @@
             // 
             // pnl_collection
             // 
-            this.pnl_collection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnl_collection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.pnl_collection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_collection.Controls.Add(this.lbl_breakdid);
             this.pnl_collection.Controls.Add(this.button5);
@@ -1230,9 +1338,9 @@
             this.pnl_collection.Controls.Add(this.dgmain);
             this.pnl_collection.Controls.Add(this.num_amount);
             this.pnl_collection.Controls.Add(this.label4);
-            this.pnl_collection.Location = new System.Drawing.Point(24, 82);
+            this.pnl_collection.Location = new System.Drawing.Point(73, 82);
             this.pnl_collection.Name = "pnl_collection";
-            this.pnl_collection.Size = new System.Drawing.Size(563, 384);
+            this.pnl_collection.Size = new System.Drawing.Size(522, 243);
             this.pnl_collection.TabIndex = 100;
             // 
             // lbl_breakdid
@@ -1350,6 +1458,7 @@
             this.txt_creditcardNo.Name = "txt_creditcardNo";
             this.txt_creditcardNo.Size = new System.Drawing.Size(164, 22);
             this.txt_creditcardNo.TabIndex = 119;
+            this.txt_creditcardNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_creditcardNo_KeyDown);
             // 
             // label11
             // 
@@ -1367,6 +1476,7 @@
             this.txt_voucherNo.Name = "txt_voucherNo";
             this.txt_voucherNo.Size = new System.Drawing.Size(180, 22);
             this.txt_voucherNo.TabIndex = 117;
+            this.txt_voucherNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_voucherNo_KeyDown);
             // 
             // label10
             // 
@@ -1398,6 +1508,7 @@
             this.cmb_Vehicles.Name = "cmb_Vehicles";
             this.cmb_Vehicles.Size = new System.Drawing.Size(164, 22);
             this.cmb_Vehicles.TabIndex = 114;
+            this.cmb_Vehicles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Vehicles_KeyDown);
             // 
             // label8
             // 
@@ -1470,6 +1581,7 @@
             // 
             // num_amount
             // 
+            this.num_amount.DecimalPlaces = 2;
             this.num_amount.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_amount.Location = new System.Drawing.Point(67, 285);
             this.num_amount.Maximum = new decimal(new int[] {
@@ -1480,6 +1592,7 @@
             this.num_amount.Name = "num_amount";
             this.num_amount.Size = new System.Drawing.Size(164, 23);
             this.num_amount.TabIndex = 106;
+            this.num_amount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.num_amount_KeyDown);
             // 
             // label4
             // 
@@ -1501,26 +1614,26 @@
             this.panel2.Size = new System.Drawing.Size(420, 330);
             this.panel2.TabIndex = 101;
             // 
-            // lbl_selectedPumper
+            // Session
             // 
-            this.lbl_selectedPumper.AutoSize = true;
-            this.lbl_selectedPumper.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_selectedPumper.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
-            this.lbl_selectedPumper.Location = new System.Drawing.Point(126, 30);
-            this.lbl_selectedPumper.Name = "lbl_selectedPumper";
-            this.lbl_selectedPumper.Size = new System.Drawing.Size(24, 18);
-            this.lbl_selectedPumper.TabIndex = 105;
-            this.lbl_selectedPumper.Text = "....";
+            this.Session.AutoSize = true;
+            this.Session.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Session.Location = new System.Drawing.Point(307, 9);
+            this.Session.Name = "Session";
+            this.Session.Size = new System.Drawing.Size(83, 15);
+            this.Session.TabIndex = 109;
+            this.Session.Text = "Select Session";
             // 
-            // label18
+            // cmb_sessions
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(19, 32);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(101, 15);
-            this.label18.TabIndex = 104;
-            this.label18.Text = "Current Pumper:";
+            this.cmb_sessions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_sessions.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmb_sessions.FormattingEnabled = true;
+            this.cmb_sessions.Location = new System.Drawing.Point(404, 5);
+            this.cmb_sessions.Name = "cmb_sessions";
+            this.cmb_sessions.Size = new System.Drawing.Size(196, 23);
+            this.cmb_sessions.TabIndex = 108;
+            this.cmb_sessions.SelectedIndexChanged += new System.EventHandler(this.cmb_sessions_SelectedIndexChanged);
             // 
             // PumpStatus
             // 
@@ -1543,6 +1656,7 @@
             this.pnl_header.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.pnl_footer.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1689,5 +1803,15 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lbl_selectedPumper;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smallToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tileToolStripMenuItem;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label lbl_currentCashTot;
+        private System.Windows.Forms.Label Session;
+        private System.Windows.Forms.ComboBox cmb_sessions;
     }
 }

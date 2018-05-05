@@ -10,6 +10,7 @@ namespace FSMS.Domain
     {
         public int Id { get; set; }
         public int DayID { get; set; }
+        public int SessionID { get; set; }
         public int NozzelID { get; set; }
         public int PumperID { get; set; }
         public DateTime AssignTime { get; set; }

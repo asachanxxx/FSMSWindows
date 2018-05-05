@@ -10,6 +10,9 @@ namespace FSMS.Domain
     {
         public int Id { get; set; }
         public int CashCollId { get; set; }
+        public int DayId { get; set; }
+        public int PumperId { get; set; }
+        public int SessionId { get; set; }
         public decimal Value { get; set; }
         public decimal SystemValue { get; set; }
         public int VehicleID { get; set; }

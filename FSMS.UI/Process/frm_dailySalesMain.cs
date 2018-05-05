@@ -63,7 +63,10 @@ namespace FSMS.UI
                 this.Text = "Daily Sales";
                 commonFunctions.FormatDataGrid(dgmain);
                 commonFunctions.FormatDataGrid(dgmain);
-
+                if (cmb_days.SelectedValue != null)
+                {
+                    LoadSessions(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+                }
 
             }
             catch (Exception ex)
@@ -73,7 +76,7 @@ namespace FSMS.UI
             }
         }
 
-     
+
 
         private void LoadDays()
         {
@@ -100,10 +103,24 @@ namespace FSMS.UI
             }
 
         }
+        private void LoadSessions(int dayid)
+        {
+            List<KeyValue> listoffuels = KeyValueRepository.GetSessions(dayid).ToList();
+            if (listoffuels.Count > 0)
+            {
+                cmb_sessions.DataSource = listoffuels;
+                cmb_sessions.DisplayMember = "Name";
+                cmb_sessions.ValueMember = "Id";
+                cmb_sessions.SelectedIndex = 0;
+            }
 
+        }
         private void cmb_days_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cmb_days.SelectedValue != null)
+            {
+                LoadSessions(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+            }
         }
 
         private void btn_show_Click(object sender, EventArgs e)
@@ -117,7 +134,10 @@ namespace FSMS.UI
                 lbl_totalValss.Text = "0.00";
 
                 GetNozzelsForPumperOnGivenDay();
-                List<DailyPumperTotal> tovals = CustomeRepository.GetDailyPumperTotal(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString())).ToList();
+                List<DailyPumperTotal> tovals = CustomeRepository.GetDailyPumperTotal(
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 
+                    commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()),
+                    commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())).ToList();
                 if (tovals != null)
                 {
                     LoadListView(tovals);
@@ -130,12 +150,22 @@ namespace FSMS.UI
                 }
                 lbl_totalCollection.Text = totalCollection.ToString();
 
-                TwoKeyNumer SystemTotal = CustomeRepository.GetSystemTotalForPumperForDay(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()));
-                if (SystemTotal != null) {
+                TwoKeyNumer SystemTotal = CustomeRepository.GetSystemTotalForPumperForDay(
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 
+                    commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()),
+                    commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
+                    );
+                if (SystemTotal != null)
+                {
                     lbl_systemtotal.Text = SystemTotal.Value.ToString();
                 }
 
-                var dets = CustomeRepository.GetGetCollectionFOrDay_Pumper_SaleType(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()), 1);
+                var dets = CustomeRepository.GetGetCollectionFOrDay_Pumper_SaleType(
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 
+                    commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()),
+                    1,
+                     commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
+                    );
                 if (dets != null)
                 {
                     lbl_cash.Text = dets.CashTotal.ToString();
@@ -172,7 +202,7 @@ namespace FSMS.UI
                 dgmain.DataSource = null;
                 foreach (var item in details)
                 {
-                    string name =  item.Name;
+                    string name = item.Name;
                     ListViewItem itm = new ListViewItem(name);
                     itm.Tag = item;
                     itm.ImageIndex = 4;
@@ -192,10 +222,11 @@ namespace FSMS.UI
             lst_dailydet.Items.Clear();
             foreach (var item in tovals)
             {
-                string name =  item.SaleType + Environment.NewLine + item.Total;
+                string name = item.SaleType + Environment.NewLine + item.Total;
                 ListViewItem itm = new ListViewItem(name);
                 itm.Tag = item;
-                switch (item.SaleId) {
+                switch (item.SaleId)
+                {
                     case 1:
                         itm.ImageIndex = 0;
                         break;
@@ -214,8 +245,8 @@ namespace FSMS.UI
                 }
                 lst_dailydet.Items.Add(itm);
             }
-              
-          
+
+
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
@@ -225,17 +256,18 @@ namespace FSMS.UI
 
         private void lst_dailydet_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try { 
-            if (lst_dailydet.SelectedItems.Count > 0) {
+            try
+            {
+                if (lst_dailydet.SelectedItems.Count > 0)
+                {
 
-                DailyPumperTotal tot = (DailyPumperTotal)lst_dailydet.SelectedItems[0].Tag;
+                    DailyPumperTotal tot = (DailyPumperTotal)lst_dailydet.SelectedItems[0].Tag;
                     if (tot != null)
                     {
                         lbl_totalValss.Text = tot.Total.ToString();
-                        lbl_name.Text = tot.EmployeeName;
                         lbl_saletype.Text = tot.SaleType;
 
-                        var dets = CustomeRepository.GetGetCollectionFOrDay_Pumper_SaleType(tot.DayID, tot.PumperId, tot.SaleId);
+                        var dets = CustomeRepository.GetGetCollectionFOrDay_Pumper_SaleType(tot.DayID, tot.PumperId, tot.SaleId, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
                         if (dets != null)
                         {
                             dgmain.AutoGenerateColumns = false;
@@ -250,7 +282,7 @@ namespace FSMS.UI
 
 
 
-            }
+                }
             }
             catch (Exception ex)
             {
@@ -261,7 +293,58 @@ namespace FSMS.UI
 
         private void lst_nozzels_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (CustomeRepository.IsExistsDifferentLog(
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
+                    commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()),
+                    commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString())
+                    ) > 0) {
+                    MessageBox.Show("Already Printed for this Day ,Session and pumper " , Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (MessageBox.Show("Do you want to Save and Print this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+                    DifferentLog log = new DifferentLog();
+                    log.CardTotal = commonFunctions.ToDecimal(lbl_card.Text.Trim());
+                    log.CashTotal = commonFunctions.ToDecimal(lbl_cash.Text.Trim());
+                    log.VoucherTotal = commonFunctions.ToDecimal(lbl_Voucher.Text.Trim());
+                    log.Expenses = commonFunctions.ToDecimal(lbl_expense.Text.Trim());
+                    log.Testing = commonFunctions.ToDecimal(lbl_othertotal.Text.Trim());
+                    log.DayID = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
+                    log.PumperId = commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString());
+                    log.SessionId = commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString());
+                    log.SystemTotal = commonFunctions.ToDecimal(lbl_systemtotal.Text.Trim()); 
+                    log.TotalCollection = commonFunctions.ToDecimal(lbl_totalCollection.Text.Trim());
+                    log.Differences = commonFunctions.ToDecimal(lbl_diff.Text.Trim());
+                    log.DiffCaculated = true;
+                    log.IsFinal = true;
+                    log.IgnoreDiff = chk_ignorediff.Checked;
+                    log.ModifiedDate = DateTime.Now;
+                    log.CreatedDate = DateTime.Now;
+                    log.CreatedUser = commonFunctions.LoginuserID;
+                    log.ModifiedUser = commonFunctions.LoginuserID;
+                    log.DataTransfer = 1;
+
+                    CustomeRepository.InsertSalesPrint(log);
+                    string filename = PrintRepository.WriteSimpleReciept(log, cmb_pumper.Text);
+                    System.Diagnostics.Process.Start(filename);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Has found in program. Please forword following details to technical" + Environment.NewLine + "[" + ex.Message + Environment.NewLine + ex.Source + "]", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
     }
 }

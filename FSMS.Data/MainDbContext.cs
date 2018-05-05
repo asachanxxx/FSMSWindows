@@ -30,26 +30,29 @@ namespace FSMS.Data
         public DbSet<Banks> Banks { get; set; }
         
 
-        public DbSet<DayMaster> DayMaster { get; set; }
-        public DbSet<DaySaleHed> DaySaleHed { get; set; }
-        public DbSet<DaySaleDet> DaySaleDet { get; set; }
-        public DbSet<Roster> Roster { get; set; }
 
         public DbSet<User> User { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<MenuTag> MenuTag { get; set; }
         public DbSet<SysSetup> SysSetup { get; set; }
         public DbSet<UserRights> UserRights { get; set; }
+        public DbSet<SystemLog> SystemLog { get; set; }
 
+
+
+
+        public DbSet<DayMaster> DayMaster { get; set; }
+        public DbSet<DaySession> DaySession { get; set; }
+        public DbSet<DaySaleHed> DaySaleHed { get; set; }
+        public DbSet<DaySaleDet> DaySaleDet { get; set; }
         public DbSet<TotalizeReading> TotalizeReading { get; set; }
-
-
+        public DbSet<DifferentLog> DifferentLog { get; set; }
         public DbSet<DayAssignWorkers> DayAssignWorkers { get; set; }
         public DbSet<CashCollection> CashCollection { get; set; }
         public DbSet<CashCollectionBreak> CashCollectionBreak { get; set; }
         public DbSet<PumpClosing> PumpClosing { get; set; }
+        public DbSet<DayCustomerDebit> DayCustomerDebit { get; set; }
 
-        public DbSet<SystemLog> SystemLog { get; set; }
 
     }
 }
