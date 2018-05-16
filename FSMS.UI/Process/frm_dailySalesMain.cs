@@ -127,6 +127,25 @@ namespace FSMS.UI
         {
             try
             {
+
+                if (cmb_days.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a day to continue", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cmb_pumper.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a Pumper to continue", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cmb_sessions.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a session to continue", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 lbl_card.Text = "0.00";
                 lbl_cash.Text = "0.00";
                 lbl_Voucher.Text = "0.00";
@@ -135,7 +154,7 @@ namespace FSMS.UI
 
                 GetNozzelsForPumperOnGivenDay();
                 List<DailyPumperTotal> tovals = CustomeRepository.GetDailyPumperTotal(
-                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())).ToList();
                 if (tovals != null)
@@ -151,7 +170,7 @@ namespace FSMS.UI
                 lbl_totalCollection.Text = totalCollection.ToString();
 
                 TwoKeyNumer SystemTotal = CustomeRepository.GetSystemTotalForPumperForDay(
-                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
                     );
@@ -159,9 +178,12 @@ namespace FSMS.UI
                 {
                     lbl_systemtotal.Text = SystemTotal.Value.ToString();
                 }
+                else {
+                    lbl_systemtotal.Text = "0.00";
+                }
 
                 var dets = CustomeRepository.GetGetCollectionFOrDay_Pumper_SaleType(
-                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 
+                    commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()),
                     1,
                      commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
@@ -305,8 +327,9 @@ namespace FSMS.UI
                     commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()),
                     commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString())
-                    ) > 0) {
-                    MessageBox.Show("Already Printed for this Day ,Session and pumper " , Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ) > 0)
+                {
+                    MessageBox.Show("Already Printed for this Day ,Session and pumper ", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -322,7 +345,7 @@ namespace FSMS.UI
                     log.DayID = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
                     log.PumperId = commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString());
                     log.SessionId = commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString());
-                    log.SystemTotal = commonFunctions.ToDecimal(lbl_systemtotal.Text.Trim()); 
+                    log.SystemTotal = commonFunctions.ToDecimal(lbl_systemtotal.Text.Trim());
                     log.TotalCollection = commonFunctions.ToDecimal(lbl_totalCollection.Text.Trim());
                     log.Differences = commonFunctions.ToDecimal(lbl_diff.Text.Trim());
                     log.DiffCaculated = true;
@@ -334,10 +357,44 @@ namespace FSMS.UI
                     log.ModifiedUser = commonFunctions.LoginuserID;
                     log.DataTransfer = 1;
 
+
                     CustomeRepository.InsertSalesPrint(log);
-                    string filename = PrintRepository.WriteSimpleReciept(log, cmb_pumper.Text);
+                    string filename = PrintRepository.WriteSimpleReciept(log, cmb_pumper.Text, commonFunctions.GlobalCompany);
                     System.Diagnostics.Process.Start(filename);
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Has found in program. Please forword following details to technical" + Environment.NewLine + "[" + ex.Message + Environment.NewLine + ex.Source + "]", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmb_days.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a day to continue", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (MessageBox.Show("Do you want to End this Day?. " +
+                    Environment.NewLine +
+                    "Bfore you continue please check all the pumpers details are properly entered to system" +
+                    Environment.NewLine +
+                    "And All the Nozzels are Close Properly."
+                    , Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+
+                    int x = CustomeRepository.ClosePump(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
+                    if (x > 0)
+                    {
+                        MessageBox.Show("Successfully End the day", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)

@@ -82,6 +82,7 @@ namespace FSMS.Domain
         public string Remark { get; set; }
 
         public string VehicleImage { get; set; }
+        public int Ratings { get; set; }
 
     }
 }

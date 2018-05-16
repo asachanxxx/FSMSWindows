@@ -70,6 +70,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.Session = new System.Windows.Forms.Label();
+            this.cmb_sessions = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_show = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -148,8 +150,6 @@
             this.num_amount = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Session = new System.Windows.Forms.Label();
-            this.cmb_sessions = new System.Windows.Forms.ComboBox();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.pnl_footer.SuspendLayout();
@@ -629,6 +629,27 @@
             this.panel4.Size = new System.Drawing.Size(1007, 34);
             this.panel4.TabIndex = 97;
             // 
+            // Session
+            // 
+            this.Session.AutoSize = true;
+            this.Session.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Session.Location = new System.Drawing.Point(307, 9);
+            this.Session.Name = "Session";
+            this.Session.Size = new System.Drawing.Size(83, 15);
+            this.Session.TabIndex = 109;
+            this.Session.Text = "Select Session";
+            // 
+            // cmb_sessions
+            // 
+            this.cmb_sessions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_sessions.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmb_sessions.FormattingEnabled = true;
+            this.cmb_sessions.Location = new System.Drawing.Point(404, 5);
+            this.cmb_sessions.Name = "cmb_sessions";
+            this.cmb_sessions.Size = new System.Drawing.Size(196, 23);
+            this.cmb_sessions.TabIndex = 108;
+            this.cmb_sessions.SelectedIndexChanged += new System.EventHandler(this.cmb_sessions_SelectedIndexChanged);
+            // 
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1095,6 +1116,11 @@
             this.num_totalFUelval.Enabled = false;
             this.num_totalFUelval.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_totalFUelval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_totalFUelval.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.num_totalFUelval.Location = new System.Drawing.Point(143, 157);
             this.num_totalFUelval.Maximum = new decimal(new int[] {
             -727379968,
@@ -1136,6 +1162,11 @@
             this.num_Price.Enabled = false;
             this.num_Price.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_Price.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_Price.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.num_Price.Location = new System.Drawing.Point(143, 128);
             this.num_Price.Maximum = new decimal(new int[] {
             -727379968,
@@ -1168,6 +1199,11 @@
             this.num_Vriance.Enabled = false;
             this.num_Vriance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_Vriance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_Vriance.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.num_Vriance.Location = new System.Drawing.Point(143, 99);
             this.num_Vriance.Maximum = new decimal(new int[] {
             -727379968,
@@ -1226,6 +1262,11 @@
             this.num_starttotalizer.Enabled = false;
             this.num_starttotalizer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_starttotalizer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.num_starttotalizer.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.num_starttotalizer.Location = new System.Drawing.Point(143, 45);
             this.num_starttotalizer.Maximum = new decimal(new int[] {
             -727379968,
@@ -1340,7 +1381,7 @@
             this.pnl_collection.Controls.Add(this.label4);
             this.pnl_collection.Location = new System.Drawing.Point(73, 82);
             this.pnl_collection.Name = "pnl_collection";
-            this.pnl_collection.Size = new System.Drawing.Size(522, 243);
+            this.pnl_collection.Size = new System.Drawing.Size(817, 372);
             this.pnl_collection.TabIndex = 100;
             // 
             // lbl_breakdid
@@ -1613,27 +1654,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(420, 330);
             this.panel2.TabIndex = 101;
-            // 
-            // Session
-            // 
-            this.Session.AutoSize = true;
-            this.Session.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Session.Location = new System.Drawing.Point(307, 9);
-            this.Session.Name = "Session";
-            this.Session.Size = new System.Drawing.Size(83, 15);
-            this.Session.TabIndex = 109;
-            this.Session.Text = "Select Session";
-            // 
-            // cmb_sessions
-            // 
-            this.cmb_sessions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_sessions.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_sessions.FormattingEnabled = true;
-            this.cmb_sessions.Location = new System.Drawing.Point(404, 5);
-            this.cmb_sessions.Name = "cmb_sessions";
-            this.cmb_sessions.Size = new System.Drawing.Size(196, 23);
-            this.cmb_sessions.TabIndex = 108;
-            this.cmb_sessions.SelectedIndexChanged += new System.EventHandler(this.cmb_sessions_SelectedIndexChanged);
             // 
             // PumpStatus
             // 

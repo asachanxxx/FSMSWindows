@@ -87,6 +87,12 @@
     <Compile Include="e2e\e2etest.Designer.cs">
       <DependentUpon>e2etest.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterData\frm_vehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\frm_vehicle.Designer.cs">
+      <DependentUpon>frm_vehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frm_grn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </Compile>
     <EmbeddedResource Include="e2e\e2etest.resx">
       <DependentUpon>e2etest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\frm_vehicle.resx">
+      <DependentUpon>frm_vehicle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frm_grn.resx">
       <DependentUpon>frm_grn.cs</DependentUpon>

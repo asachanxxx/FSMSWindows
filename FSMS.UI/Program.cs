@@ -1,4 +1,5 @@
 ﻿using FSMS.Common;
+using FSMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace FSMS.UI
             LoggedDetails.Loginuser = "Admin";
             LoggedDetails.LoggedUserId = 1;
             LoggedDetails.GroupOfCompanyID = 1;
+            commonFunctions.GlobalCompany = "FSFS Distributors Waththala";
+            commonFunctions.LoginuserID = 1;
 
             //Application.Run(new frm_login());
             Application.Run(new frm_main());

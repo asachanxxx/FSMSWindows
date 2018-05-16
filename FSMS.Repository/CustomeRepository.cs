@@ -194,6 +194,8 @@ namespace FSMS.Repository
 
         }
 
+      
+
         public static IEnumerable<DailyAssignWorkerDetails> GetDailyAssignWorkerDetails(int did, int sessionid)
         {
 
@@ -237,6 +239,7 @@ namespace FSMS.Repository
 
         }
 
+      
 
         public static int InsertTotalCashCollection(int did,int pumperid, decimal cashtotal, decimal Cardtotal, decimal Vouchertotal, decimal Expensetotal)
         {
@@ -416,7 +419,8 @@ namespace FSMS.Repository
 
         }
 
-                                     
+      
+
         public static int InsetPumpClosing(int DayID, int PumperId, int NozzelID, 
              decimal TotalHours, decimal StartTotalizer, decimal EndTotalizer, decimal Reading, decimal Price, decimal Value, int SeqNo,int SessionId)
         {
@@ -578,6 +582,23 @@ namespace FSMS.Repository
             }
         }
 
+        public static IEnumerable<Nozzle> GetAllNozzelssByTank(int tankid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<Nozzle>("select * from Nozzles where TankId = @tankid" , new { tankid = tankid });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static IEnumerable<Nozzle> GetNozzelsOFTanks(int tankid)
         {
 
@@ -704,13 +725,261 @@ namespace FSMS.Repository
         }
 
         //select count(*) from DifferentLogs where DayID = 1 and sessionid = 0 and PumperId = 1
+        public static string GetSetDocumentNumber(string ScreenID, int Serial, string Prefix, int mode)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    if (mode == 1)
+                    {
+                        return db.QuerySingleOrDefault<string>("GetSetDocumentNumber",
+                            new
+                            {
+                                ScreenID = ScreenID,
+                                Serial = Serial,
+                                Prefix = Prefix,
+                                mode = 1
+                            },
+                            commandType: CommandType.StoredProcedure
+                            );
+                    }
+                    else
+                    {
+                        db.Execute("GetSetDocumentNumber",
+                            new
+                            {
+                                ScreenID = ScreenID,
+                                Serial = Serial,
+                                Prefix = Prefix,
+                                mode = 1
+                            },
+                            commandType: CommandType.StoredProcedure
+                            );
+                        return "Done";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
+        public static int InitializeUnloading(string DocNo, int CreatedUser)
+        {
 
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("SP_InitializeUnloading",
+                        new
+                        {
+                            DocNo = DocNo,
+                            CreatedUser = CreatedUser,
+                        },commandType:CommandType.StoredProcedure
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public static IEnumerable<UnloadingDipReadings> GetAllTanksForUnloading(string DocNo)
+        {
 
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<UnloadingDipReadings>("SP_GetTanksForUnloading" , new { DocNo = DocNo }, commandType:CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public static IEnumerable<UnloadingNozzelReading> GetAllNozzelssByTankForUnloading(string DocNo, int TankId)
+        {
 
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<UnloadingNozzelReading>("SP_GetNozzelForUnloading", new { DocNo = DocNo, TankId = TankId }, commandType:CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static int SaveTotalizerForUnloading(string DocNo, int NozzelID, decimal Reading)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("SP_SaveTotalizerForUnloading", 
+                        new { DocNo = DocNo, NozzelID = NozzelID, Reading= Reading },
+                        commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static int CheckForDocumentNo(string DocNo)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("select count(*) from [dbo].[UnloadingHeds] where DocNo = @DocNo",
+                        new { DocNo = DocNo }
+                      );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static decimal GetNozzelTotalizerReadings(string DocNo, int nozzelid)
+        {
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("select top 1 Reading from UnloadingNozzelReadings inner " +
+                        " join UnloadingHeds on UnloadingNozzelReadings.hedid = UnloadingHeds.id where UnloadingHeds.DocNo = @DocNo and NozzelId = @nozzelid",
+                        new { DocNo = DocNo , nozzelid = nozzelid }
+                      );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static int UpdateDipValues(string DocNo,int TankID , decimal Value,int BorA)
+        {
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingleOrDefault<int>("SP_SaveDipMesurements",
+                        new { DocNo = DocNo, TankID = TankID , Reading = Value, BeforeAfter = BorA },
+                        commandType:CommandType.StoredProcedure
+                      );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static decimal GetNozzelTotalizerReadings(string DocNo, int Tankid, int beforeorafter)
+        {
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    if (beforeorafter == 1)
+                    {
+                        return db.QuerySingleOrDefault<decimal>("select top 1 BeforeDipReading from UnloadingDipReadings inner join UnloadingHeds on UnloadingDipReadings.hedid = UnloadingHeds.id " +
+                            "where UnloadingHeds.DocNo = @DocNo and TankD =@Tankid",
+                            new { DocNo = DocNo, Tankid = Tankid }
+                          );
+                    }
+                    else {
+                        return db.QuerySingleOrDefault<decimal>("select top 1 AfterDipReading from UnloadingDipReadings inner join UnloadingHeds on UnloadingDipReadings.hedid = UnloadingHeds.id " +
+                           "where UnloadingHeds.DocNo = @DocNo and TankD =@Tankid",
+                           new { DocNo = DocNo, Tankid = Tankid }
+                         );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static FuelType GetFuelRecord(int FuelId)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingle<FuelType>("select top 1 * from FuelTypes where Id =@FuelId", new { FuelId = FuelId});
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static IEnumerable<Vehicle> GetVehicleForCustomers(int Cusid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<Vehicle>("select * from [dbo].[Vehicles] where CreditCusId =@Cusid", new { Cusid = Cusid });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public static int ClosePump(int DayID)
+        {
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Execute("update DayMasters set IsCompleted = 1 where Id = @DayID", new { DayID = DayID });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

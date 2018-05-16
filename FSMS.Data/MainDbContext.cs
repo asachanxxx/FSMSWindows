@@ -28,6 +28,7 @@ namespace FSMS.Data
         public DbSet<Tank> Tanks { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<Banks> Banks { get; set; }
+        public DbSet<DocumentNumber> DocumentNumber  { get; set; }
         
 
 
@@ -37,8 +38,9 @@ namespace FSMS.Data
         public DbSet<SysSetup> SysSetup { get; set; }
         public DbSet<UserRights> UserRights { get; set; }
         public DbSet<SystemLog> SystemLog { get; set; }
+        public DbSet<DipChart> DipChart { get; set; }
 
-
+        
 
 
         public DbSet<DayMaster> DayMaster { get; set; }
@@ -53,6 +55,12 @@ namespace FSMS.Data
         public DbSet<PumpClosing> PumpClosing { get; set; }
         public DbSet<DayCustomerDebit> DayCustomerDebit { get; set; }
 
+        public DbSet<UnloadingHed> UnloadingHed { get; set; }
+        public DbSet<UnloadingDet> UnloadingDet { get; set; }
+        public DbSet<UnloadingNozzelReading> UnloadingNozzelReading { get; set; }
+        public DbSet<UnloadingDipReadings> UnloadingDipReadings { get; set; }
+        public DbSet<PumperWorkingHour> PumperWorkingHour { get; set; }
 
+        
     }
 }

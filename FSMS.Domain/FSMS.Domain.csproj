@@ -90,12 +90,18 @@
     <Compile Include="Master Data\ProductMaster.cs" />
     <Compile Include="Master Data\Pumps.cs" />
     <Compile Include="Master Data\RfCardMaster.cs" />
+    <Compile Include="Process\DocumentNumber.cs" />
     <Compile Include="Process\PumpClosing.cs" />
+    <Compile Include="Process\PumperWorkingHours.cs" />
     <Compile Include="Process\Roster.cs" />
     <Compile Include="Master Data\Shifts.cs" />
     <Compile Include="Master Data\Supplier.cs" />
     <Compile Include="Master Data\Tanks.cs" />
     <Compile Include="Master Data\Vehicle.cs" />
+    <Compile Include="Process\UnloadingDet.cs" />
+    <Compile Include="Process\UnloadingDipReadings.cs" />
+    <Compile Include="Process\UnloadingHed.cs" />
+    <Compile Include="Process\UnloadingNozzelReading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Master Data\SalesType.cs" />
     <Compile Include="Security\MenuTag.cs" />
@@ -115,6 +121,7 @@
     <Compile Include="View Model\GetCollectionFOrDay_Pumper_SaleType.cs" />
     <Compile Include="View Model\PumperForGivenDayCollectionDetails.cs" />
     <Compile Include="View Model\RosterViewModel.cs" />
+    <Compile Include="View Model\UnloadingFuel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -88,13 +88,14 @@
             this.VoucherNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Session = new System.Windows.Forms.Label();
+            this.cmb_sessions = new System.Windows.Forms.ComboBox();
             this.btn_show = new System.Windows.Forms.Button();
             this.cmb_pumper = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmb_days = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmb_sessions = new System.Windows.Forms.ComboBox();
-            this.Session = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.pnl_footer.SuspendLayout();
@@ -151,6 +152,7 @@
             // pnl_footer
             // 
             this.pnl_footer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(53)))), ((int)(((byte)(68)))));
+            this.pnl_footer.Controls.Add(this.button2);
             this.pnl_footer.Controls.Add(this.button1);
             this.pnl_footer.Controls.Add(this.btn_exit);
             this.pnl_footer.Location = new System.Drawing.Point(6, 516);
@@ -754,6 +756,26 @@
             this.panel3.Size = new System.Drawing.Size(974, 41);
             this.panel3.TabIndex = 104;
             // 
+            // Session
+            // 
+            this.Session.AutoSize = true;
+            this.Session.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Session.Location = new System.Drawing.Point(219, 12);
+            this.Session.Name = "Session";
+            this.Session.Size = new System.Drawing.Size(83, 15);
+            this.Session.TabIndex = 111;
+            this.Session.Text = "Select Session";
+            // 
+            // cmb_sessions
+            // 
+            this.cmb_sessions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_sessions.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmb_sessions.FormattingEnabled = true;
+            this.cmb_sessions.Location = new System.Drawing.Point(314, 8);
+            this.cmb_sessions.Name = "cmb_sessions";
+            this.cmb_sessions.Size = new System.Drawing.Size(196, 23);
+            this.cmb_sessions.TabIndex = 110;
+            // 
             // btn_show
             // 
             this.btn_show.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -814,25 +836,22 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Day Start";
             // 
-            // cmb_sessions
+            // button2
             // 
-            this.cmb_sessions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_sessions.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb_sessions.FormattingEnabled = true;
-            this.cmb_sessions.Location = new System.Drawing.Point(314, 8);
-            this.cmb_sessions.Name = "cmb_sessions";
-            this.cmb_sessions.Size = new System.Drawing.Size(196, 23);
-            this.cmb_sessions.TabIndex = 110;
-            // 
-            // Session
-            // 
-            this.Session.AutoSize = true;
-            this.Session.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Session.Location = new System.Drawing.Point(219, 12);
-            this.Session.Name = "Session";
-            this.Session.Size = new System.Drawing.Size(83, 15);
-            this.Session.TabIndex = 111;
-            this.Session.Text = "Select Session";
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Red;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.ImageIndex = 9;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(659, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 33);
+            this.button2.TabIndex = 65;
+            this.button2.Text = "       Day End";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frm_dailySalesMain
             // 
@@ -934,5 +953,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox cmb_sessions;
         private System.Windows.Forms.Label Session;
+        private System.Windows.Forms.Button button2;
     }
 }

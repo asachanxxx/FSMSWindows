@@ -76,15 +76,16 @@ namespace FSMS.UI
 
         private void LoadFuels()
         {
-            try { 
-            List<KeyValue> listoffuels = KeyValueRepository.GetFuelTypes().ToList();
-            if (listoffuels.Count > 0)
+            try
             {
-                cmb_fueltypes.DataSource = listoffuels;
-                cmb_fueltypes.DisplayMember = "Name";
-                cmb_fueltypes.ValueMember = "Id";
-                cmb_fueltypes.SelectedIndex = 0;
-            }
+                List<KeyValue> listoffuels = KeyValueRepository.GetFuelTypes().ToList();
+                if (listoffuels.Count > 0)
+                {
+                    cmb_fueltypes.DataSource = listoffuels;
+                    cmb_fueltypes.DisplayMember = "Name";
+                    cmb_fueltypes.ValueMember = "Id";
+                    cmb_fueltypes.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {

@@ -197,5 +197,25 @@ namespace FSMS.Repository
 
         }
 
+        public static IEnumerable<KeyValue> GetCustomers()
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<KeyValue>("select id,CustomerName as Name from Customers order by Name asc ");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+       
+
     }
 }

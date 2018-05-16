@@ -35,12 +35,14 @@ A4002 - Change password
 
 using FSMS.Common;
 using FSMS.Repository;
+using FSMS.UI.MasterData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -121,10 +123,42 @@ namespace FSMS.UI
                 //tbl_status.Text = "Cannot login the system".ToUpper();
                 commonFunctions.SetMDIStatusMessage("Ready", 2);
 
+                backgroundWorker1.RunWorkerAsync();
             }
             catch (Exception ex)
             {
                 //LogFile.WriteErrorLog(System.Reflection.MethodBase.GetCurrentMethod().Name, this.Name, ex.Message.ToString(), "Exception");
+
+            }
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://clients3.google.com/generate_204"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                if (CheckForInternetConnection())
+                {
+                    Executer.EvaluateSystem();
+                }
+            }
+            catch (Exception ex)
+            {
 
             }
         }
@@ -359,12 +393,16 @@ namespace FSMS.UI
 
         private void TA1009_Click(object sender, EventArgs e)
         {
-            A0007_Click(sender, e);
+            A1009_Click(sender, e);
         }
 
         private void A1009_Click(object sender, EventArgs e)
         {
-
+            frm_vehicle objSupp = frm_vehicle.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.Activate();
+            objSupp.Show();
+            
         }
 
         private void TA1003_Click(object sender, EventArgs e)
@@ -473,6 +511,11 @@ namespace FSMS.UI
         }
 
         private void A4004_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void A2006_Click(object sender, EventArgs e)
         {
 
         }

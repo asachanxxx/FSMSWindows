@@ -55,6 +55,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +66,7 @@
   <ItemGroup>
     <Compile Include="CheckExistingRepository.cs" />
     <Compile Include="CustomeRepository.cs" />
+    <Compile Include="Executer.cs" />
     <Compile Include="IRepositoryBase.cs" />
     <Compile Include="KeyValueRepository.cs" />
     <Compile Include="LogRepository.cs" />

@@ -315,24 +315,28 @@ namespace FSMS.UI
                     return;
                 }
 
-                if (commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()) > 0)
+                if (MessageBox.Show("Do you want to Assign this pumper?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string message = CustomeRepository.AssignPumperToNozzel(det.DayID, commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()), det.NozzelID, det.DayWorkerID, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
-                    if (cmb_days.SelectedValue != null)
+                    if (commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()) > 0)
                     {
-                        try
+                        string message = CustomeRepository.AssignPumperToNozzel(det.DayID, commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()), det.NozzelID, det.DayWorkerID, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
+                        if (cmb_days.SelectedValue != null)
                         {
-                            RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
-                            MessageBox.Show(message, Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            try
+                            {
+                                RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
+                                MessageBox.Show(message, Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+
                         }
 
                     }
-
                 }
+
 
             }
         }
@@ -526,7 +530,7 @@ namespace FSMS.UI
                       num_cashtotal.Value,
                         commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                         commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
-                        commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString()),
+                        1,
                         1, //sales type,
                         txt_creditcardNo.Text,
                          txt_voucherNo.Text.Trim(),
@@ -659,14 +663,18 @@ namespace FSMS.UI
         {
             try
             {
+                if(num_workedHours.Value <= 0)
+                {
+                    MessageBox.Show("Working Hours must be grater than Zero", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
+                }
                 int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
                 int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
                 DailyAssignWorkerDetails det = (DailyAssignWorkerDetails)lst_nozzels.SelectedItems[0].Tag;
                 if (det != null)
                 {
-                    if (!det.IsOpen) {
+                    if (!det.IsOpen)
+                    {
                         MessageBox.Show("This nozzel already closed.", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -704,10 +712,6 @@ namespace FSMS.UI
                     MessageBox.Show("Please select a one nozzel from the list for closing", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -775,13 +779,39 @@ namespace FSMS.UI
         {
             try
             {
+                if (num_amount.Value <= 0) {
+                    return;
+                }
+
                 if (MessageBox.Show("Do you want to Save this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    CustomeRepository.InsertCollectionBreakdown(
+                    int vehicleid = 1;
+                    switch (glosaletypeid)
+                    {
+                        case 2:
+                            vehicleid = 1;
+                            break;
+                        case 3:
+                            if (cmb_Vehicles.SelectedValue == null)
+                            {
+                                MessageBox.Show("Please select vehicle from the list" , Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            else {
+                                vehicleid = commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString());
+                            }
+                            break;
+                        default:
+                             vehicleid = 1;
+                            break;
+
+                    }
+
+                  int x=   CustomeRepository.InsertCollectionBreakdown(
                        num_amount.Value,
                         commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
                         commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
-                        commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString()),
+                       vehicleid,
                         commonFunctions.ToInt(lbl_salesID.Text.ToString()),
                         txt_creditcardNo.Text,
                          txt_voucherNo.Text.Trim(),

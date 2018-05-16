@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FSMS.Domain
 {
-    public class DipChart : BaseEntity
+    public class DipChart 
     {
         [Key]
         public int Id { get; set; }
