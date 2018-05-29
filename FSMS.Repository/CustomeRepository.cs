@@ -980,6 +980,47 @@ namespace FSMS.Repository
                 throw ex;
             }
         }
+        public static Customer GetCustomerDetails(int Cusid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.QuerySingle<Customer>("select top 1 * from Customers where Id =@Cusid", new { Cusid = Cusid });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public static int InsertReciept(ReceiptHed entity)
+        {
+
+            try
+            {
+                XMLTool xmlcreate = new XMLTool();
+                string xmlString = xmlcreate.Serialize(entity);
+
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    var resfult = db.QuerySingle<int>("SP_SaveReciept", new { XMLDetails = xmlString }, commandType: CommandType.StoredProcedure);
+                    return 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
 
     }
 }

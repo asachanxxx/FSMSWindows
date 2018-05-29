@@ -1381,7 +1381,7 @@
             this.pnl_collection.Controls.Add(this.label4);
             this.pnl_collection.Location = new System.Drawing.Point(73, 82);
             this.pnl_collection.Name = "pnl_collection";
-            this.pnl_collection.Size = new System.Drawing.Size(817, 372);
+            this.pnl_collection.Size = new System.Drawing.Size(456, 372);
             this.pnl_collection.TabIndex = 100;
             // 
             // lbl_breakdid

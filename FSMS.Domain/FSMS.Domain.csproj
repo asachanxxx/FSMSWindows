@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseEntity.cs" />
+    <Compile Include="Master Data\PaymentTypes.cs" />
     <Compile Include="Process\DayCustomerDebit.cs" />
     <Compile Include="Process\DaySessions.cs" />
     <Compile Include="Process\DifferentLog.cs" />
@@ -93,6 +94,8 @@
     <Compile Include="Process\DocumentNumber.cs" />
     <Compile Include="Process\PumpClosing.cs" />
     <Compile Include="Process\PumperWorkingHours.cs" />
+    <Compile Include="Process\ReceiptDet.cs" />
+    <Compile Include="Process\ReceiptHed.cs" />
     <Compile Include="Process\Roster.cs" />
     <Compile Include="Master Data\Shifts.cs" />
     <Compile Include="Master Data\Supplier.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Process\UnloadingNozzelReading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Master Data\SalesType.cs" />
+    <Compile Include="ReportData\CollectionSummary.cs" />
     <Compile Include="Security\MenuTag.cs" />
     <Compile Include="Security\SysSetup.cs" />
     <Compile Include="Security\User.cs" />

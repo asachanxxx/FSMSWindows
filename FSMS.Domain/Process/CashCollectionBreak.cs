@@ -9,6 +9,7 @@ namespace FSMS.Domain
     public class CashCollectionBreak
     {
         public int Id { get; set; }
+        public string DocNo { get; set; }
         public int CashCollId { get; set; }
         public int DayId { get; set; }
         public int PumperId { get; set; }
@@ -24,5 +25,8 @@ namespace FSMS.Domain
         public DateTime CencelledDate { get; set; }
         public int CancelledUserId { get; set; }
         public int BankId { get; set; }
+        public int ColelctionDate { get; set; }
+        
+
     }
 }

@@ -71,23 +71,6 @@
             this.A0031 = new System.Windows.Forms.ToolStripMenuItem();
             this.A0032 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportCenterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.A0080 = new System.Windows.Forms.ToolStripMenuItem();
-            this.A0082 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.stockCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.stockBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockBalanceDetailProductWiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockBalanceDetailStockWiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cUSTOMERLIABILITYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.postDatedChequesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.salesAllocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesAllocationVarianceReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.A4000 = new System.Windows.Forms.ToolStripMenuItem();
             this.A4001 = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +98,25 @@
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.stockAgeingReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayWiseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayilyCollectionSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.dailyPumperSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyPumperDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCashSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCashSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCardSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCardSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyVoucherSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyVoucherSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerWiseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerBalanceReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.customerWiseBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerWiseBalanceDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerPaymentHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleFuelingHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -469,129 +470,13 @@
             // reportCenterToolStripMenuItem
             // 
             this.reportCenterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stockReportsToolStripMenuItem,
-            this.salesToolStripMenuItem});
+            this.dayWiseReportsToolStripMenuItem,
+            this.customerWiseReportsToolStripMenuItem});
             this.reportCenterToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.reportCenterToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
             this.reportCenterToolStripMenuItem.Name = "reportCenterToolStripMenuItem";
             this.reportCenterToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.reportCenterToolStripMenuItem.Text = "Report Center";
-            // 
-            // stockReportsToolStripMenuItem
-            // 
-            this.stockReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.A0080,
-            this.A0082,
-            this.toolStripSeparator16,
-            this.stockCardToolStripMenuItem,
-            this.toolStripSeparator17,
-            this.stockBalanceSummaryToolStripMenuItem,
-            this.stockBalanceDetailProductWiseToolStripMenuItem,
-            this.stockBalanceDetailStockWiseToolStripMenuItem,
-            this.toolStripSeparator18,
-            this.stockAgeingReportToolStripMenuItem});
-            this.stockReportsToolStripMenuItem.Name = "stockReportsToolStripMenuItem";
-            this.stockReportsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.stockReportsToolStripMenuItem.Text = "Stock Reports";
-            // 
-            // A0080
-            // 
-            this.A0080.Name = "A0080";
-            this.A0080.Size = new System.Drawing.Size(263, 22);
-            this.A0080.Text = "Stock Eveluation Report";
-            // 
-            // A0082
-            // 
-            this.A0082.Name = "A0082";
-            this.A0082.Size = new System.Drawing.Size(263, 22);
-            this.A0082.Text = "Bin Card Report";
-            // 
-            // toolStripSeparator16
-            // 
-            this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(260, 6);
-            // 
-            // stockCardToolStripMenuItem
-            // 
-            this.stockCardToolStripMenuItem.Name = "stockCardToolStripMenuItem";
-            this.stockCardToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.stockCardToolStripMenuItem.Text = "Stock Card";
-            // 
-            // toolStripSeparator17
-            // 
-            this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(260, 6);
-            // 
-            // stockBalanceSummaryToolStripMenuItem
-            // 
-            this.stockBalanceSummaryToolStripMenuItem.Name = "stockBalanceSummaryToolStripMenuItem";
-            this.stockBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.stockBalanceSummaryToolStripMenuItem.Text = "Stock Balance Summary";
-            // 
-            // stockBalanceDetailProductWiseToolStripMenuItem
-            // 
-            this.stockBalanceDetailProductWiseToolStripMenuItem.Name = "stockBalanceDetailProductWiseToolStripMenuItem";
-            this.stockBalanceDetailProductWiseToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.stockBalanceDetailProductWiseToolStripMenuItem.Text = "Stock Balance Detail(Product Wise)";
-            // 
-            // stockBalanceDetailStockWiseToolStripMenuItem
-            // 
-            this.stockBalanceDetailStockWiseToolStripMenuItem.Name = "stockBalanceDetailStockWiseToolStripMenuItem";
-            this.stockBalanceDetailStockWiseToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.stockBalanceDetailStockWiseToolStripMenuItem.Text = "Stock Balance Detail(Stock Wise)";
-            // 
-            // toolStripSeparator18
-            // 
-            this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(260, 6);
-            // 
-            // salesToolStripMenuItem
-            // 
-            this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cUSTOMERLIABILITYToolStripMenuItem,
-            this.postDatedChequesToolStripMenuItem,
-            this.salesSummaryToolStripMenuItem,
-            this.toolStripSeparator23,
-            this.salesAllocationToolStripMenuItem,
-            this.salesAllocationVarianceReportToolStripMenuItem});
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salesToolStripMenuItem.Text = "Sales Reports";
-            // 
-            // cUSTOMERLIABILITYToolStripMenuItem
-            // 
-            this.cUSTOMERLIABILITYToolStripMenuItem.Name = "cUSTOMERLIABILITYToolStripMenuItem";
-            this.cUSTOMERLIABILITYToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.cUSTOMERLIABILITYToolStripMenuItem.Text = "CUSTOMER   LIABILITY";
-            // 
-            // postDatedChequesToolStripMenuItem
-            // 
-            this.postDatedChequesToolStripMenuItem.Name = "postDatedChequesToolStripMenuItem";
-            this.postDatedChequesToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.postDatedChequesToolStripMenuItem.Text = "Cheque Details";
-            // 
-            // salesSummaryToolStripMenuItem
-            // 
-            this.salesSummaryToolStripMenuItem.Name = "salesSummaryToolStripMenuItem";
-            this.salesSummaryToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.salesSummaryToolStripMenuItem.Text = "Sales Summary";
-            // 
-            // toolStripSeparator23
-            // 
-            this.toolStripSeparator23.Name = "toolStripSeparator23";
-            this.toolStripSeparator23.Size = new System.Drawing.Size(240, 6);
-            // 
-            // salesAllocationToolStripMenuItem
-            // 
-            this.salesAllocationToolStripMenuItem.Name = "salesAllocationToolStripMenuItem";
-            this.salesAllocationToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.salesAllocationToolStripMenuItem.Text = "Sales Allocation";
-            // 
-            // salesAllocationVarianceReportToolStripMenuItem
-            // 
-            this.salesAllocationVarianceReportToolStripMenuItem.Name = "salesAllocationVarianceReportToolStripMenuItem";
-            this.salesAllocationVarianceReportToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.salesAllocationVarianceReportToolStripMenuItem.Text = "Sales allocation variance report";
             // 
             // toolStripMenuItem6
             // 
@@ -875,11 +760,137 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // stockAgeingReportToolStripMenuItem
+            // dayWiseReportsToolStripMenuItem
             // 
-            this.stockAgeingReportToolStripMenuItem.Name = "stockAgeingReportToolStripMenuItem";
-            this.stockAgeingReportToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.stockAgeingReportToolStripMenuItem.Text = "Stock Ageing Report";
+            this.dayWiseReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dayilyCollectionSummaryToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.dailyPumperSummaryToolStripMenuItem,
+            this.dailyPumperDetailsToolStripMenuItem,
+            this.dailyCashSaleSummaryToolStripMenuItem,
+            this.dailyCashSaleDetailsToolStripMenuItem,
+            this.dailyCardSaleSummaryToolStripMenuItem,
+            this.dailyCardSaleDetailsToolStripMenuItem,
+            this.dailyVoucherSaleSummaryToolStripMenuItem,
+            this.dailyVoucherSaleDetailsToolStripMenuItem});
+            this.dayWiseReportsToolStripMenuItem.Name = "dayWiseReportsToolStripMenuItem";
+            this.dayWiseReportsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.dayWiseReportsToolStripMenuItem.Text = "Day Wise Reports";
+            // 
+            // dayilyCollectionSummaryToolStripMenuItem
+            // 
+            this.dayilyCollectionSummaryToolStripMenuItem.Name = "dayilyCollectionSummaryToolStripMenuItem";
+            this.dayilyCollectionSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dayilyCollectionSummaryToolStripMenuItem.Text = "Dayily Collection summary";
+            this.dayilyCollectionSummaryToolStripMenuItem.Click += new System.EventHandler(this.dayilyCollectionSummaryToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
+            // 
+            // dailyPumperSummaryToolStripMenuItem
+            // 
+            this.dailyPumperSummaryToolStripMenuItem.Name = "dailyPumperSummaryToolStripMenuItem";
+            this.dailyPumperSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyPumperSummaryToolStripMenuItem.Text = "Daily Pumper Summary";
+            // 
+            // dailyPumperDetailsToolStripMenuItem
+            // 
+            this.dailyPumperDetailsToolStripMenuItem.Name = "dailyPumperDetailsToolStripMenuItem";
+            this.dailyPumperDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyPumperDetailsToolStripMenuItem.Text = "Daily Pumper Details";
+            // 
+            // dailyCashSaleSummaryToolStripMenuItem
+            // 
+            this.dailyCashSaleSummaryToolStripMenuItem.Name = "dailyCashSaleSummaryToolStripMenuItem";
+            this.dailyCashSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCashSaleSummaryToolStripMenuItem.Text = "Daily Cash Sale Summary";
+            // 
+            // dailyCashSaleDetailsToolStripMenuItem
+            // 
+            this.dailyCashSaleDetailsToolStripMenuItem.Name = "dailyCashSaleDetailsToolStripMenuItem";
+            this.dailyCashSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCashSaleDetailsToolStripMenuItem.Text = "Daily Cash Sale Details";
+            // 
+            // dailyCardSaleSummaryToolStripMenuItem
+            // 
+            this.dailyCardSaleSummaryToolStripMenuItem.Name = "dailyCardSaleSummaryToolStripMenuItem";
+            this.dailyCardSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCardSaleSummaryToolStripMenuItem.Text = "Daily Card Sale Summary";
+            // 
+            // dailyCardSaleDetailsToolStripMenuItem
+            // 
+            this.dailyCardSaleDetailsToolStripMenuItem.Name = "dailyCardSaleDetailsToolStripMenuItem";
+            this.dailyCardSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCardSaleDetailsToolStripMenuItem.Text = "Daily Card Sale Details";
+            // 
+            // dailyVoucherSaleSummaryToolStripMenuItem
+            // 
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Name = "dailyVoucherSaleSummaryToolStripMenuItem";
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Text = "Daily Voucher Sale Summary";
+            // 
+            // dailyVoucherSaleDetailsToolStripMenuItem
+            // 
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Name = "dailyVoucherSaleDetailsToolStripMenuItem";
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Text = "Daily Voucher Sale Details";
+            // 
+            // customerWiseReportsToolStripMenuItem
+            // 
+            this.customerWiseReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customerBalanceReportToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.customerWiseBalanceSummaryToolStripMenuItem,
+            this.customerWiseBalanceDetailsToolStripMenuItem,
+            this.customerPaymentHistoryToolStripMenuItem,
+            this.vehicleBalanceSummaryToolStripMenuItem,
+            this.vehicleFuelingHistoryToolStripMenuItem});
+            this.customerWiseReportsToolStripMenuItem.Name = "customerWiseReportsToolStripMenuItem";
+            this.customerWiseReportsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.customerWiseReportsToolStripMenuItem.Text = "Customer Wise Reports";
+            // 
+            // customerBalanceReportToolStripMenuItem
+            // 
+            this.customerBalanceReportToolStripMenuItem.Name = "customerBalanceReportToolStripMenuItem";
+            this.customerBalanceReportToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerBalanceReportToolStripMenuItem.Text = "Customer Balance Report";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(254, 6);
+            // 
+            // customerWiseBalanceSummaryToolStripMenuItem
+            // 
+            this.customerWiseBalanceSummaryToolStripMenuItem.Name = "customerWiseBalanceSummaryToolStripMenuItem";
+            this.customerWiseBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerWiseBalanceSummaryToolStripMenuItem.Text = "Customer Wise Balance Summary";
+            // 
+            // customerWiseBalanceDetailsToolStripMenuItem
+            // 
+            this.customerWiseBalanceDetailsToolStripMenuItem.Name = "customerWiseBalanceDetailsToolStripMenuItem";
+            this.customerWiseBalanceDetailsToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerWiseBalanceDetailsToolStripMenuItem.Text = "Customer Wise Balance Details";
+            // 
+            // customerPaymentHistoryToolStripMenuItem
+            // 
+            this.customerPaymentHistoryToolStripMenuItem.Name = "customerPaymentHistoryToolStripMenuItem";
+            this.customerPaymentHistoryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerPaymentHistoryToolStripMenuItem.Text = "Customer Payment History";
+            // 
+            // vehicleBalanceSummaryToolStripMenuItem
+            // 
+            this.vehicleBalanceSummaryToolStripMenuItem.Name = "vehicleBalanceSummaryToolStripMenuItem";
+            this.vehicleBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.vehicleBalanceSummaryToolStripMenuItem.Text = "Vehicle Balance Summary";
+            // 
+            // vehicleFuelingHistoryToolStripMenuItem
+            // 
+            this.vehicleFuelingHistoryToolStripMenuItem.Name = "vehicleFuelingHistoryToolStripMenuItem";
+            this.vehicleFuelingHistoryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.vehicleFuelingHistoryToolStripMenuItem.Text = "Vehicle Fueling History";
             // 
             // frm_main
             // 
@@ -948,23 +959,6 @@
         private System.Windows.Forms.ToolStripMenuItem A0031;
         private System.Windows.Forms.ToolStripMenuItem A0032;
         private System.Windows.Forms.ToolStripMenuItem reportCenterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stockReportsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem A0080;
-        private System.Windows.Forms.ToolStripMenuItem A0082;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
-        private System.Windows.Forms.ToolStripMenuItem stockCardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
-        private System.Windows.Forms.ToolStripMenuItem stockBalanceSummaryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stockBalanceDetailProductWiseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stockBalanceDetailStockWiseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
-        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cUSTOMERLIABILITYToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem postDatedChequesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salesSummaryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;
-        private System.Windows.Forms.ToolStripMenuItem salesAllocationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salesAllocationVarianceReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem A4000;
         private System.Windows.Forms.ToolStripMenuItem A4001;
@@ -995,7 +989,25 @@
         private System.Windows.Forms.ToolStripButton TA3001;
         private System.Windows.Forms.ToolStripButton TA3000;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ToolStripMenuItem stockAgeingReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dayWiseReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dayilyCollectionSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem dailyPumperSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyPumperDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyCashSaleSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyCashSaleDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyCardSaleSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyCardSaleDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyVoucherSaleSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyVoucherSaleDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerWiseReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerBalanceReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem customerWiseBalanceSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerWiseBalanceDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerPaymentHistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehicleBalanceSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehicleFuelingHistoryToolStripMenuItem;
     }
 }
 

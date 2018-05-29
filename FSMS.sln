@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSMS.Common", "FSMS.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSMS.Crypto", "FSMS.Crypto\FSMS.Crypto.csproj", "{9079FCED-2D34-422B-A9BD-5EAE67C65BA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSMS.DataModeling", "FSMS.DataModeling\FSMS.DataModeling.csproj", "{0647B293-C899-482F-8723-5A6EC14D1BF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9079FCED-2D34-422B-A9BD-5EAE67C65BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9079FCED-2D34-422B-A9BD-5EAE67C65BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9079FCED-2D34-422B-A9BD-5EAE67C65BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0647B293-C899-482F-8723-5A6EC14D1BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0647B293-C899-482F-8723-5A6EC14D1BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0647B293-C899-482F-8723-5A6EC14D1BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0647B293-C899-482F-8723-5A6EC14D1BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

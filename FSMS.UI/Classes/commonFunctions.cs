@@ -88,6 +88,8 @@ namespace FSMS.UI
             set { softwarename = value; }
         }
 
+        public static string CompanyAddress { get; internal set; }
+
         public static Color PanelHeaderForColor = Color.White;
 
         public static Color PanelHeaderBackGroundColor = Color.FromArgb(76, 108, 139);

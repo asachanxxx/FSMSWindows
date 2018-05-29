@@ -99,6 +99,12 @@
     <Compile Include="Process\frm_grn.Designer.cs">
       <DependentUpon>frm_grn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\frm_payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\frm_payment.Designer.cs">
+      <DependentUpon>frm_payment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\frm_TankStockLive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,23 @@
     <Compile Include="MasterData\PumpManager.Designer.cs">
       <DependentUpon>PumpManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Forms\DayilyCollectionsummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\DayilyCollectionsummary.Designer.cs">
+      <DependentUpon>DayilyCollectionsummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Process.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Process.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RPT\Rpt_dailyCollectionSummary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_dailyCollectionSummary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="e2e\e2etest.resx">
       <DependentUpon>e2etest.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frm_grn.resx">
       <DependentUpon>frm_grn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\frm_payment.resx">
+      <DependentUpon>frm_payment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\frm_TankStockLive.resx">
       <DependentUpon>frm_TankStockLive.cs</DependentUpon>
@@ -282,6 +308,13 @@
     <EmbeddedResource Include="MasterData\PumpManager.resx">
       <DependentUpon>PumpManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\DayilyCollectionsummary.resx">
+      <DependentUpon>DayilyCollectionsummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT\Rpt_dailyCollectionSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_dailyCollectionSummary.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -320,6 +353,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="if_Gas-pump_85372.ico" />
+    <None Include="Reports\Process.xsc">
+      <DependentUpon>Process.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Process.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Process.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Process.xss">
+      <DependentUpon>Process.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Unloading.png" />
     <None Include="Resources\Salary.png" />
     <None Include="Resources\pumpStatus.png" />
@@ -339,6 +383,9 @@
     <None Include="Resources\005-multiple-users-silhouette.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

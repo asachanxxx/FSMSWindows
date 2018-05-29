@@ -214,8 +214,65 @@ namespace FSMS.Repository
             }
 
         }
+        public static IEnumerable<TwoKeyOnject> GetPayTypes()
+        {
 
-       
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<TwoKeyOnject>("select id as id1,fullname as Name,IsCheque as Value from PaymentTypes order by Name asc");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        //public static IEnumerable<KeyValue> GetBanks()
+        //{
+
+        //    try
+        //    {
+        //        _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+        //        using (IDbConnection db = new SqlConnection(_connectionName))
+        //        {
+        //            return db.Query<KeyValue>("select id ,Name  from Banks order by Name asc ");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
+
+        public static IEnumerable<KeyValue> GetBankBranches(string bankcode)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    return db.Query<KeyValue>("select id,name from BankBranches where bankcode = @bankcode order by Name asc ", new { bankcode = bankcode });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
+
+
+
 
     }
 }

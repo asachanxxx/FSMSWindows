@@ -36,6 +36,8 @@ A4002 - Change password
 using FSMS.Common;
 using FSMS.Repository;
 using FSMS.UI.MasterData;
+using FSMS.UI.Process;
+using FSMS.UI.Reports.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -171,7 +173,7 @@ namespace FSMS.UI
 
 
 
-            if (LoggedDetails.Loginuser.Trim().ToUpper() != "ADMIN")
+            if (commonFunctions.Loginuser.Trim().ToUpper() != "ADMIN")
             {
 
                 if (dtAllMenuItems.Rows.Count != 0)
@@ -462,6 +464,10 @@ namespace FSMS.UI
         private void A2004_Click(object sender, EventArgs e)
         {
 
+            frm_payment objSupp = frm_payment.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.Activate();
+            objSupp.Show();
         }
 
         private void TA2004_Click(object sender, EventArgs e)
@@ -518,6 +524,14 @@ namespace FSMS.UI
         private void A2006_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dayilyCollectionSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DayilyCollectionsummary objSupp = DayilyCollectionsummary.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.Activate();
+            objSupp.Show();
         }
     }
 }

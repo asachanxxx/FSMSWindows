@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FSMS.UI.Properties {
+namespace FSMS.DataModeling.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

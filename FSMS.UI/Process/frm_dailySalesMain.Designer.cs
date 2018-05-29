@@ -35,6 +35,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnl_footer = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -95,7 +96,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cmb_days = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.pnl_footer.SuspendLayout();
@@ -159,6 +159,23 @@
             this.pnl_footer.Name = "pnl_footer";
             this.pnl_footer.Size = new System.Drawing.Size(978, 40);
             this.pnl_footer.TabIndex = 90;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Red;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.ImageIndex = 9;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(659, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 33);
+            this.button2.TabIndex = 65;
+            this.button2.Text = "       Day End";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -791,11 +808,6 @@
             // 
             this.cmb_pumper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_pumper.FormattingEnabled = true;
-            this.cmb_pumper.Items.AddRange(new object[] {
-            "Unoccupied ",
-            "Assigned ",
-            "Cancel ",
-            "Damage"});
             this.cmb_pumper.Location = new System.Drawing.Point(559, 9);
             this.cmb_pumper.Name = "cmb_pumper";
             this.cmb_pumper.Size = new System.Drawing.Size(172, 22);
@@ -815,11 +827,6 @@
             // 
             this.cmb_days.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_days.FormattingEnabled = true;
-            this.cmb_days.Items.AddRange(new object[] {
-            "Unoccupied ",
-            "Assigned ",
-            "Cancel ",
-            "Damage"});
             this.cmb_days.Location = new System.Drawing.Point(69, 9);
             this.cmb_days.Name = "cmb_days";
             this.cmb_days.Size = new System.Drawing.Size(144, 22);
@@ -835,23 +842,6 @@
             this.label6.Size = new System.Drawing.Size(54, 14);
             this.label6.TabIndex = 15;
             this.label6.Text = "Day Start";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.ImageIndex = 9;
-            this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(659, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 33);
-            this.button2.TabIndex = 65;
-            this.button2.Text = "       Day End";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frm_dailySalesMain
             // 

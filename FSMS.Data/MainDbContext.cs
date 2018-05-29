@@ -28,6 +28,8 @@ namespace FSMS.Data
         public DbSet<Tank> Tanks { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<Banks> Banks { get; set; }
+        public DbSet<BankBranch> BankBranch { get; set; }
+        
         public DbSet<DocumentNumber> DocumentNumber  { get; set; }
         
 
@@ -60,6 +62,9 @@ namespace FSMS.Data
         public DbSet<UnloadingNozzelReading> UnloadingNozzelReading { get; set; }
         public DbSet<UnloadingDipReadings> UnloadingDipReadings { get; set; }
         public DbSet<PumperWorkingHour> PumperWorkingHour { get; set; }
+        public DbSet<ReceiptHed> ReceiptHed { get; set; }
+        public DbSet<ReceiptDet> ReceiptDet { get; set; }
+        public DbSet<PaymentType> PaymentType { get; set; }
 
         
     }
