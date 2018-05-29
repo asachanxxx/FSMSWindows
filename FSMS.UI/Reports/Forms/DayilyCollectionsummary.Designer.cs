@@ -56,7 +56,7 @@
             this.pnl_footer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(53)))), ((int)(((byte)(68)))));
             this.pnl_footer.Controls.Add(this.btn_print);
             this.pnl_footer.Controls.Add(this.btn_exit);
-            this.pnl_footer.Location = new System.Drawing.Point(-42, 276);
+            this.pnl_footer.Location = new System.Drawing.Point(-42, 212);
             this.pnl_footer.Name = "pnl_footer";
             this.pnl_footer.Size = new System.Drawing.Size(489, 42);
             this.pnl_footer.TabIndex = 96;
@@ -159,7 +159,7 @@
             this.panel6.Controls.Add(this.cmb_days);
             this.panel6.Location = new System.Drawing.Point(0, 44);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(447, 220);
+            this.panel6.Size = new System.Drawing.Size(447, 162);
             this.panel6.TabIndex = 110;
             // 
             // cmb_pumper
@@ -221,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 320);
+            this.ClientSize = new System.Drawing.Size(453, 254);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.pnl_footer);
             this.Controls.Add(this.pnl_header);
