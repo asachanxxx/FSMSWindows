@@ -533,5 +533,68 @@ namespace FSMS.UI
             objSupp.Activate();
             objSupp.Show();
         }
+
+        private void dailyCashSaleSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailySaletypeWiseSummaryAndDetail objSupp = DailySaletypeWiseSummaryAndDetail.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.options = 1;
+            objSupp.Activate();
+            objSupp.Show();
+            
+        }
+
+        private void dailyCashSaleDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailySaletypeWiseSummaryAndDetail objSupp = DailySaletypeWiseSummaryAndDetail.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.options = 1;
+            objSupp.Activate();
+            objSupp.Show();
+        }
+
+        private void dailyCardSaleSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailySaletypeWiseSummaryAndDetail objSupp = DailySaletypeWiseSummaryAndDetail.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.options = 2;
+            objSupp.Activate();
+            objSupp.Show();
+        }
+
+        private void dailyCardSaleDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailySaletypeWiseSummaryAndDetail objSupp = DailySaletypeWiseSummaryAndDetail.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.options = 1;
+            objSupp.Activate();
+            objSupp.Show();
+        }
+
+        private void dailyVoucherSaleSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailySaletypeWiseSummaryAndDetail objSupp = DailySaletypeWiseSummaryAndDetail.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.options = 3;
+            objSupp.Activate();
+            objSupp.Show();
+        }
+
+        private void dailyVoucherSaleDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailySaletypeWiseSummaryAndDetail objSupp = DailySaletypeWiseSummaryAndDetail.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.options = 3;
+            objSupp.Activate();
+            objSupp.Show();
+        }
+
+        private void customerBalanceReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomerBalanceReport objSupp = CustomerBalanceReport.getSingleton();
+            objSupp.MdiParent = this;
+            objSupp.Activate();
+            objSupp.Show();
+        }
     }
 }

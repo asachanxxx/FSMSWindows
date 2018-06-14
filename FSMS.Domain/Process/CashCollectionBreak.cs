@@ -26,7 +26,7 @@ namespace FSMS.Domain
         public int CancelledUserId { get; set; }
         public int BankId { get; set; }
         public int ColelctionDate { get; set; }
-        
+        public DateTime RecordDate { get; set; }
 
     }
 }

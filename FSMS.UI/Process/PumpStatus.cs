@@ -82,17 +82,17 @@ namespace FSMS.UI
             }
         }
 
-        private void RefreshDailyAssignWorkerDetailList(int did , int sessionid)
+        private void RefreshDailyAssignWorkerDetailList(int did, int sessionid)
         {
             lst_nozzels.Clear();
             DailyAssignWorkerDetailList.Clear();
-            DailyAssignWorkerDetailList = CustomeRepository.GetDailyAssignWorkerDetails(did , sessionid).ToList();
+            DailyAssignWorkerDetailList = CustomeRepository.GetDailyAssignWorkerDetails(did, sessionid).ToList();
 
             foreach (var item in DailyAssignWorkerDetailList)
             {
                 string empname = "";
                 string activetext = "";
-              
+
                 ListViewItem itm = new ListViewItem();
                 if (item.IsOpen)
                 {
@@ -145,6 +145,7 @@ namespace FSMS.UI
                 cmb_days.DisplayMember = "Name";
                 cmb_days.ValueMember = "Id";
                 cmb_days.SelectedIndex = 0;
+                LoadSessions(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
             }
 
         }
@@ -157,6 +158,8 @@ namespace FSMS.UI
                 cmb_sessions.DisplayMember = "Name";
                 cmb_sessions.ValueMember = "Id";
                 cmb_sessions.SelectedIndex = 0;
+
+                LoadData();
             }
 
         }
@@ -196,6 +199,7 @@ namespace FSMS.UI
                 cmb_pumperForcashcol.DisplayMember = "Name";
                 cmb_pumperForcashcol.ValueMember = "Id";
                 cmb_pumperForcashcol.SelectedIndex = 0;
+                GetPumperSalesRecords();
             }
 
         }
@@ -212,7 +216,8 @@ namespace FSMS.UI
 
         private void cmb_days_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmb_days.SelectedValue != null) {
+            if (cmb_days.SelectedValue != null)
+            {
                 LoadSessions(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()));
             }
         }
@@ -298,15 +303,21 @@ namespace FSMS.UI
 
                 //update pump close status
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
             }
         }
 
         private void btn_assignPumper_Click(object sender, EventArgs e)
         {
+            if (cmb_pumper.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a Pumper from the list", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (lst_nozzels.SelectedItems.Count > 0)
             {
-               
+
                 DailyAssignWorkerDetails det = (DailyAssignWorkerDetails)lst_nozzels.SelectedItems[0].Tag;
 
                 if (CustomeRepository.IsNozzelAssignedOn(det.DayID, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()), det.NozzelID) > 0)
@@ -342,6 +353,11 @@ namespace FSMS.UI
         }
 
         private void cmb_pumperForcashcol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetPumperSalesRecords();
+        }
+
+        private void GetPumperSalesRecords()
         {
             if (cmb_pumperForcashcol.SelectedValue != null && commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()) > 0)
             {
@@ -387,19 +403,20 @@ namespace FSMS.UI
             this.Close();
         }
 
-     
+
 
         private void UpdateReleventBoxes()
         {
             //getCashValueforthis
-            if (cmb_days.SelectedValue != null) {
+            if (cmb_days.SelectedValue != null)
+            {
                 int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
             }
-            if(cmb_pumperForcashcol.SelectedValue != null)
+            if (cmb_pumperForcashcol.SelectedValue != null)
             {
                 int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
             }
-            
+
 
             //DayPumperSaleTypeSummry sumary = new DayPumperSaleTypeSummry();
             //sumary = CustomeRepository.GetTotalForEachPumperForGivenDay(dayid, pumperid);
@@ -432,8 +449,9 @@ namespace FSMS.UI
 
             try
             {
-                if (commonFunctions.ToInt(lbl_breakdid.Text.ToString()) <= 0){
-                    MessageBox.Show("Please select a record to delete" , Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (commonFunctions.ToInt(lbl_breakdid.Text.ToString()) <= 0)
+                {
+                    MessageBox.Show("Please select a record to delete", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -458,20 +476,20 @@ namespace FSMS.UI
             try
             {
                 glosaletypeid = saletypeid;
-               
+
                 //Disable Auto Gen Columns
                 dgmain.AutoGenerateColumns = false;
                 int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
                 int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
                 List<PumperForGivenDayCollectionDetails> dets = new List<PumperForGivenDayCollectionDetails>();
                 //getting newly inserted values for day to pump and sales type
-                dets = CustomeRepository.PumperForGivenDayCollectionDetails(dayid, pumperid, saletypeid).ToList();
+                dets = CustomeRepository.PumperForGivenDayCollectionDetails(dayid, pumperid, saletypeid, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())).ToList();
                 //Show it in dgrid
                 dgmain.DataSource = dets;
 
                 //update summary values
                 DayPumperSaleTypeSummry sumary = new DayPumperSaleTypeSummry();
-                sumary = CustomeRepository.GetTotalForEachPumperForGivenDay(dayid, pumperid);
+                sumary = CustomeRepository.GetTotalForEachPumperForGivenDay(dayid, pumperid, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
                 //assign total value on main window
                 num_cashtotal.Value = 0;
                 lbl_currentCashTot.Text = sumary.Cashtotal.ToString();
@@ -516,33 +534,34 @@ namespace FSMS.UI
 
         }
 
+
+        bool CheckSalesValidation() {
+            bool x = CustomeRepository.CheckSalesValidation(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()),
+                commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()));
+            return x;
+        }
+
         /*///////////////////// All breakdowns Handling Area //////////////////////////////////////////*/
 
         //Cash total
         private void btn_insertCash_Click(object sender, EventArgs e)
         {
+
+            if (!CheckSalesValidation()) {
+                MessageBox.Show("Selected pumper is not assigned in this session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (num_cashtotal.Value <= 0) {
+                MessageBox.Show("Cash Amount must be grater than Zero", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             lbl_salesID.Text = 1.ToString();
             try
             {
                 if (MessageBox.Show("Do you want to Save this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    CustomeRepository.InsertCollectionBreakdown(
-                      num_cashtotal.Value,
-                        commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
-                        commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
-                        1,
-                        1, //sales type,
-                        txt_creditcardNo.Text,
-                         txt_voucherNo.Text.Trim(),
-                         commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
-                         1,
-                         0,commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
-                        );
-
-
-                    GetTotalForPumperForGivenDay(commonFunctions.ToInt(lbl_salesID.Text.ToString()));
-
-                    LogRepository.Log("Cash Collection Manual Change To : " + lbl_currentCashTot.Text.ToString(), LogType.Log,commonFunctions.LoginuserID);
+                    AddorReduceCash(true);
                 }
             }
             catch (Exception ex)
@@ -551,9 +570,76 @@ namespace FSMS.UI
 
             }
         }
+
+        private void AddorReduceCash(bool isadd)
+        {
+            decimal valuesaved = decimal.Zero;
+            if (isadd)
+            {
+                valuesaved = num_cashtotal.Value;
+            }
+            else {
+                valuesaved = -1*num_cashtotal.Value;
+            }
+            CustomeRepository.InsertCollectionBreakdown(
+             valuesaved,
+                commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
+                commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
+                1,
+                1, //sales type,
+                txt_creditcardNo.Text,
+                 txt_voucherNo.Text.Trim(),
+                 commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
+                 1,
+                 0, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
+                );
+
+
+            GetTotalForPumperForGivenDay(commonFunctions.ToInt(lbl_salesID.Text.ToString()));
+
+            LogRepository.Log("Cash Collection Manual Change To : " + lbl_currentCashTot.Text.ToString(), LogType.Log, commonFunctions.LoginuserID);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            if (!CheckSalesValidation())
+            {
+                MessageBox.Show("Selected pumper is not assigned in this session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (num_cashtotal.Value <= 0)
+            {
+                MessageBox.Show("Cash Amount must be grater than Zero", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            lbl_salesID.Text = 1.ToString();
+            try
+            {
+                if (MessageBox.Show("Do you want to Save this record?", Messaging.MessageCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    AddorReduceCash(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Has found when Saving data. Please forword following details to technical" + Environment.NewLine + "[" + ex.Message + Environment.NewLine + ex.Source + "]", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+
+
+
         //Card total
         private void btn_hasbreakCardTotal_Click(object sender, EventArgs e)
         {
+            if (!CheckSalesValidation())
+            {
+                MessageBox.Show("Selected pumper is not assigned in this session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             GetTotalForPumperForGivenDay(2);
 
             lbl_colelctiontypes.Text = "Credit/Debit Cards";
@@ -571,6 +657,12 @@ namespace FSMS.UI
         //Voucher total
         private void btn_hasbreakvouche_Click(object sender, EventArgs e)
         {
+            if (!CheckSalesValidation())
+            {
+                MessageBox.Show("Selected pumper is not assigned in this session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             GetTotalForPumperForGivenDay(3);
             lbl_colelctiontypes.Text = "Credit Vouchers";
             lbl_salesID.Text = 3.ToString();
@@ -585,6 +677,11 @@ namespace FSMS.UI
         //Expense total
         private void btn_hasbreakExpense_Click(object sender, EventArgs e)
         {
+            if (!CheckSalesValidation())
+            {
+                MessageBox.Show("Selected pumper is not assigned in this session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             GetTotalForPumperForGivenDay(4);
             lbl_colelctiontypes.Text = "Expenses";
             lbl_salesID.Text = 4.ToString();
@@ -603,6 +700,12 @@ namespace FSMS.UI
         //Testing total
         private void btn_hasbreakTesting_Click(object sender, EventArgs e)
         {
+            if (!CheckSalesValidation())
+            {
+                MessageBox.Show("Selected pumper is not assigned in this session", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             GetTotalForPumperForGivenDay(5);
 
             lbl_colelctiontypes.Text = "Testing";
@@ -663,11 +766,23 @@ namespace FSMS.UI
         {
             try
             {
-                if(num_workedHours.Value <= 0)
+                if (num_workedHours.Value <= 0)
                 {
                     MessageBox.Show("Working Hours must be grater than Zero", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                if (num_starttotalizer.Value >= num_EndTotalizer.Value)
+                {
+                    MessageBox.Show("Start totalizer value must grater than end totalizer value", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (num_starttotalizer.Value+50 >= num_EndTotalizer.Value)
+                {
+                    MessageBox.Show("This pump's output value ( " + (num_EndTotalizer.Value- num_starttotalizer.Value).ToString()  + " Liters ) is less than normal. ", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   
+                }
+
                 int dayid = commonFunctions.ToInt(cmb_days.SelectedValue.ToString());
                 int pumperid = commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString());
                 DailyAssignWorkerDetails det = (DailyAssignWorkerDetails)lst_nozzels.SelectedItems[0].Tag;
@@ -742,11 +857,12 @@ namespace FSMS.UI
         {
             try
             {
-              var values =   LogRepository.GetSystenLog(LogType.Log, commonFunctions.LoginuserID);
+                var values = LogRepository.GetSystenLog(LogType.Log, commonFunctions.LoginuserID);
 
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
             }
         }
 
@@ -768,7 +884,7 @@ namespace FSMS.UI
         private void largeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             lst_nozzels.View = View.LargeIcon;
-            
+
         }
 
         private void listToolStripMenuItem_Click(object sender, EventArgs e)
@@ -779,7 +895,8 @@ namespace FSMS.UI
         {
             try
             {
-                if (num_amount.Value <= 0) {
+                if (num_amount.Value <= 0)
+                {
                     return;
                 }
 
@@ -794,31 +911,32 @@ namespace FSMS.UI
                         case 3:
                             if (cmb_Vehicles.SelectedValue == null)
                             {
-                                MessageBox.Show("Please select vehicle from the list" , Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Please select vehicle from the list", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
-                            else {
+                            else
+                            {
                                 vehicleid = commonFunctions.ToInt(cmb_Vehicles.SelectedValue.ToString());
                             }
                             break;
                         default:
-                             vehicleid = 1;
+                            vehicleid = 1;
                             break;
 
                     }
 
-                  int x=   CustomeRepository.InsertCollectionBreakdown(
-                       num_amount.Value,
-                        commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
-                        commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
-                       vehicleid,
-                        commonFunctions.ToInt(lbl_salesID.Text.ToString()),
-                        txt_creditcardNo.Text,
-                         txt_voucherNo.Text.Trim(),
-                         commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
-                         1,
-                         0, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
-                        );
+                    int x = CustomeRepository.InsertCollectionBreakdown(
+                         num_amount.Value,
+                          commonFunctions.ToInt(cmb_days.SelectedValue.ToString()),
+                          commonFunctions.ToInt(cmb_pumperForcashcol.SelectedValue.ToString()), 0,
+                         vehicleid,
+                          commonFunctions.ToInt(lbl_salesID.Text.ToString()),
+                          txt_creditcardNo.Text,
+                           txt_voucherNo.Text.Trim(),
+                           commonFunctions.ToInt(cmb_bank.SelectedValue.ToString()),
+                           1,
+                           0, commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString())
+                          );
 
 
                     GetTotalForPumperForGivenDay(commonFunctions.ToInt(lbl_salesID.Text.ToString()));
@@ -837,8 +955,10 @@ namespace FSMS.UI
 
         private void num_amount_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) {
-                switch (glosaletypeid) {
+            if (e.KeyCode == Keys.Enter)
+            {
+                switch (glosaletypeid)
+                {
                     case 2:
                         txt_creditcardNo.Focus();
                         break;
@@ -848,7 +968,7 @@ namespace FSMS.UI
                     default:
                         btn_savecashDet.Focus();
                         break;
-                        
+
                 }
             }
         }
@@ -899,6 +1019,37 @@ namespace FSMS.UI
         }
 
         private void cmb_sessions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            if (cmb_days.SelectedValue != null)
+            {
+                if (cmb_sessions.SelectedValue != null)
+                {
+                    RefreshDailyAssignWorkerDetailList(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_sessions.SelectedValue.ToString()));
+                }
+                else
+                {
+                    MessageBox.Show("Please select a session from the list", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a day from the list", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //need to change pumper
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
         {
 
         }

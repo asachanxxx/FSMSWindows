@@ -36,8 +36,6 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnl_footer = new System.Windows.Forms.Panel();
             this.btn_exit = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.lst_nozzels = new System.Windows.Forms.ListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +61,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btn_assignPumper = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_change = new System.Windows.Forms.Button();
             this.lbl_selectedPumper = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,6 +80,7 @@
             this.cmb_pumperForcashcol = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
             this.lbl_currentCashTot = new System.Windows.Forms.Label();
             this.btn_hasbreakTesting = new System.Windows.Forms.Button();
@@ -100,7 +101,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.cmb_Nozzels = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -117,6 +117,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.num_starttotalizer = new System.Windows.Forms.NumericUpDown();
             this.label26 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgmain = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -165,7 +166,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_cardtotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_VoucherTotal)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_workedHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_totalFUelval)).BeginInit();
@@ -173,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_Vriance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_EndTotalizer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_starttotalizer)).BeginInit();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgmain)).BeginInit();
             this.pnl_collection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_amount)).BeginInit();
@@ -224,11 +225,9 @@
             // 
             this.pnl_footer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(53)))), ((int)(((byte)(68)))));
             this.pnl_footer.Controls.Add(this.btn_exit);
-            this.pnl_footer.Controls.Add(this.button3);
-            this.pnl_footer.Controls.Add(this.button1);
-            this.pnl_footer.Location = new System.Drawing.Point(-3, 510);
+            this.pnl_footer.Location = new System.Drawing.Point(-3, 522);
             this.pnl_footer.Name = "pnl_footer";
-            this.pnl_footer.Size = new System.Drawing.Size(1020, 48);
+            this.pnl_footer.Size = new System.Drawing.Size(1020, 43);
             this.pnl_footer.TabIndex = 91;
             // 
             // btn_exit
@@ -240,46 +239,13 @@
             this.btn_exit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_exit.ImageIndex = 10;
             this.btn_exit.ImageList = this.imageList1;
-            this.btn_exit.Location = new System.Drawing.Point(915, 5);
+            this.btn_exit.Location = new System.Drawing.Point(921, 4);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(91, 38);
+            this.btn_exit.Size = new System.Drawing.Size(91, 35);
             this.btn_exit.TabIndex = 63;
             this.btn_exit.Text = "       Exit";
             this.btn_exit.UseVisualStyleBackColor = false;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.ImageIndex = 6;
-            this.button3.ImageList = this.imageList1;
-            this.button3.Location = new System.Drawing.Point(693, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 38);
-            this.button3.TabIndex = 62;
-            this.button3.Text = "     Save";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 8;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(790, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 38);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "       Update";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
             // 
             // lst_nozzels
             // 
@@ -530,9 +496,9 @@
             this.btn_assignPumper.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_assignPumper.ImageIndex = 6;
             this.btn_assignPumper.ImageList = this.imageList1;
-            this.btn_assignPumper.Location = new System.Drawing.Point(288, 25);
+            this.btn_assignPumper.Location = new System.Drawing.Point(314, 2);
             this.btn_assignPumper.Name = "btn_assignPumper";
-            this.btn_assignPumper.Size = new System.Drawing.Size(91, 38);
+            this.btn_assignPumper.Size = new System.Drawing.Size(97, 32);
             this.btn_assignPumper.TabIndex = 62;
             this.btn_assignPumper.Text = "     Assign";
             this.btn_assignPumper.UseVisualStyleBackColor = false;
@@ -541,6 +507,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_cancel);
+            this.panel1.Controls.Add(this.btn_change);
             this.panel1.Controls.Add(this.lbl_selectedPumper);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label1);
@@ -550,8 +518,40 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(597, 85);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(420, 85);
+            this.panel1.Size = new System.Drawing.Size(420, 107);
             this.panel1.TabIndex = 96;
+            // 
+            // btn_cancel
+            // 
+            this.btn_cancel.BackColor = System.Drawing.Color.White;
+            this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.ForeColor = System.Drawing.Color.Red;
+            this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_cancel.ImageIndex = 10;
+            this.btn_cancel.ImageList = this.imageList1;
+            this.btn_cancel.Location = new System.Drawing.Point(314, 70);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(97, 32);
+            this.btn_cancel.TabIndex = 107;
+            this.btn_cancel.Text = "     Cancel";
+            this.btn_cancel.UseVisualStyleBackColor = false;
+            // 
+            // btn_change
+            // 
+            this.btn_change.BackColor = System.Drawing.Color.White;
+            this.btn_change.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_change.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_change.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_change.ImageIndex = 2;
+            this.btn_change.ImageList = this.imageList1;
+            this.btn_change.Location = new System.Drawing.Point(314, 36);
+            this.btn_change.Name = "btn_change";
+            this.btn_change.Size = new System.Drawing.Size(97, 32);
+            this.btn_change.TabIndex = 106;
+            this.btn_change.Text = "     Change";
+            this.btn_change.UseVisualStyleBackColor = false;
+            this.btn_change.Click += new System.EventHandler(this.button6_Click);
             // 
             // lbl_selectedPumper
             // 
@@ -589,7 +589,7 @@
             // 
             this.cmb_pumper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_pumper.FormattingEnabled = true;
-            this.cmb_pumper.Location = new System.Drawing.Point(72, 53);
+            this.cmb_pumper.Location = new System.Drawing.Point(72, 56);
             this.cmb_pumper.Name = "cmb_pumper";
             this.cmb_pumper.Size = new System.Drawing.Size(196, 22);
             this.cmb_pumper.TabIndex = 67;
@@ -598,7 +598,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 56);
+            this.label5.Location = new System.Drawing.Point(18, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 14);
             this.label5.TabIndex = 66;
@@ -710,24 +710,29 @@
             // cmb_pumperForcashcol
             // 
             this.cmb_pumperForcashcol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_pumperForcashcol.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmb_pumperForcashcol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
             this.cmb_pumperForcashcol.FormattingEnabled = true;
             this.cmb_pumperForcashcol.Location = new System.Drawing.Point(94, 24);
             this.cmb_pumperForcashcol.Name = "cmb_pumperForcashcol";
-            this.cmb_pumperForcashcol.Size = new System.Drawing.Size(184, 22);
+            this.cmb_pumperForcashcol.Size = new System.Drawing.Size(184, 23);
             this.cmb_pumperForcashcol.TabIndex = 120;
             this.cmb_pumperForcashcol.SelectedIndexChanged += new System.EventHandler(this.cmb_pumperForcashcol_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 27);
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.label2.Location = new System.Drawing.Point(16, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 14);
+            this.label2.Size = new System.Drawing.Size(51, 15);
             this.label2.TabIndex = 119;
             this.label2.Text = "Pumper";
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.label34);
             this.panel6.Controls.Add(this.lbl_currentCashTot);
             this.panel6.Controls.Add(this.btn_hasbreakTesting);
@@ -749,16 +754,28 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(392, 225);
             this.panel6.TabIndex = 118;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(325, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 32);
+            this.button1.TabIndex = 124;
+            this.button1.Text = "-";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label34
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(156, 5);
+            this.label34.Location = new System.Drawing.Point(147, 5);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(57, 15);
+            this.label34.Size = new System.Drawing.Size(106, 15);
             this.label34.TabIndex = 123;
-            this.label34.Text = "Add Cash";
+            this.label34.Text = "Add/Reduce  Cash";
             // 
             // lbl_currentCashTot
             // 
@@ -783,11 +800,12 @@
             // 
             // btn_insertCash
             // 
-            this.btn_insertCash.Location = new System.Drawing.Point(285, 26);
+            this.btn_insertCash.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_insertCash.Location = new System.Drawing.Point(276, 19);
             this.btn_insertCash.Name = "btn_insertCash";
-            this.btn_insertCash.Size = new System.Drawing.Size(89, 23);
+            this.btn_insertCash.Size = new System.Drawing.Size(43, 32);
             this.btn_insertCash.TabIndex = 120;
-            this.btn_insertCash.Text = "Insert";
+            this.btn_insertCash.Text = "+";
             this.btn_insertCash.UseVisualStyleBackColor = true;
             this.btn_insertCash.Click += new System.EventHandler(this.btn_insertCash_Click);
             // 
@@ -829,7 +847,7 @@
             this.num_cashtotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.num_cashtotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_cashtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
-            this.num_cashtotal.Location = new System.Drawing.Point(159, 24);
+            this.num_cashtotal.Location = new System.Drawing.Point(150, 24);
             this.num_cashtotal.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -878,10 +896,10 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(13, 5);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(107, 15);
+            this.label20.Size = new System.Drawing.Size(108, 15);
             this.label20.TabIndex = 66;
             this.label20.Text = "Current Cash Total";
             // 
@@ -1007,24 +1025,13 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(420, 330);
+            this.tabControl1.Size = new System.Drawing.Size(420, 321);
             this.tabControl1.TabIndex = 99;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.panel5);
-            this.tabPage1.Location = new System.Drawing.Point(4, 23);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(412, 303);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Cash Colelction";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -1046,7 +1053,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(412, 303);
+            this.tabPage3.Size = new System.Drawing.Size(412, 294);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Nozzel Close";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1057,7 +1064,7 @@
             this.cmb_Nozzels.Enabled = false;
             this.cmb_Nozzels.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_Nozzels.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
-            this.cmb_Nozzels.Location = new System.Drawing.Point(143, 16);
+            this.cmb_Nozzels.Location = new System.Drawing.Point(17, 36);
             this.cmb_Nozzels.Name = "cmb_Nozzels";
             this.cmb_Nozzels.ReadOnly = true;
             this.cmb_Nozzels.Size = new System.Drawing.Size(184, 27);
@@ -1071,7 +1078,7 @@
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.ImageIndex = 6;
             this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(205, 218);
+            this.button4.Location = new System.Drawing.Point(278, 239);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(122, 38);
             this.button4.TabIndex = 121;
@@ -1085,7 +1092,7 @@
             this.num_workedHours.DecimalPlaces = 2;
             this.num_workedHours.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_workedHours.ForeColor = System.Drawing.Color.Black;
-            this.num_workedHours.Location = new System.Drawing.Point(143, 186);
+            this.num_workedHours.Location = new System.Drawing.Point(17, 209);
             this.num_workedHours.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1103,7 +1110,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(16, 193);
+            this.label30.Location = new System.Drawing.Point(17, 192);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(113, 14);
             this.label30.TabIndex = 119;
@@ -1121,7 +1128,7 @@
             0,
             0,
             0});
-            this.num_totalFUelval.Location = new System.Drawing.Point(143, 157);
+            this.num_totalFUelval.Location = new System.Drawing.Point(216, 151);
             this.num_totalFUelval.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1140,7 +1147,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(16, 164);
+            this.label31.Location = new System.Drawing.Point(216, 131);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(95, 14);
             this.label31.TabIndex = 117;
@@ -1149,7 +1156,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(16, 19);
+            this.label29.Location = new System.Drawing.Point(17, 19);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(43, 14);
             this.label29.TabIndex = 115;
@@ -1167,7 +1174,7 @@
             0,
             0,
             0});
-            this.num_Price.Location = new System.Drawing.Point(143, 128);
+            this.num_Price.Location = new System.Drawing.Point(17, 152);
             this.num_Price.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1186,7 +1193,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(16, 135);
+            this.label27.Location = new System.Drawing.Point(17, 134);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(36, 14);
             this.label27.TabIndex = 113;
@@ -1204,7 +1211,7 @@
             0,
             0,
             0});
-            this.num_Vriance.Location = new System.Drawing.Point(143, 99);
+            this.num_Vriance.Location = new System.Drawing.Point(216, 99);
             this.num_Vriance.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1223,7 +1230,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(16, 106);
+            this.label28.Location = new System.Drawing.Point(216, 78);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(54, 14);
             this.label28.TabIndex = 111;
@@ -1235,7 +1242,7 @@
             this.num_EndTotalizer.DecimalPlaces = 2;
             this.num_EndTotalizer.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.num_EndTotalizer.ForeColor = System.Drawing.Color.Black;
-            this.num_EndTotalizer.Location = new System.Drawing.Point(143, 74);
+            this.num_EndTotalizer.Location = new System.Drawing.Point(17, 99);
             this.num_EndTotalizer.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1249,7 +1256,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(16, 77);
+            this.label25.Location = new System.Drawing.Point(17, 80);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(77, 14);
             this.label25.TabIndex = 109;
@@ -1267,7 +1274,7 @@
             0,
             0,
             0});
-            this.num_starttotalizer.Location = new System.Drawing.Point(143, 45);
+            this.num_starttotalizer.Location = new System.Drawing.Point(216, 36);
             this.num_starttotalizer.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -1286,11 +1293,22 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(16, 48);
+            this.label26.Location = new System.Drawing.Point(216, 19);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(82, 14);
             this.label26.TabIndex = 107;
             this.label26.Text = "Start Totalizer";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel5);
+            this.tabPage1.Location = new System.Drawing.Point(4, 23);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(412, 294);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Cash Colelction";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // dgmain
             // 
@@ -1650,16 +1668,16 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.tabControl1);
-            this.panel2.Location = new System.Drawing.Point(597, 176);
+            this.panel2.Location = new System.Drawing.Point(597, 196);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(420, 330);
+            this.panel2.Size = new System.Drawing.Size(420, 324);
             this.panel2.TabIndex = 101;
             // 
             // PumpStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 556);
+            this.ClientSize = new System.Drawing.Size(1019, 566);
             this.Controls.Add(this.pnl_collection);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
@@ -1693,7 +1711,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_cardtotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_VoucherTotal)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_workedHours)).EndInit();
@@ -1702,6 +1719,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_Vriance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_EndTotalizer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_starttotalizer)).EndInit();
+            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgmain)).EndInit();
             this.pnl_collection.ResumeLayout(false);
             this.pnl_collection.PerformLayout();
@@ -1746,8 +1764,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmb_days;
@@ -1833,5 +1849,8 @@
         private System.Windows.Forms.Label lbl_currentCashTot;
         private System.Windows.Forms.Label Session;
         private System.Windows.Forms.ComboBox cmb_sessions;
+        private System.Windows.Forms.Button btn_change;
+        private System.Windows.Forms.Button btn_cancel;
+        private System.Windows.Forms.Button button1;
     }
 }

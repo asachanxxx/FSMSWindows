@@ -112,7 +112,12 @@ namespace FSMS.UI.Reports.Forms
 
                 PrintDoc(1, chk_filter1.Checked);
             }
-            
+            if (chk_cummary.Checked)
+            {
+
+                PrintDoc(2, chk_filter1.Checked);
+            }
+
         }
         private void PrintDoc(int typex,bool filter)
         {
@@ -175,7 +180,32 @@ namespace FSMS.UI.Reports.Forms
 
             }
             else {
-             
+                if (!filter)
+                {
+                    Rpt_DailyColSummary rptBank = new Rpt_DailyColSummary();
+                    var com = ReportRepository.GetDailyCollectionsForSummary(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), 0, 3);
+                    rptBank.SetDataSource(com);
+                    rpt.RepViewer.ParameterFieldInfo = paramFields;
+                    rpt.RepViewer.ReportSource = rptBank;
+                    rpt.RepViewer.Refresh();
+                    rpt.MdiParent = frm_main.ActiveForm;
+                    rpt.Show();
+                }
+                else {
+                    if (cmb_pumper.SelectedValue == null)
+                    {
+                        MessageBox.Show("Please select a pumper to continue", Messaging.MessageCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    Rpt_DailyColSummaryForPumper rptBank = new Rpt_DailyColSummaryForPumper();
+                    var com = ReportRepository.GetDailyCollectionsForSummary(commonFunctions.ToInt(cmb_days.SelectedValue.ToString()), commonFunctions.ToInt(cmb_pumper.SelectedValue.ToString()), 4);
+                    rptBank.SetDataSource(com);
+                    rpt.RepViewer.ParameterFieldInfo = paramFields;
+                    rpt.RepViewer.ReportSource = rptBank;
+                    rpt.RepViewer.Refresh();
+                    rpt.MdiParent = frm_main.ActiveForm;
+                    rpt.Show();
+                }
             }
 
         }

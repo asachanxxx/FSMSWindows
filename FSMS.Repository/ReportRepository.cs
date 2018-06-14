@@ -18,7 +18,7 @@ namespace FSMS.Repository
 
         private static string _connectionName;
 
-        public static ParameterFields AddCrystalParamsWithLoca(string reportTitle, string loginuser, string loca, string locaname,string cmpanyname,string Address)
+        public static ParameterFields AddCrystalParamsWithLoca(string reportTitle, string loginuser, string loca, string locaname, string cmpanyname, string Address)
         {
 
             ParameterField paramField = new ParameterField();
@@ -73,10 +73,10 @@ namespace FSMS.Repository
 
         //public static object GetDailyCollections(int v)
         //{
-           
+
         //}
 
-        public static IEnumerable<CollectionSummary> GetDailyCollections(int did,int pumperid, int type)
+        public static IEnumerable<CollectionSummary> GetDailyCollections(int did, int pumperid, int type)
         {
 
             try
@@ -85,7 +85,7 @@ namespace FSMS.Repository
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
 
-                    return db.Query<CollectionSummary>("RPT_DayilyCollectionsummary", new { did = did , punperID = pumperid, type = type }, commandType: CommandType.StoredProcedure);
+                    return db.Query<CollectionSummary>("RPT_DayilyCollectionsummary", new { did = did, punperID = pumperid, type = type }, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)
@@ -94,6 +94,63 @@ namespace FSMS.Repository
             }
 
         }
+
+        public static IEnumerable<CollectionSummary> GetSalesTypeWiseDetails(int did, int pumperid, int type)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+
+                    return db.Query<CollectionSummary>("RPT_SalesTypeWiseDetails", new { did = did, punperID = pumperid, type = type }, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public static IEnumerable<ColSummary> GetDailyCollectionsForSummary(int did, int pumperid, int type)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+
+                    return db.Query<ColSummary>("RPT_DayilyCollectionsummary", new { did = did, punperID = pumperid, type = type }, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public static IEnumerable<CustomerBalance> GetCustomerBalance(int customerid)
+        {
+
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+
+                    return db.Query<CustomerBalance>("Rpt_CustomerBalance", new { customerid = customerid }, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

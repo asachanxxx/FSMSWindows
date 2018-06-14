@@ -71,6 +71,25 @@
             this.A0031 = new System.Windows.Forms.ToolStripMenuItem();
             this.A0032 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportCenterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayWiseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayilyCollectionSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.dailyPumperSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyPumperDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCashSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCashSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCardSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCardSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyVoucherSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyVoucherSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerWiseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerBalanceReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.customerWiseBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerWiseBalanceDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerPaymentHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleFuelingHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.A4000 = new System.Windows.Forms.ToolStripMenuItem();
             this.A4001 = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,25 +117,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dayWiseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dayilyCollectionSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.dailyPumperSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyPumperDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyCashSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyCashSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyCardSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyCardSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyVoucherSaleSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyVoucherSaleDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerWiseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerBalanceReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.customerWiseBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerWiseBalanceDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerPaymentHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vehicleBalanceSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vehicleFuelingHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -478,6 +478,145 @@
             this.reportCenterToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.reportCenterToolStripMenuItem.Text = "Report Center";
             // 
+            // dayWiseReportsToolStripMenuItem
+            // 
+            this.dayWiseReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dayilyCollectionSummaryToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.dailyPumperSummaryToolStripMenuItem,
+            this.dailyPumperDetailsToolStripMenuItem,
+            this.dailyCashSaleSummaryToolStripMenuItem,
+            this.dailyCashSaleDetailsToolStripMenuItem,
+            this.dailyCardSaleSummaryToolStripMenuItem,
+            this.dailyCardSaleDetailsToolStripMenuItem,
+            this.dailyVoucherSaleSummaryToolStripMenuItem,
+            this.dailyVoucherSaleDetailsToolStripMenuItem});
+            this.dayWiseReportsToolStripMenuItem.Name = "dayWiseReportsToolStripMenuItem";
+            this.dayWiseReportsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.dayWiseReportsToolStripMenuItem.Text = "Day Wise Reports";
+            // 
+            // dayilyCollectionSummaryToolStripMenuItem
+            // 
+            this.dayilyCollectionSummaryToolStripMenuItem.Name = "dayilyCollectionSummaryToolStripMenuItem";
+            this.dayilyCollectionSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dayilyCollectionSummaryToolStripMenuItem.Text = "Dayily Collection summary";
+            this.dayilyCollectionSummaryToolStripMenuItem.Click += new System.EventHandler(this.dayilyCollectionSummaryToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
+            // 
+            // dailyPumperSummaryToolStripMenuItem
+            // 
+            this.dailyPumperSummaryToolStripMenuItem.Name = "dailyPumperSummaryToolStripMenuItem";
+            this.dailyPumperSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyPumperSummaryToolStripMenuItem.Text = "Daily Pumper Summary";
+            // 
+            // dailyPumperDetailsToolStripMenuItem
+            // 
+            this.dailyPumperDetailsToolStripMenuItem.Name = "dailyPumperDetailsToolStripMenuItem";
+            this.dailyPumperDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyPumperDetailsToolStripMenuItem.Text = "Daily Pumper Details";
+            // 
+            // dailyCashSaleSummaryToolStripMenuItem
+            // 
+            this.dailyCashSaleSummaryToolStripMenuItem.Name = "dailyCashSaleSummaryToolStripMenuItem";
+            this.dailyCashSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCashSaleSummaryToolStripMenuItem.Text = "Daily Cash Sale Summary";
+            this.dailyCashSaleSummaryToolStripMenuItem.Click += new System.EventHandler(this.dailyCashSaleSummaryToolStripMenuItem_Click);
+            // 
+            // dailyCashSaleDetailsToolStripMenuItem
+            // 
+            this.dailyCashSaleDetailsToolStripMenuItem.Name = "dailyCashSaleDetailsToolStripMenuItem";
+            this.dailyCashSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCashSaleDetailsToolStripMenuItem.Text = "Daily Cash Sale Details";
+            this.dailyCashSaleDetailsToolStripMenuItem.Click += new System.EventHandler(this.dailyCashSaleDetailsToolStripMenuItem_Click);
+            // 
+            // dailyCardSaleSummaryToolStripMenuItem
+            // 
+            this.dailyCardSaleSummaryToolStripMenuItem.Name = "dailyCardSaleSummaryToolStripMenuItem";
+            this.dailyCardSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCardSaleSummaryToolStripMenuItem.Text = "Daily Card Sale Summary";
+            this.dailyCardSaleSummaryToolStripMenuItem.Click += new System.EventHandler(this.dailyCardSaleSummaryToolStripMenuItem_Click);
+            // 
+            // dailyCardSaleDetailsToolStripMenuItem
+            // 
+            this.dailyCardSaleDetailsToolStripMenuItem.Name = "dailyCardSaleDetailsToolStripMenuItem";
+            this.dailyCardSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyCardSaleDetailsToolStripMenuItem.Text = "Daily Card Sale Details";
+            this.dailyCardSaleDetailsToolStripMenuItem.Click += new System.EventHandler(this.dailyCardSaleDetailsToolStripMenuItem_Click);
+            // 
+            // dailyVoucherSaleSummaryToolStripMenuItem
+            // 
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Name = "dailyVoucherSaleSummaryToolStripMenuItem";
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Text = "Daily Voucher Sale Summary";
+            this.dailyVoucherSaleSummaryToolStripMenuItem.Click += new System.EventHandler(this.dailyVoucherSaleSummaryToolStripMenuItem_Click);
+            // 
+            // dailyVoucherSaleDetailsToolStripMenuItem
+            // 
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Name = "dailyVoucherSaleDetailsToolStripMenuItem";
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Text = "Daily Voucher Sale Details";
+            this.dailyVoucherSaleDetailsToolStripMenuItem.Click += new System.EventHandler(this.dailyVoucherSaleDetailsToolStripMenuItem_Click);
+            // 
+            // customerWiseReportsToolStripMenuItem
+            // 
+            this.customerWiseReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customerBalanceReportToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.customerWiseBalanceSummaryToolStripMenuItem,
+            this.customerWiseBalanceDetailsToolStripMenuItem,
+            this.customerPaymentHistoryToolStripMenuItem,
+            this.vehicleBalanceSummaryToolStripMenuItem,
+            this.vehicleFuelingHistoryToolStripMenuItem});
+            this.customerWiseReportsToolStripMenuItem.Name = "customerWiseReportsToolStripMenuItem";
+            this.customerWiseReportsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.customerWiseReportsToolStripMenuItem.Text = "Customer Wise Reports";
+            // 
+            // customerBalanceReportToolStripMenuItem
+            // 
+            this.customerBalanceReportToolStripMenuItem.Name = "customerBalanceReportToolStripMenuItem";
+            this.customerBalanceReportToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerBalanceReportToolStripMenuItem.Text = "Customer Balance Report";
+            this.customerBalanceReportToolStripMenuItem.Click += new System.EventHandler(this.customerBalanceReportToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(254, 6);
+            // 
+            // customerWiseBalanceSummaryToolStripMenuItem
+            // 
+            this.customerWiseBalanceSummaryToolStripMenuItem.Name = "customerWiseBalanceSummaryToolStripMenuItem";
+            this.customerWiseBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerWiseBalanceSummaryToolStripMenuItem.Text = "Customer Wise Balance Summary";
+            // 
+            // customerWiseBalanceDetailsToolStripMenuItem
+            // 
+            this.customerWiseBalanceDetailsToolStripMenuItem.Name = "customerWiseBalanceDetailsToolStripMenuItem";
+            this.customerWiseBalanceDetailsToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerWiseBalanceDetailsToolStripMenuItem.Text = "Customer Wise Balance Details";
+            // 
+            // customerPaymentHistoryToolStripMenuItem
+            // 
+            this.customerPaymentHistoryToolStripMenuItem.Name = "customerPaymentHistoryToolStripMenuItem";
+            this.customerPaymentHistoryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.customerPaymentHistoryToolStripMenuItem.Text = "Customer Payment History";
+            // 
+            // vehicleBalanceSummaryToolStripMenuItem
+            // 
+            this.vehicleBalanceSummaryToolStripMenuItem.Name = "vehicleBalanceSummaryToolStripMenuItem";
+            this.vehicleBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.vehicleBalanceSummaryToolStripMenuItem.Text = "Vehicle Balance Summary";
+            // 
+            // vehicleFuelingHistoryToolStripMenuItem
+            // 
+            this.vehicleFuelingHistoryToolStripMenuItem.Name = "vehicleFuelingHistoryToolStripMenuItem";
+            this.vehicleFuelingHistoryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.vehicleFuelingHistoryToolStripMenuItem.Text = "Vehicle Fueling History";
+            // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -759,138 +898,6 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
-            // dayWiseReportsToolStripMenuItem
-            // 
-            this.dayWiseReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dayilyCollectionSummaryToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.dailyPumperSummaryToolStripMenuItem,
-            this.dailyPumperDetailsToolStripMenuItem,
-            this.dailyCashSaleSummaryToolStripMenuItem,
-            this.dailyCashSaleDetailsToolStripMenuItem,
-            this.dailyCardSaleSummaryToolStripMenuItem,
-            this.dailyCardSaleDetailsToolStripMenuItem,
-            this.dailyVoucherSaleSummaryToolStripMenuItem,
-            this.dailyVoucherSaleDetailsToolStripMenuItem});
-            this.dayWiseReportsToolStripMenuItem.Name = "dayWiseReportsToolStripMenuItem";
-            this.dayWiseReportsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.dayWiseReportsToolStripMenuItem.Text = "Day Wise Reports";
-            // 
-            // dayilyCollectionSummaryToolStripMenuItem
-            // 
-            this.dayilyCollectionSummaryToolStripMenuItem.Name = "dayilyCollectionSummaryToolStripMenuItem";
-            this.dayilyCollectionSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dayilyCollectionSummaryToolStripMenuItem.Text = "Dayily Collection summary";
-            this.dayilyCollectionSummaryToolStripMenuItem.Click += new System.EventHandler(this.dayilyCollectionSummaryToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
-            // 
-            // dailyPumperSummaryToolStripMenuItem
-            // 
-            this.dailyPumperSummaryToolStripMenuItem.Name = "dailyPumperSummaryToolStripMenuItem";
-            this.dailyPumperSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyPumperSummaryToolStripMenuItem.Text = "Daily Pumper Summary";
-            // 
-            // dailyPumperDetailsToolStripMenuItem
-            // 
-            this.dailyPumperDetailsToolStripMenuItem.Name = "dailyPumperDetailsToolStripMenuItem";
-            this.dailyPumperDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyPumperDetailsToolStripMenuItem.Text = "Daily Pumper Details";
-            // 
-            // dailyCashSaleSummaryToolStripMenuItem
-            // 
-            this.dailyCashSaleSummaryToolStripMenuItem.Name = "dailyCashSaleSummaryToolStripMenuItem";
-            this.dailyCashSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyCashSaleSummaryToolStripMenuItem.Text = "Daily Cash Sale Summary";
-            // 
-            // dailyCashSaleDetailsToolStripMenuItem
-            // 
-            this.dailyCashSaleDetailsToolStripMenuItem.Name = "dailyCashSaleDetailsToolStripMenuItem";
-            this.dailyCashSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyCashSaleDetailsToolStripMenuItem.Text = "Daily Cash Sale Details";
-            // 
-            // dailyCardSaleSummaryToolStripMenuItem
-            // 
-            this.dailyCardSaleSummaryToolStripMenuItem.Name = "dailyCardSaleSummaryToolStripMenuItem";
-            this.dailyCardSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyCardSaleSummaryToolStripMenuItem.Text = "Daily Card Sale Summary";
-            // 
-            // dailyCardSaleDetailsToolStripMenuItem
-            // 
-            this.dailyCardSaleDetailsToolStripMenuItem.Name = "dailyCardSaleDetailsToolStripMenuItem";
-            this.dailyCardSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyCardSaleDetailsToolStripMenuItem.Text = "Daily Card Sale Details";
-            // 
-            // dailyVoucherSaleSummaryToolStripMenuItem
-            // 
-            this.dailyVoucherSaleSummaryToolStripMenuItem.Name = "dailyVoucherSaleSummaryToolStripMenuItem";
-            this.dailyVoucherSaleSummaryToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyVoucherSaleSummaryToolStripMenuItem.Text = "Daily Voucher Sale Summary";
-            // 
-            // dailyVoucherSaleDetailsToolStripMenuItem
-            // 
-            this.dailyVoucherSaleDetailsToolStripMenuItem.Name = "dailyVoucherSaleDetailsToolStripMenuItem";
-            this.dailyVoucherSaleDetailsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.dailyVoucherSaleDetailsToolStripMenuItem.Text = "Daily Voucher Sale Details";
-            // 
-            // customerWiseReportsToolStripMenuItem
-            // 
-            this.customerWiseReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customerBalanceReportToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.customerWiseBalanceSummaryToolStripMenuItem,
-            this.customerWiseBalanceDetailsToolStripMenuItem,
-            this.customerPaymentHistoryToolStripMenuItem,
-            this.vehicleBalanceSummaryToolStripMenuItem,
-            this.vehicleFuelingHistoryToolStripMenuItem});
-            this.customerWiseReportsToolStripMenuItem.Name = "customerWiseReportsToolStripMenuItem";
-            this.customerWiseReportsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.customerWiseReportsToolStripMenuItem.Text = "Customer Wise Reports";
-            // 
-            // customerBalanceReportToolStripMenuItem
-            // 
-            this.customerBalanceReportToolStripMenuItem.Name = "customerBalanceReportToolStripMenuItem";
-            this.customerBalanceReportToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.customerBalanceReportToolStripMenuItem.Text = "Customer Balance Report";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(254, 6);
-            // 
-            // customerWiseBalanceSummaryToolStripMenuItem
-            // 
-            this.customerWiseBalanceSummaryToolStripMenuItem.Name = "customerWiseBalanceSummaryToolStripMenuItem";
-            this.customerWiseBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.customerWiseBalanceSummaryToolStripMenuItem.Text = "Customer Wise Balance Summary";
-            // 
-            // customerWiseBalanceDetailsToolStripMenuItem
-            // 
-            this.customerWiseBalanceDetailsToolStripMenuItem.Name = "customerWiseBalanceDetailsToolStripMenuItem";
-            this.customerWiseBalanceDetailsToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.customerWiseBalanceDetailsToolStripMenuItem.Text = "Customer Wise Balance Details";
-            // 
-            // customerPaymentHistoryToolStripMenuItem
-            // 
-            this.customerPaymentHistoryToolStripMenuItem.Name = "customerPaymentHistoryToolStripMenuItem";
-            this.customerPaymentHistoryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.customerPaymentHistoryToolStripMenuItem.Text = "Customer Payment History";
-            // 
-            // vehicleBalanceSummaryToolStripMenuItem
-            // 
-            this.vehicleBalanceSummaryToolStripMenuItem.Name = "vehicleBalanceSummaryToolStripMenuItem";
-            this.vehicleBalanceSummaryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.vehicleBalanceSummaryToolStripMenuItem.Text = "Vehicle Balance Summary";
-            // 
-            // vehicleFuelingHistoryToolStripMenuItem
-            // 
-            this.vehicleFuelingHistoryToolStripMenuItem.Name = "vehicleFuelingHistoryToolStripMenuItem";
-            this.vehicleFuelingHistoryToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.vehicleFuelingHistoryToolStripMenuItem.Text = "Vehicle Fueling History";
             // 
             // frm_main
             // 

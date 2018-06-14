@@ -24,8 +24,8 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                   
-                    return db.Query<RosterViewModel>("SP_GetAllShifts", new { did = did }, commandType:CommandType.StoredProcedure);
+
+                    return db.Query<RosterViewModel>("SP_GetAllShifts", new { did = did }, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)
@@ -44,7 +44,7 @@ namespace FSMS.Repository
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
 
-                    return db.Query<TotalizeReadingViewModel>("SP_GetTotalizerReadings", new { did = did , sid = sid}, commandType: CommandType.StoredProcedure);
+                    return db.Query<TotalizeReadingViewModel>("SP_GetTotalizerReadings", new { did = did, sid = sid }, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace FSMS.Repository
 
         }
 
-        public static bool CheckExistanceOFNozzelForDayInTotalizer(int did,int nozzid)
+        public static bool CheckExistanceOFNozzelForDayInTotalizer(int did, int nozzid)
         {
 
             try
@@ -63,9 +63,12 @@ namespace FSMS.Repository
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
                     int xxint = db.QuerySingleOrDefault<int>("select id from TotalizeReadings where dayid = @did and Nozzelid=@nozzid", new { did = did, nozzid = nozzid });
-                    if (xxint > 0) {
+                    if (xxint > 0)
+                    {
                         return true;
-                    } else {
+                    }
+                    else
+                    {
                         return false;
                     }
                 }
@@ -111,7 +114,7 @@ namespace FSMS.Repository
                 throw ex;
             }
         }
-        public static bool CheckExistancePumperForNozzel(int did, int nozzid,int pumprid)
+        public static bool CheckExistancePumperForNozzel(int did, int nozzid, int pumprid)
         {
 
             try
@@ -119,7 +122,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    int xxint = db.QuerySingleOrDefault<int>("CheckExistancePumperForNozzel", new { did = did, NozzelID = nozzid , PumperID = pumprid },commandType:CommandType.StoredProcedure);
+                    int xxint = db.QuerySingleOrDefault<int>("CheckExistancePumperForNozzel", new { did = did, NozzelID = nozzid, PumperID = pumprid }, commandType: CommandType.StoredProcedure);
                     if (xxint > 0)
                     {
                         return true;
@@ -146,7 +149,7 @@ namespace FSMS.Repository
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
                     return db.QuerySingleOrDefault<TotalizeReading>("SP_GetTotalizerForDayNozzelShift", new { did = did, nid = nozzid, sid = sid }, commandType: CommandType.StoredProcedure);
-                   
+
                 }
             }
             catch (Exception ex)
@@ -156,7 +159,7 @@ namespace FSMS.Repository
 
         }
 
-        public static int GetNozzelForPumperInGivenDay(int did,int pumprid,int sid)
+        public static int GetNozzelForPumperInGivenDay(int did, int pumprid, int sid)
         {
 
             try
@@ -175,15 +178,15 @@ namespace FSMS.Repository
 
         }
 
-        public static int InitializeDailyPumperAssign(string DateStamp,string day)
+        public static int InitializeDailyPumperAssign(string DateStamp, string day)
         {
 
             try
             {
-                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Execute("Sp_InitializeDailyPumperAssign", new { DateStamp = DateStamp , day = day }, commandType: CommandType.StoredProcedure);
+                    return db.Execute("Sp_InitializeDailyPumperAssign", new { DateStamp = DateStamp, day = day }, commandType: CommandType.StoredProcedure);
 
                 }
             }
@@ -194,7 +197,7 @@ namespace FSMS.Repository
 
         }
 
-      
+
 
         public static IEnumerable<DailyAssignWorkerDetails> GetDailyAssignWorkerDetails(int did, int sessionid)
         {
@@ -204,7 +207,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Query<DailyAssignWorkerDetails>("SP_GetDailyAssignWorkerDetails", new { did = did , sessionid= sessionid }, commandType: CommandType.StoredProcedure);
+                    return db.Query<DailyAssignWorkerDetails>("SP_GetDailyAssignWorkerDetails", new { did = did, sessionid = sessionid }, commandType: CommandType.StoredProcedure);
 
                 }
             }
@@ -214,7 +217,7 @@ namespace FSMS.Repository
             }
 
         }
-        public static string AssignPumperToNozzel(int did,int pimperID, int NozzelID, int DayAssignID , int SessionID)
+        public static string AssignPumperToNozzel(int did, int pimperID, int NozzelID, int DayAssignID, int SessionID)
         {
 
             try
@@ -222,12 +225,13 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    int x = db.Execute("SP_AssignPumperToNozzel", new { SessionID = SessionID, did = did, pimperID = pimperID, NozzelID= NozzelID, DayAssignID= DayAssignID }, commandType: CommandType.StoredProcedure);
+                    int x = db.Execute("SP_AssignPumperToNozzel", new { SessionID = SessionID, did = did, pimperID = pimperID, NozzelID = NozzelID, DayAssignID = DayAssignID }, commandType: CommandType.StoredProcedure);
                     if (x > 0)
                     {
                         return "Pumper Assigned Successfull";
                     }
-                    else {
+                    else
+                    {
                         return "Error While Pumper Assignement";
                     }
                 }
@@ -239,9 +243,9 @@ namespace FSMS.Repository
 
         }
 
-      
 
-        public static int InsertTotalCashCollection(int did,int pumperid, decimal cashtotal, decimal Cardtotal, decimal Vouchertotal, decimal Expensetotal)
+
+        public static int InsertTotalCashCollection(int did, int pumperid, decimal cashtotal, decimal Cardtotal, decimal Vouchertotal, decimal Expensetotal)
         {
 
             try
@@ -249,8 +253,9 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Execute("SP_InsertTotalCashCollection", 
-                        new {
+                    return db.Execute("SP_InsertTotalCashCollection",
+                        new
+                        {
                             did = did,
                             pumperid = pumperid,
                             cashtotal = cashtotal,
@@ -270,7 +275,7 @@ namespace FSMS.Repository
         }
 
         public static int InsertCollectionBreakdown(decimal value, int did, int pumperid, int collectionID, int vehicleID,
-            int SalesId, string cardNo, string VoucherNO, int BankId,int Aciion,int CollectionBreakId, int SessionID)
+            int SalesId, string cardNo, string VoucherNO, int BankId, int Aciion, int CollectionBreakId, int SessionID)
         {
 
             try
@@ -291,7 +296,7 @@ namespace FSMS.Repository
                             BankId = BankId,
                             Action = Aciion,
                             Value = value,
-                            CollectionBreakId= CollectionBreakId,
+                            CollectionBreakId = CollectionBreakId,
                             SessionID = SessionID
                         },
                         commandType: CommandType.StoredProcedure);
@@ -339,7 +344,7 @@ namespace FSMS.Repository
 
 
 
-        public static DayPumperSaleTypeSummry GetTotalForEachPumperForGivenDay(int DayID, int PumperId)
+        public static DayPumperSaleTypeSummry GetTotalForEachPumperForGivenDay(int DayID, int PumperId,int SessionId)
         {
 
             try
@@ -351,7 +356,8 @@ namespace FSMS.Repository
                         new
                         {
                             DayID = DayID,
-                            PumperId = PumperId
+                            PumperId = PumperId,
+                            SessionId= SessionId
                         },
                         commandType: CommandType.StoredProcedure);
 
@@ -365,7 +371,7 @@ namespace FSMS.Repository
         }
 
 
-        public static IEnumerable<PumperForGivenDayCollectionDetails> PumperForGivenDayCollectionDetails(int DayID, int PumperId,int SaleType)
+        public static IEnumerable<PumperForGivenDayCollectionDetails> PumperForGivenDayCollectionDetails(int DayID, int PumperId, int SaleType,int SessionId)
         {
 
             try
@@ -378,7 +384,8 @@ namespace FSMS.Repository
                         {
                             DayID = DayID,
                             PumperId = PumperId,
-                            SaleType= SaleType
+                            SaleType = SaleType,
+                            SessionId= SessionId
                         },
                         commandType: CommandType.StoredProcedure);
 
@@ -419,10 +426,10 @@ namespace FSMS.Repository
 
         }
 
-      
 
-        public static int InsetPumpClosing(int DayID, int PumperId, int NozzelID, 
-             decimal TotalHours, decimal StartTotalizer, decimal EndTotalizer, decimal Reading, decimal Price, decimal Value, int SeqNo,int SessionId)
+
+        public static int InsetPumpClosing(int DayID, int PumperId, int NozzelID,
+             decimal TotalHours, decimal StartTotalizer, decimal EndTotalizer, decimal Reading, decimal Price, decimal Value, int SeqNo, int SessionId)
         {
 
             try
@@ -442,7 +449,7 @@ namespace FSMS.Repository
                             Reading = Reading,
                             Price = Price,
                             Value = Value,
-                            SeqNo= SeqNo,
+                            SeqNo = SeqNo,
                             SessionId = SessionId
                         },
                         commandType: CommandType.StoredProcedure);
@@ -456,7 +463,7 @@ namespace FSMS.Repository
         }
 
 
-        public static IEnumerable<DailyPumperTotal> GetDailyPumperTotal(int DayID, int PumperId,int SessionId)
+        public static IEnumerable<DailyPumperTotal> GetDailyPumperTotal(int DayID, int PumperId, int SessionId)
         {
 
             try
@@ -469,7 +476,7 @@ namespace FSMS.Repository
                         {
                             DayId = DayID,
                             PumperId = PumperId,
-                            SessionId= SessionId
+                            SessionId = SessionId
                         },
                         commandType: CommandType.StoredProcedure);
 
@@ -484,7 +491,7 @@ namespace FSMS.Repository
 
 
 
-        public static GetCollectionFOrDay_Pumper_SaleType GetGetCollectionFOrDay_Pumper_SaleType(int DayID, int PumperId, int SaleId,int SessionId)
+        public static GetCollectionFOrDay_Pumper_SaleType GetGetCollectionFOrDay_Pumper_SaleType(int DayID, int PumperId, int SaleId, int SessionId)
         {
 
             try
@@ -497,7 +504,7 @@ namespace FSMS.Repository
                         DayId = DayID,
                         PumperId = PumperId,
                         SaleId = SaleId,
-                        SessionId= SessionId
+                        SessionId = SessionId
                     }, commandType: CommandType.StoredProcedure))
                     {
                         var countA = multi.Read<GetCollectionFOrDay_Pumper_SaleType>().Single();
@@ -506,7 +513,7 @@ namespace FSMS.Repository
                         return countA;
                     }
 
-                    
+
 
                 }
             }
@@ -542,7 +549,7 @@ namespace FSMS.Repository
 
         }
 
-        public static TwoKeyNumer GetSystemTotalForPumperForDay(int DayID, int PumperId,int SessionId)
+        public static TwoKeyNumer GetSystemTotalForPumperForDay(int DayID, int PumperId, int SessionId)
         {
 
             try
@@ -554,7 +561,7 @@ namespace FSMS.Repository
                     {
                         DayId = DayID,
                         PumperId = PumperId,
-                        SessionId= SessionId
+                        SessionId = SessionId
                     }, commandType: CommandType.StoredProcedure);
                 }
             }
@@ -582,6 +589,7 @@ namespace FSMS.Repository
             }
         }
 
+
         public static IEnumerable<Nozzle> GetAllNozzelssByTank(int tankid)
         {
 
@@ -590,7 +598,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Query<Nozzle>("select * from Nozzles where TankId = @tankid" , new { tankid = tankid });
+                    return db.Query<Nozzle>("select * from Nozzles where TankId = @tankid", new { tankid = tankid });
                 }
             }
             catch (Exception ex)
@@ -783,7 +791,7 @@ namespace FSMS.Repository
                         {
                             DocNo = DocNo,
                             CreatedUser = CreatedUser,
-                        },commandType:CommandType.StoredProcedure
+                        }, commandType: CommandType.StoredProcedure
                         );
                 }
             }
@@ -801,7 +809,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Query<UnloadingDipReadings>("SP_GetTanksForUnloading" , new { DocNo = DocNo }, commandType:CommandType.StoredProcedure);
+                    return db.Query<UnloadingDipReadings>("SP_GetTanksForUnloading", new { DocNo = DocNo }, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)
@@ -818,7 +826,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.Query<UnloadingNozzelReading>("SP_GetNozzelForUnloading", new { DocNo = DocNo, TankId = TankId }, commandType:CommandType.StoredProcedure);
+                    return db.Query<UnloadingNozzelReading>("SP_GetNozzelForUnloading", new { DocNo = DocNo, TankId = TankId }, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)
@@ -834,8 +842,8 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.QuerySingleOrDefault<int>("SP_SaveTotalizerForUnloading", 
-                        new { DocNo = DocNo, NozzelID = NozzelID, Reading= Reading },
+                    return db.QuerySingleOrDefault<int>("SP_SaveTotalizerForUnloading",
+                        new { DocNo = DocNo, NozzelID = NozzelID, Reading = Reading },
                         commandType: CommandType.StoredProcedure);
                 }
             }
@@ -873,7 +881,7 @@ namespace FSMS.Repository
                 {
                     return db.QuerySingleOrDefault<int>("select top 1 Reading from UnloadingNozzelReadings inner " +
                         " join UnloadingHeds on UnloadingNozzelReadings.hedid = UnloadingHeds.id where UnloadingHeds.DocNo = @DocNo and NozzelId = @nozzelid",
-                        new { DocNo = DocNo , nozzelid = nozzelid }
+                        new { DocNo = DocNo, nozzelid = nozzelid }
                       );
                 }
             }
@@ -883,7 +891,7 @@ namespace FSMS.Repository
             }
         }
 
-        public static int UpdateDipValues(string DocNo,int TankID , decimal Value,int BorA)
+        public static int UpdateDipValues(string DocNo, int TankID, decimal Value, int BorA)
         {
             try
             {
@@ -891,8 +899,8 @@ namespace FSMS.Repository
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
                     return db.QuerySingleOrDefault<int>("SP_SaveDipMesurements",
-                        new { DocNo = DocNo, TankID = TankID , Reading = Value, BeforeAfter = BorA },
-                        commandType:CommandType.StoredProcedure
+                        new { DocNo = DocNo, TankID = TankID, Reading = Value, BeforeAfter = BorA },
+                        commandType: CommandType.StoredProcedure
                       );
                 }
             }
@@ -916,7 +924,8 @@ namespace FSMS.Repository
                             new { DocNo = DocNo, Tankid = Tankid }
                           );
                     }
-                    else {
+                    else
+                    {
                         return db.QuerySingleOrDefault<decimal>("select top 1 AfterDipReading from UnloadingDipReadings inner join UnloadingHeds on UnloadingDipReadings.hedid = UnloadingHeds.id " +
                            "where UnloadingHeds.DocNo = @DocNo and TankD =@Tankid",
                            new { DocNo = DocNo, Tankid = Tankid }
@@ -938,7 +947,7 @@ namespace FSMS.Repository
                 _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
                 using (IDbConnection db = new SqlConnection(_connectionName))
                 {
-                    return db.QuerySingle<FuelType>("select top 1 * from FuelTypes where Id =@FuelId", new { FuelId = FuelId});
+                    return db.QuerySingle<FuelType>("select top 1 * from FuelTypes where Id =@FuelId", new { FuelId = FuelId });
                 }
             }
             catch (Exception ex)
@@ -1019,6 +1028,30 @@ namespace FSMS.Repository
             }
         }
 
+        public static bool CheckSalesValidation(int DayId, int SessionID, int PumperId)
+        {
+            try
+            {
+                _connectionName = ConfigurationManager.ConnectionStrings["ConnFSMS"].ConnectionString;
+                using (IDbConnection db = new SqlConnection(_connectionName))
+                {
+                    int count = db.QuerySingle<int>("Sp_CheckSalesValidation", new { DayId = DayId, SessionID = SessionID, PumperId = PumperId },commandType:CommandType.StoredProcedure);
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else {
+
+                        return false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 

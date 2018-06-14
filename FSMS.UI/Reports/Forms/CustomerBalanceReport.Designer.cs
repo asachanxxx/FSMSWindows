@@ -1,6 +1,6 @@
 ﻿namespace FSMS.UI.Reports.Forms
 {
-    partial class DayilyCollectionsummary
+    partial class CustomerBalanceReport
     {
         /// <summary>
         /// Required designer variable.
@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DayilyCollectionsummary));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerBalanceReport));
             this.pnl_footer = new System.Windows.Forms.Panel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnl_header = new System.Windows.Forms.Panel();
             this.lbl_headerpaneltext = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.cmb_days = new System.Windows.Forms.ComboBox();
+            this.cmb_customers = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.cmb_pumper = new System.Windows.Forms.ComboBox();
-            this.chk_details = new System.Windows.Forms.RadioButton();
-            this.chk_cummary = new System.Windows.Forms.RadioButton();
-            this.chk_filter1 = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dte_from = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dte_to = new System.Windows.Forms.DateTimePicker();
             this.pnl_footer.SuspendLayout();
             this.pnl_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -56,10 +56,10 @@
             this.pnl_footer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(53)))), ((int)(((byte)(68)))));
             this.pnl_footer.Controls.Add(this.btn_print);
             this.pnl_footer.Controls.Add(this.btn_exit);
-            this.pnl_footer.Location = new System.Drawing.Point(-42, 212);
+            this.pnl_footer.Location = new System.Drawing.Point(0, 149);
             this.pnl_footer.Name = "pnl_footer";
-            this.pnl_footer.Size = new System.Drawing.Size(489, 42);
-            this.pnl_footer.TabIndex = 96;
+            this.pnl_footer.Size = new System.Drawing.Size(447, 42);
+            this.pnl_footer.TabIndex = 112;
             // 
             // imageList1
             // 
@@ -84,7 +84,7 @@
             this.pnl_header.Location = new System.Drawing.Point(0, 0);
             this.pnl_header.Name = "pnl_header";
             this.pnl_header.Size = new System.Drawing.Size(447, 38);
-            this.pnl_header.TabIndex = 95;
+            this.pnl_header.TabIndex = 111;
             // 
             // lbl_headerpaneltext
             // 
@@ -107,83 +107,39 @@
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList2.Images.SetKeyName(0, "Log ogg.png");
             // 
-            // cmb_days
+            // cmb_customers
             // 
-            this.cmb_days.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_days.FormattingEnabled = true;
-            this.cmb_days.Location = new System.Drawing.Point(170, 18);
-            this.cmb_days.Name = "cmb_days";
-            this.cmb_days.Size = new System.Drawing.Size(182, 22);
-            this.cmb_days.TabIndex = 98;
+            this.cmb_customers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_customers.FormattingEnabled = true;
+            this.cmb_customers.Location = new System.Drawing.Point(170, 18);
+            this.cmb_customers.Name = "cmb_customers";
+            this.cmb_customers.Size = new System.Drawing.Size(182, 21);
+            this.cmb_customers.TabIndex = 98;
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.cmb_pumper);
-            this.panel6.Controls.Add(this.chk_details);
-            this.panel6.Controls.Add(this.chk_cummary);
-            this.panel6.Controls.Add(this.chk_filter1);
+            this.panel6.Controls.Add(this.dte_to);
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.dte_from);
+            this.panel6.Controls.Add(this.label1);
             this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.cmb_days);
+            this.panel6.Controls.Add(this.cmb_customers);
             this.panel6.Location = new System.Drawing.Point(0, 44);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(447, 162);
-            this.panel6.TabIndex = 110;
-            // 
-            // cmb_pumper
-            // 
-            this.cmb_pumper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_pumper.FormattingEnabled = true;
-            this.cmb_pumper.Location = new System.Drawing.Point(170, 56);
-            this.cmb_pumper.Name = "cmb_pumper";
-            this.cmb_pumper.Size = new System.Drawing.Size(182, 22);
-            this.cmb_pumper.TabIndex = 104;
-            // 
-            // chk_details
-            // 
-            this.chk_details.AutoSize = true;
-            this.chk_details.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.chk_details.Location = new System.Drawing.Point(291, 106);
-            this.chk_details.Name = "chk_details";
-            this.chk_details.Size = new System.Drawing.Size(69, 22);
-            this.chk_details.TabIndex = 103;
-            this.chk_details.Text = "Details";
-            this.chk_details.UseVisualStyleBackColor = true;
-            // 
-            // chk_cummary
-            // 
-            this.chk_cummary.AutoSize = true;
-            this.chk_cummary.Checked = true;
-            this.chk_cummary.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.chk_cummary.Location = new System.Drawing.Point(170, 106);
-            this.chk_cummary.Name = "chk_cummary";
-            this.chk_cummary.Size = new System.Drawing.Size(84, 22);
-            this.chk_cummary.TabIndex = 102;
-            this.chk_cummary.TabStop = true;
-            this.chk_cummary.Text = "Summary";
-            this.chk_cummary.UseVisualStyleBackColor = true;
-            // 
-            // chk_filter1
-            // 
-            this.chk_filter1.AutoSize = true;
-            this.chk_filter1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_filter1.Location = new System.Drawing.Point(13, 56);
-            this.chk_filter1.Name = "chk_filter1";
-            this.chk_filter1.Size = new System.Drawing.Size(130, 22);
-            this.chk_filter1.TabIndex = 100;
-            this.chk_filter1.Text = "Filter By Pumper";
-            this.chk_filter1.UseVisualStyleBackColor = true;
+            this.panel6.Size = new System.Drawing.Size(447, 99);
+            this.panel6.TabIndex = 113;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
-            this.label8.Location = new System.Drawing.Point(9, 17);
+            this.label8.Location = new System.Drawing.Point(11, 18);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 18);
+            this.label8.Size = new System.Drawing.Size(115, 18);
             this.label8.TabIndex = 2;
-            this.label8.Text = "Select a Day";
+            this.label8.Text = "Select Customers";
             // 
             // btn_print
             // 
@@ -193,7 +149,7 @@
             this.btn_print.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_print.ImageIndex = 10;
             this.btn_print.ImageList = this.imageList1;
-            this.btn_print.Location = new System.Drawing.Point(285, 4);
+            this.btn_print.Location = new System.Drawing.Point(256, 4);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(91, 34);
             this.btn_print.TabIndex = 69;
@@ -209,7 +165,7 @@
             this.btn_exit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_exit.ImageIndex = 10;
             this.btn_exit.ImageList = this.imageList1;
-            this.btn_exit.Location = new System.Drawing.Point(382, 4);
+            this.btn_exit.Location = new System.Drawing.Point(353, 4);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(91, 34);
             this.btn_exit.TabIndex = 68;
@@ -217,18 +173,55 @@
             this.btn_exit.UseVisualStyleBackColor = false;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
-            // DayilyCollectionsummary
+            // label1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.label1.Location = new System.Drawing.Point(11, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 18);
+            this.label1.TabIndex = 104;
+            this.label1.Text = "Date From";
+            // 
+            // dte_from
+            // 
+            this.dte_from.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dte_from.Location = new System.Drawing.Point(170, 50);
+            this.dte_from.Name = "dte_from";
+            this.dte_from.Size = new System.Drawing.Size(111, 20);
+            this.dte_from.TabIndex = 105;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.label2.Location = new System.Drawing.Point(287, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 18);
+            this.label2.TabIndex = 106;
+            this.label2.Text = "To";
+            // 
+            // dte_to
+            // 
+            this.dte_to.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dte_to.Location = new System.Drawing.Point(315, 50);
+            this.dte_to.Name = "dte_to";
+            this.dte_to.Size = new System.Drawing.Size(111, 20);
+            this.dte_to.TabIndex = 107;
+            // 
+            // CustomerBalanceReport
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 266);
-            this.Controls.Add(this.panel6);
+            this.ClientSize = new System.Drawing.Size(449, 192);
             this.Controls.Add(this.pnl_footer);
             this.Controls.Add(this.pnl_header);
-            this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "DayilyCollectionsummary";
-            this.Text = "DayilyCollectionsummary";
-            this.Load += new System.EventHandler(this.DayilyCollectionsummary_Load);
+            this.Controls.Add(this.panel6);
+            this.Name = "CustomerBalanceReport";
+            this.Text = "CustomerBalanceReport";
+            this.Load += new System.EventHandler(this.CustomerBalanceReport_Load);
             this.pnl_footer.ResumeLayout(false);
             this.pnl_header.ResumeLayout(false);
             this.pnl_header.PerformLayout();
@@ -240,20 +233,21 @@
         }
 
         #endregion
+
         private System.Windows.Forms.Panel pnl_footer;
+        private System.Windows.Forms.Button btn_print;
+        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.Panel pnl_header;
         private System.Windows.Forms.Label lbl_headerpaneltext;
-        private System.Windows.Forms.Button btn_print;
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ImageList imageList2;
-        private System.Windows.Forms.ComboBox cmb_days;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RadioButton chk_details;
-        private System.Windows.Forms.RadioButton chk_cummary;
-        private System.Windows.Forms.CheckBox chk_filter1;
-        private System.Windows.Forms.ComboBox cmb_pumper;
+        private System.Windows.Forms.ComboBox cmb_customers;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.DateTimePicker dte_to;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dte_from;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -215,6 +215,18 @@
     <Compile Include="MasterData\PumpManager.Designer.cs">
       <DependentUpon>PumpManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Forms\CustomerBalanceReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\CustomerBalanceReport.Designer.cs">
+      <DependentUpon>CustomerBalanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\DailySaletypeWiseSummaryAndDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\DailySaletypeWiseSummaryAndDetail.Designer.cs">
+      <DependentUpon>DailySaletypeWiseSummaryAndDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Forms\DayilyCollectionsummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,10 +238,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Process.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT\Rpt_CustomerBalanceReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_CustomerBalanceReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT\Rpt_dailyCollectionSummary.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Rpt_dailyCollectionSummary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT\Rpt_DailyColSummary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_DailyColSummary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT\Rpt_DailyColSummaryForPumper.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_DailyColSummaryForPumper.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT\Rpt_SalesTypeWiseSale.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_SalesTypeWiseSale.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="e2e\e2etest.resx">
@@ -308,12 +344,34 @@
     <EmbeddedResource Include="MasterData\PumpManager.resx">
       <DependentUpon>PumpManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\CustomerBalanceReport.resx">
+      <DependentUpon>CustomerBalanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\DailySaletypeWiseSummaryAndDetail.resx">
+      <DependentUpon>DailySaletypeWiseSummaryAndDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Forms\DayilyCollectionsummary.resx">
       <DependentUpon>DayilyCollectionsummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT\Rpt_CustomerBalanceReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_CustomerBalanceReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT\Rpt_dailyCollectionSummary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_dailyCollectionSummary.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT\Rpt_DailyColSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_DailyColSummary.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT\Rpt_DailyColSummaryForPumper.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_DailyColSummaryForPumper.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT\Rpt_SalesTypeWiseSale.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_SalesTypeWiseSale.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

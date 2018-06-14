@@ -108,6 +108,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Master Data\SalesType.cs" />
     <Compile Include="ReportData\CollectionSummary.cs" />
+    <Compile Include="ReportData\ColSummary.cs" />
+    <Compile Include="ReportData\CustomerBalance.cs" />
     <Compile Include="Security\MenuTag.cs" />
     <Compile Include="Security\SysSetup.cs" />
     <Compile Include="Security\User.cs" />
